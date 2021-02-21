@@ -96,7 +96,7 @@
                         </div>
                         <div class="full testimonial_cont text_align_center cross_layout">
                             <div class="cross_inner">
-                                <h3>Leila Goncalves Pereira<br><strong class="ornage_color">?????</strong></h3>
+                                <h3>Leila Goncalves Pereira<br><strong class="ornage_color">Arujá, SP</strong></h3>
                                 <p>Fiz uma compra porém quando eu fui utilizar vi que era a cor errada e gostaria de trocar. Está tudo embalado e a NF tem de que 30 dias, porém não querem receber e dizem que não estão mais vendendo o produto. Estive na loja e o item estava exposto à venda. Independente disso, não é meu direito devolver?
                                 </p>
                                 <div class="full text_align_center margin_top_30">
@@ -114,7 +114,7 @@
                         </div>
                         <div class="full testimonial_cont text_align_center cross_layout">
                             <div class="cross_inner">
-                                <h3>Nicolas Ferreira da Silva<br><strong class="ornage_color">?????</strong></h3>
+                                <h3>Nicolas Ferreira da Silva<br><strong class="ornage_color">Poá, SP</strong></h3>
                                 <p>Recebi uma fatura que desconheço a compra. Tentei entrar em contato conforme telefone disponível no site, mas não atendem. A cobrança foi para o endereço do meu serviço (estou de home office há um ano) e para minha surpresa ao ter que ir presencialmente na empresa me deparei com essa falsa cobrança.
                                 </p>
                                 <div class="full text_align_center margin_top_30">
@@ -133,7 +133,7 @@
                         </div>
                         <div class="full testimonial_cont text_align_center cross_layout">
                             <div class="cross_inner">
-                                <h3>Julia Rodrigues Souza<br><strong class="ornage_color">?????</strong></h3>
+                                <h3>Julia Rodrigues Souza<br><strong class="ornage_color">Feira de Santana, BA</strong></h3>
                                 <p>Comprei 11 caixas de um porcelanato e o entregador quebrou 5 caixas deste revestimento. Solicitei a substituição e no dia seguinte tentaram entregar somente 3 caixas. É um absurdo, além do atraso na obra só receberei o dinheiro de volta em 10 dias úteis, ou seja, descaso total com o consumidor!
                                 </p>
                                 <div class="full text_align_center margin_top_30">
