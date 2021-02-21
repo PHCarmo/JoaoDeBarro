@@ -1898,7 +1898,7 @@ ul.social_icon li a:hover {
 	box-shadow: #ddd 0px 0px 19px 1px;
 	padding: 40px;
 }
-select.select {
+select.form-control {
         display: none;
 }
 .form-control {

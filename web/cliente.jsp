@@ -24,7 +24,7 @@
                             <input class="form-control" placeholder="Nome Completo" type="text" name="cli_nome">
                         </div>
                         <div class="col-3">
-                            <select class="form-control select" name="cli_tipo">
+                            <select class="form-control" name="cli_tipo">
                                 <option value="">Selecione o Tipo</option>
                                 <option value="fisica">Pessoa Física</option>
                                 <option value="juridica">Pessoa Jurídica</option>
@@ -39,7 +39,7 @@
                             <input class="form-control" placeholder="Validade" type="date" name="doc_valida">
                         </div>
                         <div class="col-3">
-                            <select class="form-control select" name="doc_tipo">
+                            <select class="form-control" name="doc_tipo">
                                 <option value="">Selecione o Tipo</option>
                                 <option value="cpf">CPF</option>
                                 <option value="cnpj">CNPJ</option>
@@ -67,7 +67,7 @@
                             <input class="form-control" placeholder="Complemento" type="text" name="end_comple">
                         </div>
                         <div class="col-3">
-                            <select class="form-control select" name="end_tipo">
+                            <select class="form-control" name="end_tipo">
                                 <option value="">Selecione o Tipo</option>
                                 <option value="cpf">Entrega</option>
                                 <option value="cnpj">Cobrança</option>
