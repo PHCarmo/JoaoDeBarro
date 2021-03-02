@@ -4,24 +4,20 @@ import java.util.Date;
 
 public class TipoEndereco extends EntidadeDominio {
     private String nome;
-    private String descricao;
 
     public TipoEndereco() {
         super();
         this.nome = "";
-        this.descricao = "";
     }
 
-    public TipoEndereco(String nome, String descricao) {
+    public TipoEndereco(String nome) {
         super();
         this.nome = nome;
-        this.descricao = descricao;
     }
 
-    public TipoEndereco(String nome, String descricao, int id, Date dt_cadastro) {
+    public TipoEndereco(String nome, int id, Date dt_cadastro) {
         super(id, dt_cadastro);
         this.nome = nome;
-        this.descricao = descricao;
     }
 
     public String getNome() {
@@ -30,14 +26,6 @@ public class TipoEndereco extends EntidadeDominio {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
     
 }
