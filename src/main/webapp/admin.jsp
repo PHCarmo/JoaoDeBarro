@@ -82,7 +82,7 @@
                 "width": "35%"
             }],
             "processing": true,
-            "ajax": "TableConstructor?tabela=Cliente"
+            "ajax": "TableConstructor?tabela=Cliente&operacao=GERAR_TABELA"
         });
         
         $(".fancybox").fancybox({
