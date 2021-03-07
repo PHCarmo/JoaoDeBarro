@@ -1,6 +1,7 @@
 package br.com.fatecmc.joaodebarro.control.tablejson;
 
 import br.com.fatecmc.joaodebarro.model.domain.*;
+import br.com.fatecmc.joaodebarro.util.Mask;
 import java.util.List;
 
 public class GeneratorJsonCliente implements IGeneratorJson {
@@ -15,12 +16,16 @@ public class GeneratorJsonCliente implements IGeneratorJson {
             for(EntidadeDominio e: entidades) {
                 Cliente a = (Cliente) e;
                 data += " ["
-                    +"\"<div style='width: 20px;height: 20px;border-radius: 50%;background-color:"+ (a.getStatus() ? "green" : "grey") + ";'></div>\","
+                    +"\"<div class='circle-"+ (a.getStatus() ? "green" : "gray") + "'></div>\","
                     +"\""+ a.getId() + "\","
                     +"\""+ a.getUsuario().getId() + "\","
                     +"\""+ a.getNome()+ "\","
-                    +"\""+ a.getCpf() + "\","
-                    +"\"<a href='./form_cliente.jsp"
+                    +"\""+ Mask.toCPF(a.getCpf()) + "\","
+                    +"\"<a class='btn btn-default' title='Ativar/Inativar' href='./Cliente?operacao=ALTERAR_STATUS"
+                    +"&cli_id="+ a.getId()
+                    +"&cli_status="+ a.getStatus()
+                    +"'><img class='icon' src='icon/power.png' /></a>"
+                    + "<a class='btn btn-default' title='Visualizar' href='./form_cliente.jsp"
                     +"?cli_usu_id=" + a.getUsuario().getId()
                     +"&cli_nome="+ a.getNome()
                     +"&cli_cpf="+ a.getCpf()
@@ -30,12 +35,7 @@ public class GeneratorJsonCliente implements IGeneratorJson {
                     +"&cli_tel_numero="+ a.getTel_numero()
                     +"&cli_dt_nascimento="+ a.getDt_nascimento()
                     +"&cli_id="+ a.getId()
-                    +"&operacao=VISUALIZAR"
-                    +"'>O</a>\","
-                    +"\"<a href='./Cliente?operacao=ALTERAR_STATUS"
-                    +"&cli_id="+ a.getId()
-                    +"&cli_status="+ a.getStatus()
-                    +"'>O</a>\""
+                    +"&operacao=VISUALIZAR'><img class='icon' src='icon/eye.png' /></a>\""
                     +"]";
                 if(cont < totalLista){
                     data += ",";

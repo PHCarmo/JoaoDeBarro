@@ -2448,9 +2448,9 @@ select.form-control-lg:not([size]):not([multiple]) {
 	-ms-user-select: none;
 	user-select: none;
 	border: 1px solid transparent;
-	padding: .375rem .75rem;
+	padding: 1px 6px;
 	font-size: 1rem;
-	line-height: 1.5;
+	line-height: 10px;
 	border-radius: .25rem;
 	transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
 }
@@ -9248,5 +9248,9 @@ a.text-dark:hover {
 	}
 }
 
-
-/*# sourceMappingURL=bootstrap.min.css.map */
+.icon {
+        position: relative;
+        display: inline-block;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+}
