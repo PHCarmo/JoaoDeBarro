@@ -3,11 +3,9 @@ package br.com.fatecmc.joaodebarro.control.viewhelper;
 import br.com.fatecmc.joaodebarro.control.tablejson.GeneratorJsonCliente;
 import br.com.fatecmc.joaodebarro.control.tablejson.IGeneratorJson;
 import br.com.fatecmc.joaodebarro.model.domain.*;
-import br.com.fatecmc.joaodebarro.util.ParameterParser;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -23,16 +21,13 @@ public class DataTableVH implements IViewHelper {
 
     @Override
     public EntidadeDominio getEntidade(HttpServletRequest request) {
-        String tabela = request.getParameter("tabela");
-        
-        DataTable data_table = new DataTable(tabela, null);
-        return data_table;
+        return new Cliente();
     }
 
     @Override
     public void setView(Object resultado, HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
-        String json = generators.get(((DataTable) resultado).getNome()).gerar(((DataTable) resultado).getElementos());
+        String json = generators.get(request.getParameter("tabela")).gerar((List<EntidadeDominio>) resultado);
         
         response.setStatus(200);
         response.getWriter().write(json);
