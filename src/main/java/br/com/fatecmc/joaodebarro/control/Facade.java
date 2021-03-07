@@ -118,19 +118,4 @@ public class Facade implements IFacade {
         }
     }
     
-    @Override
-    public Object visualizar(EntidadeDominio entidade) {
-        String error_message = processStrategys(entidade);
-        if (error_message == null) {
-            IDAO dao = daos.get(entidade.getClass().getName());
-            int id = entidade.getId();
-            if(id != 0)
-                return dao.consultar(id);
-            else
-                return dao.consultar();
-        } else {
-            return error_message;
-        }
-    }
-    
 }

@@ -27,7 +27,7 @@ public class Controller extends HttpServlet {
         cmds.put("ALTERAR_STATUS", new AlterarStatusCommand());
         cmds.put("EXCLUIR", new ExcluirCommand());	
         cmds.put("CONSULTAR", new ConsultarCommand());
-        cmds.put("VISUALIZAR", new VisualizarCommand());
+        cmds.put("VISUALIZAR", new ConsultarCommand());
         
         vhs = new HashMap<>();
         vhs.put("/JoaoDeBarro/faces/Cliente", new ClienteVH());

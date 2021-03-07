@@ -9,6 +9,5 @@ public interface IFacade {
     public String alterarStatus(EntidadeDominio entidade);
     public String excluir(EntidadeDominio entidade);
     public Object consultar(EntidadeDominio entidade);
-    public Object visualizar(EntidadeDominio entidade);
     
 }
