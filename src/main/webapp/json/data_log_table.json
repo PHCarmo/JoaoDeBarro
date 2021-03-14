@@ -1,0 +1,34 @@
+{
+  "draw": 1,
+  "recordsTotal": 3,
+  "recordsFiltered": 3,
+  "data": [
+    [
+      "Inserção",
+      "Clientes",
+      "Nome",
+      "",
+      "Paulo",
+      "7",
+      "22/02/2021 00:10"
+    ],
+    [
+      "Inserção",
+      "Produtos",
+      "Tipo",
+      "",
+      "Porcelana",
+      "15",
+      "01/03/2021 20:38"
+    ],
+    [
+      "Alteração",
+      "Clientes",
+      "Nome",
+      "Fernanda",
+      "Sheila",
+      "3",
+      "11/02/2021 12:08"
+    ]
+  ]
+}

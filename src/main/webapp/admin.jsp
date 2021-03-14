@@ -18,10 +18,7 @@
                 <nav class="nav-sidebar">
                     <ul class="nav tabs">
                         <li class="col-12 active"><a href="#tab_clientes"   data-toggle="tab">Clientes</a></li>
-                        <li class="col-12"><a href="#tab_no_content"        data-toggle="tab">Estoque</a></li>
-                        <li class="col-12"><a href="#tab_no_content"        data-toggle="tab">Log Sist�mico</a></li>
-                        <li class="col-12"><a href="#tab_no_content"        data-toggle="tab">Par�metros</a></li>
-                        <li class="col-12"><a href="#tab_no_content"        data-toggle="tab">Produtos</a></li>
+                        <li class="col-12"><a href="#tab_log"               data-toggle="tab">Log Sist�mico</a></li>
                         <li class="col-12"><a href="#tab_no_content"        data-toggle="tab">Ranking</a></li>
                         <li class="col-12"><a href="#tab_no_content"        data-toggle="tab">Vendas</a></li>
                         <li class="col-12"><a href="login.jsp">Sair</a></li>
@@ -34,6 +31,9 @@
                     <%@ include file="tabela_cliente.jsp" %>
                 </div>
                 
+                <div class="tab-pane text-style" id="tab_log">
+                    <%@ include file="tabela_log.jsp" %>
+                </div>
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table order-column hover stripe" id="minhatable">
@@ -87,3 +87,4 @@
     });
 </script>
 <script src="js/tabela_cliente.js"></script>
+<script src="js/tabela_log.js"></script>
