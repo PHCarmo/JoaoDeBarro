@@ -1,5 +1,6 @@
 <%@ include file="header.jsp" %>
 <%
+    String temp =           null;
     String cli_usu_id =     request.getParameter("cli_usu_id");
     String cli_id =         request.getParameter("cli_id");
     String nome =           request.getParameter("cli_nome");
@@ -19,6 +20,7 @@
     if(tel_ddd == null)     tel_ddd = "";
     if(tel_numero == null)  tel_numero = "";
     if(dt_nasc == null)     dt_nasc = "";
+    if(temp == null)        temp = "";
 %>
 
 <div class="brand_color">
@@ -39,9 +41,9 @@
             <div class="col-2">
                 <nav class="nav-sidebar">
                     <ul class="nav tabs">
-                        <li class="col-12"><a href="#tab_no_content"    data-toggle="tab">Alterar Senha</a></li>
+                        <li class="col-12"><a href="#tab_alter_pass"    data-toggle="tab">Alterar Senha</a></li>
                         <li class="col-12 active"><a href="#tab1"       data-toggle="tab">Cadastro</a></li>
-                        <li class="col-12"><a href="#tab_no_content"    data-toggle="tab">Carrinho</a></li>
+                        <li class="col-12"><a href="carrinho.jsp"                        >Carrinho</a></li>
                         <li class="col-12"><a href="#tab_no_content"    data-toggle="tab">Cartões</a></li>
                         <li class="col-12"><a href="#tab_no_content"    data-toggle="tab">Compras</a></li>
                         <li class="col-12"><a href="#tab2"              data-toggle="tab">Endereços</a></li>
@@ -51,8 +53,36 @@
                     </ul>
                 </nav>
             </div>
-                
+            
             <div class="col-10 tab-content">
+                <div class="tab-pane text-style" id="tab_alter_pass">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form class="main_form" action="#">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3>Me conta, para qual senha deseja trocar?</h3>
+                                        <input class="form-control" placeholder="Nova Senha" type="password" maxlength="30" name="par_2" value="<%=temp%>" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>Por segurança, informe a senha novamente</h3>
+                                        <input class="form-control" placeholder="Confirmar Nova Senha" type="password" maxlength="30" name="gp_1" value="<%=temp%>" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>Hmm, acho que me esqueci...
+                                        <p></p>Qual a sua senha atual mesmo?</h3>
+                                        <input class="form-control" placeholder="Senha Antiga" type="password" maxlength="30" name="par_1" value="<%=temp%>" required>
+                                    </div>
+                                    <div class="col-6"></div>
+                                    <div class="col-12">
+                                        <button class="send" name="operacao" value="ALTERAR">Salvar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="tab-pane active text-style" id="tab1">
                     <div class="row">
                         <div class="col-md-12">
