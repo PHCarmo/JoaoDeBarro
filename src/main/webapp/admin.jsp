@@ -1,4 +1,9 @@
 <%@ include file="header.jsp" %>
+<%
+    String temp =       null;
+    if(temp == null)     temp = "";
+%>
+
 <div class="brand_color">
     <div class="container">
         <div class="row">
@@ -19,6 +24,7 @@
                     <ul class="nav tabs">
                         <li class="col-12 active"><a href="#tab_clientes"   data-toggle="tab">Clientes</a></li>
                         <li class="col-12"><a href="#tab_log"               data-toggle="tab">Log Sist�mico</a></li>
+                        <li class="col-12"><a href="#tab_parametros"        data-toggle="tab">Par�metros</a></li>
                         <li class="col-12"><a href="#tab_no_content"        data-toggle="tab">Ranking</a></li>
                         <li class="col-12"><a href="#tab_no_content"        data-toggle="tab">Vendas</a></li>
                         <li class="col-12"><a href="login.jsp">Sair</a></li>
@@ -34,20 +40,46 @@
                 <div class="tab-pane text-style" id="tab_log">
                     <%@ include file="tabela_log.jsp" %>
                 </div>
+                
+                <div class="tab-pane text-style" id="tab_parametros">
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table order-column hover stripe" id="minhatable">
-                                <thead class="">
-                                    <tr>
-                                        <th class="dt-center" scope="col">Status</th>
-                                        <th class="" scope="col">ID</th>
-                                        <th class="" scope="col">Usu�rio</th>
-                                        <th class="" scope="col">Nome Completo</th>
-                                        <th class="" scope="col">CPF</th>
-                                        <th class="dt-center" scope="col">A��es</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                            <form class="main_form" action="#">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2>Produto</h2>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>Prazo no Carrinho (Horas)</h3>
+                                        <input class="form-control" placeholder="Horas" type="number" min="0" maxlength="4" name="par_1" value="<%=temp%>" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>Valor M�nimo de Vendas para Itens sem Estoque</h3>
+                                        <input class="form-control" placeholder="M�nimo" type="number" min="0" maxlength="4" name="par_2" value="<%=temp%>" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <h2>Precifica��o</h2>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>Padr�o</h3>
+                                        <input class="form-control" placeholder="Margem de Lucro %" type="number" min="0" maxlength="3" name="gp_1" value="<%=temp%>" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>Promo��o</h3>
+                                        <input class="form-control" placeholder="Margem de Lucro %" type="number" min="0" maxlength="3" name="gp_2" value="<%=temp%>" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3>Grupo X</h3>
+                                        <input class="form-control" placeholder="Margem de Lucro %" type="number" min="0" maxlength="3" name="gp_3" value="<%=temp%>" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="send" name="operacao" value="ALTERAR">Salvar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                         </div>
                     </div>
                 </div>
