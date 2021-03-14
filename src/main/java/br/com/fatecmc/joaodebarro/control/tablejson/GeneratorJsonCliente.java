@@ -17,7 +17,7 @@ public class GeneratorJsonCliente implements IGeneratorJson {
                 Cliente a = (Cliente) e;
                 data += " ["
                     +"\"<div class='circle-"+ (a.getStatus() ? "green" : "gray") + "'></div>\","
-                    +"\""+ a.getId() + "\","
+                    +"\"CLI2468\","
                     +"\""+ a.getUsuario().getId() + "\","
                     +"\""+ a.getNome()+ "\","
                     +"\""+ Mask.toCPF(a.getCpf()) + "\","
@@ -35,7 +35,8 @@ public class GeneratorJsonCliente implements IGeneratorJson {
                     +"&cli_tel_numero="+ a.getTel_numero()
                     +"&cli_dt_nascimento="+ a.getDt_nascimento()
                     +"&cli_id="+ a.getId()
-                    +"&operacao=VISUALIZAR'><img class='icon' src='icon/eye.png' /></a>\""
+                    +"&operacao=VISUALIZAR'><img class='icon' src='icon/eye.png' /></a>"
+                    + "<a class='btn btn-default' title='Historico de Transacoes' href='#'><img class='icon' src='icon/history.png' /></a>\""
                     +"]";
                 if(cont < totalLista){
                     data += ",";
