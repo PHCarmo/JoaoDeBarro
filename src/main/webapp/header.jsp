@@ -69,7 +69,7 @@
                                         <li><a href="index.jsp">Home</a></li>
                                         <li><a href="sobre.jsp">Sobre</a></li>
                                         <li><a href="loja.jsp">Loja</a></li>
-                                        <li><a href="#">Carrinho</a></li>
+                                        <li><a href="carrinho.jsp">Carrinho</a></li>
                                         <li><a href="#">Lorem</a></li>
                                         <li><a href="#">Ipsum</a></li>
                                         <li class="last">
