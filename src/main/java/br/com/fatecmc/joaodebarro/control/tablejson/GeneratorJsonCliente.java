@@ -16,7 +16,7 @@ public class GeneratorJsonCliente implements IGeneratorJson {
             for(EntidadeDominio e: entidades) {
                 Cliente a = (Cliente) e;
                 data += " ["
-                    +"\"<div class='circle-"+ (a.getStatus() ? "green" : "gray") + "'></div>\","
+                    +"\"<div class='circle "+ (a.getStatus() ? "green" : "grey") + "'></div>\","
                     +"\"CLI2468\","
                     +"\""+ a.getUsuario().getId() + "\","
                     +"\""+ a.getNome()+ "\","
