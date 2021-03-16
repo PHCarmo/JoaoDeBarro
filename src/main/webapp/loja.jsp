@@ -23,7 +23,7 @@
                     <div class="brand_box">
                         <img src="images/produtos/1.png" alt="img" />
                         <h3>R$ 99,90</h3>
-                        <span>Porcelanato</span>
+                        <a href="./detalhe_produto.jsp"><span>Porcelanato</span></a>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
@@ -35,7 +35,7 @@
                     <div class="brand_box">
                         <img src="images/produtos/2.png" alt="img" />
                         <h3>R$ 9,90</h3>
-                        <span>Azulejo</span>
+                        <a href="./detalhe_produto.jsp"><span>Azulejo</span></a>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
@@ -45,7 +45,7 @@
                     <div class="brand_box">
                         <img src="images/produtos/3.png" alt="img" />
                         <h3>R$ 119,90</h3>
-                        <span>Piso Cerâmico</span>
+                        <a href="./detalhe_produto.jsp"><span>Piso Cerâmico</span></a>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
@@ -56,7 +56,7 @@
                     <div class="brand_box">
                         <img src="images/produtos/4.png" alt="img" />
                         <h3>R$ 49,90</h3>
-                        <span>Piso Vinílico</span>
+                        <a href="./detalhe_produto.jsp"><span>Piso Vinílico</span></a>
                         <i><img src="images/star.png"/></i>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                     <div class="brand_box">
                         <img src="images/produtos/5.png" alt="img" />
                         <h3>R$ 44,90</h3>
-                        <span>Piso Laminado</span>
+                        <a href="./detalhe_produto.jsp"><span>Piso Laminado</span></a>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
                     </div>
@@ -73,7 +73,7 @@
                     <div class="brand_box">
                         <img src="images/produtos/6.png" alt="img" />
                         <h3>R$ 89,90</h3>
-                        <span>Ladrilho</span>
+                        <a href="./detalhe_produto.jsp"><span>Ladrilho</span></a>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
