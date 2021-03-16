@@ -1,8 +1,7 @@
 <%@ include file="header.jsp" %>
 <%
     String operacao =       request.getParameter("operacao");
-    String cli_usu_id =     request.getParameter("cli_usu_id");
-    String cli_id =         request.getParameter("cli_id");
+    String prd_id =         request.getParameter("cli_id");
     String nome =           request.getParameter("cli_nome");
     String cpf =            request.getParameter("cli_cpf");
     String id_genero =      request.getParameter("cli_gen_id");
@@ -12,8 +11,7 @@
     String dt_nasc =        request.getParameter("cli_dt_nascimento");
     
     if(operacao == null)    operacao = "";
-    if(cli_usu_id == null)  cli_usu_id = "";
-    if(cli_id == null)      cli_id = "";
+    if(prd_id == null)      prd_id = "";
     if(nome == null)        nome = "";
     if(cpf == null)         cpf = "";
     if(id_genero == null)   id_genero = "";
@@ -28,7 +26,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="titlepage">
-                    <h2>Cliente</h2>
+                    <h2>Endereço</h2>
                 </div>
             </div>
         </div>
@@ -41,54 +39,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form class="main_form" method="POST" action="./Cliente">
+                <form class="main_form" method="POST" action="#">
                     <div class="row">
                         <div class="col-12">
-                            <input class="form-control" type="hidden" name="cli_id" value="<%=cli_id%>">
-                            <input class="form-control" type="hidden" name="cli_usu_id" value="<%=cli_usu_id%>">
+                            <input class="form-control" type="hidden" name="cli_id" value="<%=prd_id%>">
                         </div>
                         
                         <div class="col-12">
-                            <h2>Dados Pessoais<strong class="color-red">*</strong></h2>
-                        </div>
-                        <div class="col-9">
-                            <input class="form-control" placeholder="Nome Completo" type="text" maxlength="100" name="cli_nome" value="<%=nome%>" required>
-                        </div>
-                        <div class="col-3">
-                            <select class="form-control" name="cli_gen_id">
-                                <option value="">Selecione seu Gênero</option>
-                                <option value="1" <%= id_genero.equals("1") ? "selected" : "" %>>Feminino</option>
-                                <option value="2" <%= id_genero.equals("2") ? "selected" : "" %>>Masculino</option>
-                            </select>
-                        </div>
-                        <div class="col-6">
-                            <input class="form-control" placeholder="CPF" type="text" maxlength="11" name="cli_cpf" value="<%=cpf%>" required>
-                        </div>
-                        <div class="col-6">
-                            <input class="form-control" placeholder="Data de Nascimento" type="<%= operacao.equals("VISUALIZAR") ? "date" : "text" %>" name="cli_dt_nascimento"
-                                   onfocus="(this.type='date')" onblur="if(this.value=='')this.type='text'" value="<%=dt_nasc%>" required>
-                        </div>
-                        
-                        <div class="col-12">
-                            <h2>Telefone<strong class="color-red">*</strong></h2>
-                        </div>
-                        <div class="col-3">
-                            <select class="form-control" name="cli_tel_tte_id">
-                                <option value="">Selecione o Tipo</option>
-                                <option value="1" <%= id_tel_tipo.equals("1") ? "selected" : "" %>>Celular</option>
-                                <option value="2" <%= id_tel_tipo.equals("2") ? "selected" : "" %>>Fixo</option>
-                                <option value="3" <%= id_tel_tipo.equals("3") ? "selected" : "" %>>VoIP</option>
-                            </select>
-                        </div>
-                        <div class="col-2">
-                            <input class="form-control" placeholder="DDD" type="text" maxlength="3" name="cli_tel_ddd" value="<%=tel_ddd%>" required>
-                        </div>
-                        <div class="col-7">
-                            <input class="form-control" placeholder="Número" type="text" maxlength="9" name="cli_tel_numero" value="<%=tel_numero%>" required>
-                        </div>
-                        
-                        <div class="col-12">
-                            <h2>Endereço<strong class="color-red">*</strong></h2>
+                            <h2>Dados Próprios<strong class="color-red">*</strong></h2>
                         </div>
                         <div class="col-5">
                             <input class="form-control" placeholder="Apelido" type="text" maxlength="20" name="end_nome">
@@ -150,9 +108,12 @@
                             <select class="form-control" name="end_proposito" readonly>
                                 <option value="">Selecione o Propósito</option>
                                 <option value="1">Entrega e Cobrança</option>
+                                <option value="2">Somente Entrega</option>
+                                <option value="3">Somente Cobrança</option>
                             </select>
                         </div>
-                        
+                    </div>
+                    <div class="row">
                         <div class="col-12">
                             <button class="send" name="operacao" value=<%= operacao.equals("VISUALIZAR") ? "'VISUALIZAR' onclick='history.back();'>Voltar" : "'SALVAR'>Salvar" %></button>
                         </div>
