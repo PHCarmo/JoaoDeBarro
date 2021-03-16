@@ -1,0 +1,35 @@
+{
+  "draw": 1,
+  "recordsTotal": 4,
+  "recordsFiltered": 4,
+  "data": [
+    [
+      "<img src='images/produtos/2.png' alt='img' />",
+      "Azulejo",
+      "R$ 9,90",
+      "<input class='form-control-sm' type='number' value='1' min='1' style='width: 60px;'> <a class='btn btn-default' title='Remover' href='#'><img class='icon' src='icon/remove-red.png' /></a>",
+      "R$ 9,90"
+    ],
+    [
+      "<img src='images/produtos/6.png' alt='img' />",
+      "Ladrilho",
+      "R$ 89,90",
+      "<input class='form-control-sm' type='number' value='1' min='1' style='width: 60px;'> <a class='btn btn-default' title='Remover' href='#'><img class='icon' src='icon/remove-red.png' /></a>",
+      "R$ 89,90"
+    ],
+    [
+      "<img src='images/produtos/4.png' alt='img' />",
+      "Piso Vinílico",
+      "R$ 49,90",
+      "<input class='form-control-sm' type='number' value='1' min='1' style='width: 60px;'> <a class='btn btn-default' title='Remover' href='#'><img class='icon' src='icon/remove-red.png' /></a>",
+      "R$ 49,90"
+    ],
+    [
+      "<img src='images/produtos/1.png' alt='img' />",
+      "Porcelanato",
+      "R$ 99,90",
+      "<input class='form-control-sm' type='number' value='111' min='1' style='width: 60px;'> <a class='btn btn-default' title='Remover' href='#'><img class='icon' src='icon/remove-red.png' /></a>",
+      "R$ 11.088,90"
+    ]
+  ]
+}
