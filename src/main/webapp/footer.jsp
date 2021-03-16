@@ -9,8 +9,8 @@
                                 <h3>Visite Nossa Loja</h3>
                                 <span><img src="icon/local.png" /> Rua Carlos Barattino, 908 - Vila Nova Mogilar</span>
                                 <p>Mogi das Cruzes, SP - Brasil, 08773-600
-                                <br><img src="icon/phone.png" /> (+11) 4002-8922
-                                <br><img src="icon/email.png" /> atend@joaodebarro.com</p>
+                                <br><img src="icon/phone.png" /> (+11) 8981-8117
+                                <br><img src="icon/email.png" /> sac@joaodebarro.com.br</p>
                             </div>
                         </div>
                     </div>
@@ -23,6 +23,9 @@
             </div>
         </div>
     </footer>
+    <a href="#" class="back-to-top" style="display: none;">
+        <i class="fa fa-chevron-up"></i>    
+    </a>
     <!-- end footer -->
     <!-- Javascript files-->
     <script src="js/jquery.min.js"></script>
@@ -48,6 +51,19 @@
                 $(this).addClass('transition');
             }, function() {
                 $(this).removeClass('transition');
+            });
+            
+            // Back to top button
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $('.back-to-top').fadeIn('slow');
+                } else {
+                    $('.back-to-top').fadeOut('slow');
+                }
+            });
+            $('.back-to-top').click(function () {
+                $('html, body').animate({scrollTop: 0}, 200, 'easeInOutExpo');
+                return false;
             });
         });
     </script>
