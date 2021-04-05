@@ -177,7 +177,7 @@
                                     
                                     <div class="col-12">
                                         <hr style="border: none">
-                                        <button class="send float-right" name="operacao" value="SALVAR">+ Novo</button>
+                                        <button class="send float-right" name="operacao" value="SALVAR" id="novo_cartao">+ Novo</button>
                                     </div>
                                 </div>
                             </form>
@@ -248,7 +248,7 @@
                                             <td><div class="circle brown"></div></td><td>Entrega</td>
                                             <td><div class="circle lightbrown"></div></td><td>Cobrança</td>
                                         </table>
-                                        <button class="send float-right" name="operacao" value="SALVAR">+ Novo</button>
+                                        <button class="send float-right" name="operacao" value="SALVAR" id="novo_endereco">+ Novo</button>
                                     </div>
                                 </div>
                             </form>

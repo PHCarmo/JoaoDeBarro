@@ -32,7 +32,7 @@
                         <h3 class="col-12"><strong class="color-red" id="signup_alert"></strong></h3>
 
                         <div class="col-12">
-                            <button class="send">Entrar</button>
+                            <button class="send" id="entrar">Entrar</button>
                         </div>
                     </div>
                 </form>
@@ -64,7 +64,7 @@
                         <h3 class="col-12"><strong class="color-red" id="signin_alert"></strong></h3>
 
                         <div class="col-12">
-                            <button class="send" name="operacao" value="SALVAR">Registrar-se</button>
+                            <button class="send" name="operacao" value="SALVAR" id="registrar">Registrar-se</button>
                         </div>
                     </div>
                 </form>

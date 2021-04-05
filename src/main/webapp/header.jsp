@@ -73,7 +73,7 @@
                                         <li><a href="#">Lorem</a></li>
                                         <li><a href="#">Ipsum</a></li>
                                         <li class="last">
-                                            <a href="login.jsp"><img src="icon/user.png" alt="icon" /></a>
+                                            <a href="login.jsp" id="user"><img src="icon/user.png" alt="icon" /></a>
                                         </li>
                                     </ul>
                                 </nav>

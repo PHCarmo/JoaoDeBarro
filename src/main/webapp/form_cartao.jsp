@@ -25,23 +25,23 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form class="main_form" method="POST" action="#">
+                <form class="main_form" method="POST" action="./cliente.jsp">
                     <div class="row">
                         <div class="col-12">
-                            <input class="form-control" type="hidden" name="cli_id" value="<%=temp%>">
+                            <input class="form-control" type="hidden" name="crt_id" value="<%=temp%>">
                         </div>
                         
                         <div class="col-12">
                             <h2>Dados Próprios<strong class="color-red">*</strong></h2>
                         </div>
                         <div class="col-6">
-                            <input class="form-control" placeholder="Número" type="text" maxlength="16" name="cli_nome" value="<%=temp%>" required>
+                            <input class="form-control" placeholder="Número" type="text" maxlength="16" name="crt_numero" value="<%=temp%>" required>
                         </div>
                         <div class="col-6">
-                            <input class="form-control" placeholder="Nome do Titular" type="text" maxlength="100" name="cli_nome" value="<%=temp%>" required>
+                            <input class="form-control" placeholder="Nome do Titular" type="text" maxlength="100" name="crt_nome" value="<%=temp%>" required>
                         </div>
                         <div class="col-3">
-                            <select class="form-control" name="cli_gen_id">
+                            <select class="form-control" name="crt_mes_validade">
                                 <option value="">Mês da Validade</option>
                                 <option value="1">01/Janeiro</option>
                                 <option value="2">02/Fevereiro</option>
@@ -58,7 +58,7 @@
                             </select>
                         </div>
                         <div class="col-3">
-                            <select class="form-control" name="cli_gen_id">
+                            <select class="form-control" name="crt_ano_validade">
                                 <option value="">Ano da Validade</option>
                                 <option value="1">2021</option>
                                 <option value="2">2022</option>
@@ -74,10 +74,10 @@
                             </select>
                         </div>
                         <div class="col-3">
-                            <input class="form-control" placeholder="CVV" type="text" maxlength="3" name="cli_nome" value="<%=temp%>" required>
+                            <input class="form-control" placeholder="CVV" type="text" maxlength="3" name="crt_cvv" value="<%=temp%>" required>
                         </div>
                         <div class="col-3">
-                            <select class="form-control" name="cli_gen_id">
+                            <select class="form-control" name="crt_bnd_id">
                                 <option value="">Bandeira</option>
                                 <option value="1">American Express</option>
                                 <option value="2">Diners Club</option>

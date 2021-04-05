@@ -39,7 +39,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form class="main_form" method="POST" action="#">
+                <form class="main_form" method="POST" action="./cliente.jsp">
                     <div class="row">
                         <div class="col-12">
                             <input class="form-control" type="hidden" name="cli_id" value="<%=prd_id%>">
