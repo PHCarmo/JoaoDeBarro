@@ -23,6 +23,7 @@
                 <nav class="nav-sidebar">
                     <ul class="nav tabs">
                         <li class="col-12 active"><a href="#tab_clientes"   data-toggle="tab">Clientes</a></li>
+                        <li class="col-12"><a href="#tab_dashboard"         data-toggle="tab">Dashboard</a></li>
                         <li class="col-12"><a href="#tab_log"               data-toggle="tab">Log Sistêmico</a></li>
                         <li class="col-12"><a href="#tab_parametros"        data-toggle="tab">Parâmetros</a></li>
                         <li class="col-12"><a href="#tab_produtos"          data-toggle="tab">Produtos</a></li>
@@ -36,6 +37,10 @@
             <div class="col-10 tab-content">
                 <div class="tab-pane active text-style" id="tab_clientes">
                     <%@ include file="tabela_cliente.jsp" %>
+                </div>
+                
+                <div class="tab-pane text-style" id="tab_dashboard">
+                    <%@ include file="dashboard.jsp" %>
                 </div>
                 
                 <div class="tab-pane text-style" id="tab_log">
