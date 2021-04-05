@@ -1,8 +1,7 @@
 package br.com.fatecmc.joaodebarro.pageobject;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 public class ClientePage extends PageObject {
 
@@ -10,6 +9,13 @@ public class ClientePage extends PageObject {
         super(driver);
     }
     
-    @FindBy(id="cli_nome") WebElement nome;
+    public void acessarMenu(String titulo) {
+        aguardarCarregar();
+        driver.findElement(By.xpath(String.format("//a[text()='%s']", titulo))).click();
+    }
     
+    public void iniciarCadastro(String item) {
+        driver.findElement(By.id(String.format("novo_%s", item))).click();
+        aguardarCarregar();
+    }
 }
