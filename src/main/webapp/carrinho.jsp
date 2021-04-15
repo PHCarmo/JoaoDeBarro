@@ -18,44 +18,53 @@
                     <div class="row">
                         <h2 class="col-12">Checkout</h2>
                         <div class="col-12 text-justify">
-                            <strong class="ornage_color">Atenção!</strong>
-                            <span>Antes de finalizar a compra revise atentamente os itens à direita.</span>
+                            <strong class="ornage_color">Atenï¿½ï¿½o!</strong>
+                            <span>Antes de finalizar a compra revise atentamente os itens ï¿½ direita.</span>
                             <hr style="border: none">
                         </div>
                         
-                        <div style="display:none">
-                            <div id="data">
-                                <center>Você será redirecionado<br>para o cadastro de um novo<br>endereço. <strong>Tem certeza?</strong><br></center>
-                                <center><a href="form_endereco.jsp"><strong class="ornage_color">Vamos!</strong></a></center>
+                        <!-- Modal de Cadastro de Endereï¿½o -->
+                        <div style="display: none;max-width: 450px;" id="modal-add-endereco" >
+                            <h3 class="col-12">Deseja abandonar o Checkout?</h3>
+                            <div class="col-12 text-justify">
+                                <span>Vocï¿½ serï¿½ redirecionado para o cadastro de um novo endereï¿½o. <strong>Tem certeza?</strong></span>
+                                <hr style="border: none">
                             </div>
+                            <div class="col-12">
+                                <a class="float-left" data-fancybox-close href="javascript:;"><strong>Ficar Aqui</strong></a>
+                                <a href="form_endereco.jsp"><strong class="ornage_color float-right">Absoluta!</strong></a>
                         </div>
-                        <h2 class="col-12">Entrega <a id="inline" href="#data"><img src="icon/plus.png" /></a></h2>
+                        </div>
+                        <!-- ########## -->
+                        
+                        <h2 class="col-12">Entrega <a data-fancybox class="add-endereco-show" href="javascript:;"><img src="icon/plus.png" /></a></h2>
                         <div class="col-12">
                             <table class="table dataTable">
                                 <tr role="row">
                                     <td><input type="radio" name="entrega"></td>
                                     <td>
                                         <strong>Minha Casa</strong><br>
-                                        <span>Rua da Imprensa, Nº 200 - Bloco C, Monte Castelo, Campo Grande/MS</span>
+                                        <span>Rua da Imprensa, Nï¿½ 200 - Bloco C, Monte Castelo, Campo Grande/MS</span>
                                     </td>
                                 </tr>
                                 <tr role="row">
                                     <td><input type="radio" name="entrega"></td>
                                     <td>
                                         <strong>Casa da Sogra</strong><br>
-                                        <span>Avenida Tocantins, Nº 10 - Portão Azul, Vila Jardim Rio Claro, Jataí/GO</span>
+                                        <span>Avenida Tocantins, Nï¿½ 10 - Portï¿½o Azul, Vila Jardim Rio Claro, Jataï¿½/GO</span>
                                     </td>
                                 </tr>
                             </table>
                         </div>
-                        <h2 class="col-12">Cobrança <a id="inline" href="#data"><img src="icon/plus.png" /></a></h2>
+
+                        <h2 class="col-12">Cobranï¿½a <a data-fancybox class="add-endereco-show" href="javascript:;"><img src="icon/plus.png" /></a></h2>
                         <div class="col-12">
                             <table class="table dataTable">
                                 <tr role="row">
                                     <td><input type="radio" name="cobranca"></td>
                                     <td>
                                         <strong>Casa da Sogra</strong><br>
-                                        <span>Avenida Tocantins, Nº 10 - Portão Azul, Vila Jardim Rio Claro, Jataí/GO</span>
+                                        <span>Avenida Tocantins, Nï¿½ 10 - Portï¿½o Azul, Vila Jardim Rio Claro, Jataï¿½/GO</span>
                                     </td>
                                 </tr>
                             </table>
@@ -71,7 +80,7 @@
                         <div class="col-5">
                             <button class="send" name="operacao" value="#">Validar</button>
                         </div>
-                        <h4 class="col-12">Vale-Troca Disponível</h4>
+                        <h4 class="col-12">Vale-Troca Disponï¿½vel</h4>
                         <div class="col-12">
                             <p><input type="checkbox"> VLT3256 - R$30,00</p>
                             <p><input type="checkbox"> VLT2794 - R$15,00</p>
@@ -81,7 +90,21 @@
                             <hr style="border: none">
                         </div>
                         
-                        <h2 class="col-12">Pagamento</h2>
+                        <!-- Modal de Cadastro de Endereï¿½o -->
+                        <div style="display: none;max-width: 450px;" id="modal-add-cartao" >
+                            <h3 class="col-12">Deseja abandonar o Checkout?</h3>
+                            <div class="col-12 text-justify">
+                                <span>Vocï¿½ serï¿½ redirecionado para o cadastro de um novo cartï¿½o de crï¿½dito. <strong>Tem certeza?</strong></span>
+                                <hr style="border: none">
+                            </div>
+                            <div class="col-12">
+                                <a class="float-left" data-fancybox-close href="javascript:;"><strong>Ficar Aqui</strong></a>
+                                <a href="form_cartao.jsp"><strong class="ornage_color float-right">Absoluta!</strong></a>
+                            </div>
+                        </div>
+                        <!-- ########## -->
+                        
+                        <h2 class="col-12">Pagamento <a data-fancybox class="add-cartao-show" href="javascript:;"><img src="icon/plus.png" /></a></h2>
                         <div class="col-12">
                             <table class="table dataTable">
                                 <tr role="row">
@@ -139,7 +162,7 @@
                     <div class="row">
                         <div class="col-12">
                             <hr style="border: none">
-                            <button class="send float-right" name="operacao" value="ALTERAR">Salvar Alterações</button>
+                            <button class="send float-right" name="operacao" value="ALTERAR">Salvar Alteraï¿½ï¿½es</button>
                         </div>
                     </div>
                 </form>
@@ -149,20 +172,15 @@
 </div>
 <%@ include file="footer.jsp" %>
 <script>
-    $(document).ready(function() {
-        $("a#single_image").fancybox();
-
-        $("a#inline").fancybox({
-            'hideOnContentClick': true
+    $('.add-endereco-show').fancybox({
+        "src": "#modal-add-endereco",
+        "touch": false,
+        "modal": true
         });
-
-        $("a#inline").fancybox({
-            'transitionIn'	:	'elastic',
-            'transitionOut'	:	'elastic',
-            'speedIn'		:	600, 
-            'speedOut'		:	200, 
-            'overlayShow'	:	false
-        });
+    $('.add-cartao-show').fancybox({
+        "src": "#modal-add-cartao",
+        "touch": false,
+        "modal": true
     });
 </script>
 <script src="js/tabela_carrinho.js"></script>
