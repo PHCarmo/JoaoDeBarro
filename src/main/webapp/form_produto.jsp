@@ -66,7 +66,7 @@
                             <h2>Identificação<strong class="color-red">*</strong></h2>
                         </div>
                         <div class="col-3">
-                            <input class="form-control" placeholder="Cor/Tonalidade do Item" type="text" maxlength="15" name="cli_cpf" value="<%=cpf%>" required>
+                            <input class="form-control" placeholder="Cor/Tonalidade" type="text" maxlength="15" name="cli_cpf" value="<%=cpf%>" required>
                         </div>
                         <div class="col-3">
                             <input class="form-control" placeholder="Material" type="text" maxlength="11" name="cli_cpf" value="<%=cpf%>" required>
@@ -77,7 +77,7 @@
                         <div class="col-3">
                             <input class="form-control" placeholder="Largura" type="text" maxlength="11" name="cli_cpf" value="<%=cpf%>" required>
                         </div>
-                        <div class="col-10">
+                        <div class="col-7">
                             <input class="form-control" placeholder="Código de Barras" type="text" maxlength="11" name="cli_cpf" value="<%=cpf%>" required>
                         </div>
                         <div class="col-2">
@@ -91,10 +91,6 @@
                                 <option value="2" <%= id_genero.equals("6") ? "selected" : "" %>>5</option>
                             </select>
                         </div>
-                        
-                        <div class="col-12">
-                            <h2>Valor<strong class="color-red">*</strong></h2>
-                        </div>
                         <div class="col-3">
                             <select class="form-control" name="cli_gen_id">
                                 <option value="">Grupo de Precificação</option>
@@ -103,13 +99,7 @@
                                 <option value="2" <%= id_genero.equals("3") ? "selected" : "" %>>Grupo X</option>
                             </select>
                         </div>
-                        <div class="col-3">
-                            <input class="form-control" placeholder="Custo R$" type="text" maxlength="11" name="cli_cpf" value="<%=cpf%>" required>
-                        </div>
-                        <div class="col-3">
-                            <input class="form-control" placeholder="Venda R$" type="text" maxlength="11" name="cli_cpf" value="<%=cpf%>" required readonly>
-                        </div>
-                        
+                                                
                         <div class="col-12">
                             <h2>Categorias<strong class="color-red">*</strong> 
                                 <a href="#" class="add_end_fields"><img src="icon/plus.png" /></a>
