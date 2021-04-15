@@ -45,7 +45,7 @@
                         <li class="col-12 active"><a href="#tab_dados"  data-toggle="tab">Cadastro</a></li>
                         <li class="col-12"><a href="carrinho.jsp"                        >Carrinho</a></li>
                         <li class="col-12"><a href="#tab_cartao"        data-toggle="tab">Cartões</a></li>
-                        <li class="col-12"><a href="#tab_compra"    data-toggle="tab">Compras</a></li>
+                        <li class="col-12"><a href="#tab_compra"        data-toggle="tab">Compras</a></li>
                         <li class="col-12"><a href="#tab_endereco"      data-toggle="tab">Endereços</a></li>
                         <li class="col-12"><a href="#tab_no_content"    data-toggle="tab">Ranking</a></li>
                         <li class="col-12"><a href="#tab_vale"          data-toggle="tab">Vale-Troca</a></li>
@@ -153,7 +153,7 @@
                                                 <span><strong>Validade: </strong>11/2023</span>
                                                 <span class="float-right"><strong>CVV: </strong>755</span>
                                                 <hr style="border: none">
-                                                <img class='icon' src='icon/mastercard.png' />
+                                                <img class='icon' src='icon/card-mastercard.png' />
                                                 <a class='btn btn-default float-right' title='Editar' href='#'><img class='icon' src='icon/pencil.png' /></a>
                                                 <a class='btn btn-default float-right' title='Remover' href='#'><img class='icon' src='icon/remove.png' /></a>
                                             </div>
@@ -168,7 +168,7 @@
                                                 <span><strong>Validade: </strong>11/2023</span>
                                                 <span class="float-right"><strong>CVV: </strong>808</span>
                                                 <hr style="border: none">
-                                                <img class='icon' src='icon/visa.png' />
+                                                <img class='icon' src='icon/card-visa.png' />
                                                 <a class='btn btn-default float-right' title='Editar' href='#'><img class='icon' src='icon/pencil.png' /></a>
                                                 <a class='btn btn-default float-right' title='Remover' href='#'><img class='icon' src='icon/remove.png' /></a>
                                             </div>
@@ -192,7 +192,7 @@
                             <hr style="border: none">
                         </div>
                         <div class="col-12">
-                            <table class="float-right">
+                            <table class="legend float-right">
                                 <th>Legenda: </th>
                                 <td><div class="circle lightblue">  </div></td><td>Em Processamento</td>
                                 <td><div class="circle red">        </div></td><td>Reprovada</td>
@@ -243,7 +243,7 @@
                                     
                                     <div class="col-12">
                                         <hr style="border: none">
-                                        <table class="float-left">
+                                        <table class="legend float-left">
                                             <th>Legenda: </th>
                                             <td><div class="circle brown"></div></td><td>Entrega</td>
                                             <td><div class="circle lightbrown"></div></td><td>Cobrança</td>

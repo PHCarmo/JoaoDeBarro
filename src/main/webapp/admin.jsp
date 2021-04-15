@@ -101,7 +101,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <hr style="border: none">
-                                <table class="float-left">
+                                <table class="legend float-left">
                                     <th>Legenda: </th>
                                     <td><div class="circle green"></div></td><td>Ativo</td>
                                     <td><div class="circle grey"></div></td><td>Inativo</td>
@@ -164,7 +164,7 @@
                             <hr style="border: none">
                         </div>
                         <div class="col-12">
-                            <table class="float-right">
+                            <table class="legend float-right">
                                 <th>Legenda: </th>
                                 <td><div class="circle lightblue">  </div></td><td>Em Processamento</td>
                                 <td><div class="circle red">        </div></td><td>Reprovada</td>
