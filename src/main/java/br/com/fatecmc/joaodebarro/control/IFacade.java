@@ -6,7 +6,6 @@ public interface IFacade {
     
     public Object salvar(EntidadeDominio entidade);
     public String alterar(EntidadeDominio entidade);
-    public String alterarStatus(EntidadeDominio entidade);
     public String excluir(EntidadeDominio entidade);
     public Object consultar(EntidadeDominio entidade);
     

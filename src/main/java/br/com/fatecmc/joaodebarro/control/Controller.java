@@ -24,7 +24,7 @@ public class Controller extends HttpServlet {
         cmds = new HashMap<>();
         cmds.put("SALVAR", new SalvarCommand());
         cmds.put("ALTERAR", new AlterarCommand());
-        cmds.put("ALTERAR_STATUS", new AlterarStatusCommand());
+        cmds.put("ALTERAR_STATUS", new AlterarCommand());
         cmds.put("EXCLUIR", new ExcluirCommand());	
         cmds.put("CONSULTAR", new ConsultarCommand());
         cmds.put("VISUALIZAR", new ConsultarCommand());

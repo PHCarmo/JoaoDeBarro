@@ -56,8 +56,7 @@ public class Facade implements IFacade {
     public Object salvar(EntidadeDominio entidade) {
         String error_message = processStrategys(entidade);
         if (error_message == null) {
-            IDAO dao;
-            dao = daos.get(entidade.getClass().getName());
+            IDAO dao = daos.get(entidade.getClass().getName());
             return dao.salvar(entidade);
         } else {
             return error_message;
@@ -68,22 +67,8 @@ public class Facade implements IFacade {
     public String alterar(EntidadeDominio entidade) {
         String error_message = processStrategys(entidade);
         if (error_message == null) {
-            IDAO dao;
-            dao = daos.get(entidade.getClass().getName());
+            IDAO dao = daos.get(entidade.getClass().getName());
             dao.alterar(entidade);
-            return null;
-        } else {
-            return error_message;
-        }
-    }
-    
-    @Override
-    public String alterarStatus(EntidadeDominio entidade) {
-        String error_message = processStrategys(entidade);
-        if (error_message == null) {
-            IDAO dao;
-            dao = daos.get(entidade.getClass().getName());
-            ((ClienteDAO) (dao)).alterarStatus(entidade);
             return null;
         } else {
             return error_message;
@@ -94,8 +79,7 @@ public class Facade implements IFacade {
     public String excluir(EntidadeDominio entidade) {
         String error_message = processStrategys(entidade);
         if (error_message == null) {
-            IDAO dao;
-            dao = daos.get(entidade.getClass().getName());
+            IDAO dao = daos.get(entidade.getClass().getName());
             dao.excluir(entidade.getId());
             return null;
         } else {
