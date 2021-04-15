@@ -1,31 +1,32 @@
 package br.com.fatecmc.joaodebarro.model.domain;
 
-import java.util.Date;
+public enum TipoEndereco {
+    
+    REFERENCIA("Referência"),
+    RESIDENCIAL("Residencial");
+    
+    private final String descricao;
 
-public class TipoEndereco extends EntidadeDominio {
-    private String nome;
-
-    public TipoEndereco() {
-        super();
-        this.nome = "";
+    private TipoEndereco(String descricao) {
+        this.descricao = descricao;
     }
 
-    public TipoEndereco(String nome) {
-        super();
-        this.nome = nome;
+    public String getDescricao() {
+        return descricao;
+    }
+    
+    public int getId() {
+        return this.ordinal() + 1;
     }
 
-    public TipoEndereco(String nome, int id, Date dt_cadastro) {
-        super(id, dt_cadastro);
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public static TipoEndereco idToEnum(int id) {
+        switch (id) {
+            case 1:
+                return REFERENCIA;
+            case 2:
+                return RESIDENCIAL;
+        }
+        return null;
     }
     
 }

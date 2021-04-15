@@ -23,7 +23,7 @@ public class Endereco extends EntidadeDominio {
         super();
         this.cliente_id = 0;
         this.apelido = "";
-        this.tipo_log = new TipoLogradouro();
+        this.tipo_log = null;
         this.logradouro = "";
         this.numero = "";
         this.bairro = "";
@@ -34,8 +34,8 @@ public class Endereco extends EntidadeDominio {
         this.observacao = "";
         this.cobranca = false;
         this.entrega = false;
-        this.tipo = new TipoEndereco();
-        this.tipo_res = new TipoResidencia();
+        this.tipo = null;
+        this.tipo_res = null;
     }
 
     public Endereco(int cliente_id, String apelido, TipoLogradouro tipo_log, String logradouro,

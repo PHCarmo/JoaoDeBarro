@@ -11,7 +11,7 @@ public class Usuario extends EntidadeDominio {
         super();
         this.email = "";
         this.senha = "";
-        this.tipo = new TipoUsuario();
+        this.tipo = null;
     }
 
     public Usuario(String email, String senha, TipoUsuario tipo) {

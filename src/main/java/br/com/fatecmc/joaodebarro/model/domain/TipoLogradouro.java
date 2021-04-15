@@ -1,31 +1,50 @@
 package br.com.fatecmc.joaodebarro.model.domain;
 
-import java.util.Date;
+public enum TipoLogradouro {
+    
+    ALAMEDA("Alameda"),
+    AVENIDA("Avenida"),
+    ESTRADA("Estrada"),
+    RODOVIA("Rodovia"),
+    RUA("Rua"),
+    TRAVESSA("Travessa"),
+    VIA("Via"),
+    VIADUTO("Viaduto");
+    
+    private final String descricao;
 
-public class TipoLogradouro extends EntidadeDominio {
-    private String nome;
-
-    public TipoLogradouro() {
-        super();
-        this.nome = "";
+    private TipoLogradouro(String descricao) {
+        this.descricao = descricao;
     }
 
-    public TipoLogradouro(String nome) {
-        super();
-        this.nome = nome;
+    public String getDescricao() {
+        return descricao;
     }
-
-    public TipoLogradouro(String nome, int id, Date dt_cadastro) {
-        super(id, dt_cadastro);
-        this.nome = nome;
+    
+    public int getId() {
+        return this.ordinal() + 1;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    
+    public static TipoLogradouro idToEnum(int id) {
+        switch (id) {
+            case 1:
+                return ALAMEDA;
+            case 2:
+                return AVENIDA;
+            case 3:
+                return ESTRADA;
+            case 4:
+                return RODOVIA;
+            case 5:
+                return RUA;
+            case 6:
+                return TRAVESSA;
+            case 7:
+                return VIA;
+            case 8:
+                return VIADUTO;
+        }
+        return null;
     }
     
 }

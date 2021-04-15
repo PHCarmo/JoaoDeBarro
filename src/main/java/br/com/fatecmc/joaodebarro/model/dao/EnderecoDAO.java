@@ -126,16 +126,13 @@ public class EnderecoDAO implements IDAO {
             
             while(rs.next()) {
                 Endereco endereco = new Endereco();
-                TipoEndereco tipo = new TipoEndereco();
-                TipoResidencia tipo_res = new TipoResidencia();
-                TipoLogradouro tipo_log = new TipoLogradouro();
                 
                 endereco.setId(rs.getInt("end_id"));
                 endereco.setCliente_id(rs.getInt("end_cli_id"));
                 endereco.setApelido(rs.getString("end_nome"));
-                tipo.setId(rs.getInt("end_ten_id"));
-                tipo_res.setId(rs.getInt("end_tre_id"));
-                tipo_log.setId(rs.getInt("end_tlo_id"));
+                endereco.setTipo(TipoEndereco.idToEnum(rs.getInt("end_ten_id")));
+                endereco.setTipo_res(TipoResidencia.idToEnum(rs.getInt("end_tre_id")));
+                endereco.setTipo_log(TipoLogradouro.idToEnum(rs.getInt("end_tlo_id")));
                 endereco.setLogradouro(rs.getString("end_logradouro"));
                 endereco.setNumero(rs.getString("end_numero"));
                 endereco.setBairro(rs.getString("end_bairro"));
@@ -148,9 +145,6 @@ public class EnderecoDAO implements IDAO {
                 endereco.setEntrega(rs.getBoolean("end_entrega"));
                 endereco.setDt_cadastro(rs.getDate("end_dt_inclusao"));
                 
-                endereco.setTipo(tipo);
-                endereco.setTipo_res(tipo_res);
-                endereco.setTipo_log(tipo_log);
                 enderecos.add(endereco);
             }
                 
@@ -179,16 +173,12 @@ public class EnderecoDAO implements IDAO {
             rs = stmt.executeQuery();
             
             if(rs.next()) {
-                TipoEndereco tipo = new TipoEndereco();
-                TipoResidencia tipo_res = new TipoResidencia();
-                TipoLogradouro tipo_log = new TipoLogradouro();
-                
                 endereco.setId(rs.getInt("end_id"));
                 endereco.setCliente_id(rs.getInt("end_cli_id"));
                 endereco.setApelido(rs.getString("end_nome"));
-                tipo.setId(rs.getInt("end_ten_id"));
-                tipo_res.setId(rs.getInt("end_tre_id"));
-                tipo_log.setId(rs.getInt("end_tlo_id"));
+                endereco.setTipo(TipoEndereco.idToEnum(rs.getInt("end_ten_id")));
+                endereco.setTipo_res(TipoResidencia.idToEnum(rs.getInt("end_tre_id")));
+                endereco.setTipo_log(TipoLogradouro.idToEnum(rs.getInt("end_tlo_id")));
                 endereco.setLogradouro(rs.getString("end_logradouro"));
                 endereco.setNumero(rs.getString("end_numero"));
                 endereco.setBairro(rs.getString("end_bairro"));
@@ -200,10 +190,6 @@ public class EnderecoDAO implements IDAO {
                 endereco.setCobranca(rs.getBoolean("end_cobranca"));
                 endereco.setEntrega(rs.getBoolean("end_entrega"));
                 endereco.setDt_cadastro(rs.getDate("end_dt_inclusao"));
-                
-                endereco.setTipo(tipo);
-                endereco.setTipo_res(tipo_res);
-                endereco.setTipo_log(tipo_log);
             }
                 
             return endereco;

@@ -1,31 +1,32 @@
 package br.com.fatecmc.joaodebarro.model.domain;
 
-import java.util.Date;
+public enum Genero {
 
-public class Genero extends EntidadeDominio {
-    private String nome;
+    FEMININO("Feminino"),
+    MASCULINO("Masculino");
 
-    public Genero() {
-        super();
-        this.nome = "";
-    }
+    private final String descricao;
 
-    public Genero(String nome) {
-        super();
-        this.nome = nome;
-    }
-
-    public Genero(String nome, int id, Date dt_cadastro) {
-        super(id, dt_cadastro);
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    private Genero(String descricao) {
+        this.descricao = descricao;
     }
     
+    public String getDescricao() {
+        return this.descricao;
+    }
+    
+    public int getId() {
+        return this.ordinal() + 1;
+    }
+
+    public static Genero idToEnum(int id) {
+        switch (id) {
+            case 1:
+                return FEMININO;
+            case 2:
+                return MASCULINO;
+        }
+        return null;
+    }
+
 }

@@ -13,7 +13,7 @@ public class ClienteDAO implements IDAO {
     public int salvar(EntidadeDominio entidade) {
         int id = 0;
         this.conn = ConnectionFactory.getConnection();
-        String sql = "INSERT INTO CLIENTES VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO CLIENTES VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = null;
         
@@ -23,16 +23,17 @@ public class ClienteDAO implements IDAO {
                 
                 stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 stmt.setInt(1, 0);
-                stmt.setInt(2, ((Cliente) entidade).getUsuario().getId());
-                stmt.setString(3, ((Cliente) entidade).getNome());
-                stmt.setInt(4, ((Cliente) entidade).getGenero().getId());
-                stmt.setString(5, ((Cliente) entidade).getCpf());
-                stmt.setInt(6, ((Cliente) entidade).getTel_tipo().getId());
-                stmt.setString(7, ((Cliente) entidade).getTel_ddd());
-                stmt.setString(8, ((Cliente) entidade).getTel_numero());
-                stmt.setDate(9, new Date(((Cliente) entidade).getDt_nascimento().getTime()));
-                stmt.setBoolean(10, true);
-                stmt.setDate(11, null);
+                stmt.setString(2, "");
+                stmt.setInt(3, ((Cliente) entidade).getUsuario().getId());
+                stmt.setString(4, ((Cliente) entidade).getNome());
+                stmt.setInt(5, ((Cliente) entidade).getGenero().getId());
+                stmt.setString(6, ((Cliente) entidade).getCpf());
+                stmt.setInt(7, ((Cliente) entidade).getTel_tipo().getId());
+                stmt.setString(8, ((Cliente) entidade).getTel_ddd());
+                stmt.setString(9, ((Cliente) entidade).getTel_numero());
+                stmt.setDate(10, new Date(((Cliente) entidade).getDt_nascimento().getTime()));
+                stmt.setBoolean(11, true);
+                stmt.setDate(12, null);
 
                 stmt.executeUpdate();
                 
@@ -136,15 +137,14 @@ public class ClienteDAO implements IDAO {
             while(rs.next()) {
                 Cliente cliente = new Cliente();
                 Usuario usuario = new Usuario();
-                Genero genero = new Genero();
-                TipoTelefone tel_tipo = new TipoTelefone();
                 
                 cliente.setId(rs.getInt("cli_id"));
+                cliente.setCodigo(rs.getString("cli_codigo"));
                 usuario.setId(rs.getInt("cli_usu_id"));
                 cliente.setNome(rs.getString("cli_nome"));
-                genero.setId(rs.getInt("cli_gen_id"));
+                cliente.setGenero(Genero.idToEnum(rs.getInt("cli_gen_id")));
                 cliente.setCpf(rs.getString("cli_cpf"));
-                tel_tipo.setId(rs.getInt("cli_tel_tte_id"));
+                cliente.setTel_tipo(TipoTelefone.idToEnum(rs.getInt("cli_tel_tte_id")));
                 cliente.setTel_ddd(rs.getString("cli_tel_ddd"));
                 cliente.setTel_numero(rs.getString("cli_tel_numero"));
                 cliente.setDt_nascimento(rs.getDate("cli_dt_nascimento"));
@@ -152,8 +152,6 @@ public class ClienteDAO implements IDAO {
                 cliente.setDt_cadastro(rs.getDate("cli_dt_inclusao"));
                 
                 cliente.setUsuario(usuario);
-                cliente.setGenero(genero);
-                cliente.setTel_tipo(tel_tipo);
                 clientes.add(cliente);
             }
                 
@@ -183,15 +181,14 @@ public class ClienteDAO implements IDAO {
             
             if(rs.next()) {
                 Usuario usuario = new Usuario();
-                Genero genero = new Genero();
-                TipoTelefone tel_tipo = new TipoTelefone();
                 
                 cliente.setId(rs.getInt("cli_id"));
+                cliente.setCodigo(rs.getString("cli_codigo"));
                 usuario.setId(rs.getInt("cli_usu_id"));
                 cliente.setNome(rs.getString("cli_nome"));
-                genero.setId(rs.getInt("cli_gen_id"));
+                cliente.setGenero(Genero.idToEnum(rs.getInt("cli_gen_id")));
                 cliente.setCpf(rs.getString("cli_cpf"));
-                tel_tipo.setId(rs.getInt("cli_tel_tte_id"));
+                cliente.setTel_tipo(TipoTelefone.idToEnum(rs.getInt("cli_tel_tte_id")));
                 cliente.setTel_ddd(rs.getString("cli_tel_ddd"));
                 cliente.setTel_numero(rs.getString("cli_tel_numero"));
                 cliente.setDt_nascimento(rs.getDate("cli_dt_nascimento"));
@@ -199,8 +196,6 @@ public class ClienteDAO implements IDAO {
                 cliente.setDt_cadastro(rs.getDate("cli_dt_inclusao"));
                 
                 cliente.setUsuario(usuario);
-                cliente.setGenero(genero);
-                cliente.setTel_tipo(tel_tipo);
             }
                 
             return cliente;

@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class Cliente extends EntidadeDominio {
     private Usuario usuario;
+    private String codigo;
     private String nome;
     private String cpf;
     private Genero genero;
@@ -20,10 +21,11 @@ public class Cliente extends EntidadeDominio {
     public Cliente() {
         super();
         this.usuario = new Usuario();
+        this.codigo = "";
         this.nome = "";
         this.cpf = "";
-        this.genero = new Genero();
-        this.tel_tipo = new TipoTelefone();
+        this.genero = null;
+        this.tel_tipo = null;
         this.tel_ddd = "";
         this.tel_numero = "";
         this.dt_nascimento = new Date();
@@ -32,12 +34,13 @@ public class Cliente extends EntidadeDominio {
         this.status = false;
     }
 
-    public Cliente(Usuario usuario, String nome, String cpf, Genero genero,
-            TipoTelefone tel_tipo, String tel_ddd, String tel_numero,
-            Date dt_nascimento, Collection<Endereco> enderecos,
+    public Cliente(Usuario usuario, String codigo, String nome, String cpf,
+            Genero genero, TipoTelefone tel_tipo, String tel_ddd,
+            String tel_numero, Date dt_nascimento, Collection<Endereco> enderecos,
             Collection<Cartao> cartoes, boolean status) {
         super();
         this.usuario = usuario;
+        this.codigo = codigo;
         this.nome = nome;
         this.cpf = cpf;
         this.genero = genero;
@@ -50,12 +53,13 @@ public class Cliente extends EntidadeDominio {
         this.status = status;
     }
 
-    public Cliente(Usuario usuario, String nome, String cpf, Genero genero,
-            TipoTelefone tel_tipo, String tel_ddd, String tel_numero,
-            Date dt_nascimento, Collection<Endereco> enderecos, 
+    public Cliente(Usuario usuario, String codigo, String nome, String cpf,
+            Genero genero, TipoTelefone tel_tipo, String tel_ddd,
+            String tel_numero, Date dt_nascimento, Collection<Endereco> enderecos,
             Collection<Cartao> cartoes, boolean status, int id, Date dt_cadastro) {
         super(id, dt_cadastro);
         this.usuario = usuario;
+        this.codigo = codigo;
         this.nome = nome;
         this.cpf = cpf;
         this.genero = genero;
@@ -76,6 +80,14 @@ public class Cliente extends EntidadeDominio {
         this.usuario = usuario;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -155,5 +167,5 @@ public class Cliente extends EntidadeDominio {
     public void setStatus(boolean status) {
         this.status = status;
     }
-    
+
 }

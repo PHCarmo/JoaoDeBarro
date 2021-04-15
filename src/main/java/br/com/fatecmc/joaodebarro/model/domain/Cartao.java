@@ -10,7 +10,7 @@ public class Cartao extends EntidadeDominio {
 
     public Cartao() {
         super();
-        this.bandeira = new BandeiraCartao();
+        this.bandeira = null;
         this.numero = "";
         this.nome = "";
         this.cvv = "";

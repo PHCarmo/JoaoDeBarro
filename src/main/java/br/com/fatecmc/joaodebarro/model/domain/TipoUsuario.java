@@ -1,31 +1,32 @@
 package br.com.fatecmc.joaodebarro.model.domain;
 
-import java.util.Date;
+public enum TipoUsuario {
+    
+    ADM("Administrador"),
+    CLIENTE("Cliente");
+    
+    private final String descricao;
 
-public class TipoUsuario extends EntidadeDominio {
-    private String nome;
-
-    public TipoUsuario() {
-        super();
-        this.nome = "";
+    private TipoUsuario(String descricao) {
+        this.descricao = descricao;
     }
 
-    public TipoUsuario(String nome) {
-        super();
-        this.nome = nome;
+    public String getDescricao() {
+        return descricao;
+    }
+    
+    public int getId() {
+        return this.ordinal() + 1;
     }
 
-    public TipoUsuario(String nome, int id, Date dt_cadastro) {
-        super(id, dt_cadastro);
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public static TipoUsuario idToEnum(int id) {
+        switch (id) {
+            case 1:
+                return ADM;
+            case 2:
+                return CLIENTE;
+        }
+        return null;
     }
     
 }

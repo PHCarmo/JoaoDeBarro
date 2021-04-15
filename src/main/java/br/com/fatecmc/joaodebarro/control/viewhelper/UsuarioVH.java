@@ -15,8 +15,7 @@ public class UsuarioVH implements IViewHelper {
         String email =       request.getParameter("usu_si_email");
         String senha =       request.getParameter("usu_si_senha");
         
-        TipoUsuario tipo_usu = new TipoUsuario("", 2, new Date());
-        Usuario usuario = new Usuario(email, senha, tipo_usu, 0, new Date());
+        Usuario usuario = new Usuario(email, senha, TipoUsuario.CLIENTE, 0, new Date());
         return usuario;
     }
 

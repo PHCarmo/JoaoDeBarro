@@ -17,7 +17,7 @@ public class GeneratorJsonCliente implements IGeneratorJson {
                 Cliente a = (Cliente) e;
                 data += " ["
                     +"\"<div class='circle "+ (a.getStatus() ? "green" : "grey") + "'></div>\","
-                    +"\"CLI2468\","
+                    +"\""+ a.getCodigo() + "\","
                     +"\""+ a.getUsuario().getId() + "\","
                     +"\""+ a.getNome()+ "\","
                     +"\""+ Mask.toCPF(a.getCpf()) + "\","

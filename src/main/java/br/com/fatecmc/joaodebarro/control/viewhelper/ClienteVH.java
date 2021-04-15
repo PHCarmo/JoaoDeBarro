@@ -22,12 +22,10 @@ public class ClienteVH implements IViewHelper {
         String tel_numero = request.getParameter("cli_tel_numero");
         Date dt_nasc =      ParameterParser.toDate(request.getParameter("cli_dt_nascimento"));
         boolean status =    ParameterParser.toBoolean(request.getParameter("cli_status"));
-        //Collection<Endereco> enderecos;
         
         Usuario usuario = new Usuario("", "", null, id_usuario, null);
-        Genero genero = new Genero("", id_genero, null);
-        TipoTelefone tipo_tel = new TipoTelefone("", id_tel_tipo, null);
-        Cliente cliente = new Cliente(usuario, nome, cpf, genero, tipo_tel, tel_ddd, tel_numero, dt_nasc, null, null, status, id_cliente, new Date());
+        Cliente cliente = new Cliente(usuario, "", nome, cpf, Genero.idToEnum(id_genero), TipoTelefone.idToEnum(id_tel_tipo),
+                tel_ddd, tel_numero, dt_nasc, null, null, status, id_cliente, new Date());
         return cliente;
     }
 

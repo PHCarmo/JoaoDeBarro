@@ -103,15 +103,13 @@ public class UsuarioDAO implements IDAO {
             
             while(rs.next()) {
                 Usuario usuario = new Usuario();
-                TipoUsuario tipo = new TipoUsuario();
                 
                 usuario.setId(rs.getInt("id_pessoa"));
-                tipo.setId(rs.getInt("usu_tus_id"));
+                usuario.setTipo(TipoUsuario.idToEnum(rs.getInt("usu_tus_id")));
                 usuario.setEmail(rs.getString("usu_email"));
                 usuario.setSenha(rs.getString("usu_senha"));
                 usuario.setDt_cadastro(rs.getDate("usu_dt_inclusao"));
                 
-                usuario.setTipo(tipo);
                 usuarios.add(usuario);
             }
                 
@@ -140,15 +138,11 @@ public class UsuarioDAO implements IDAO {
             rs = stmt.executeQuery();
             
             if(rs.next()) {
-                TipoUsuario tipo = new TipoUsuario();
-                
                 usuario.setId(rs.getInt("id_pessoa"));
-                tipo.setId(rs.getInt("usu_tus_id"));
+                usuario.setTipo(TipoUsuario.idToEnum(rs.getInt("usu_tus_id")));
                 usuario.setEmail(rs.getString("usu_email"));
                 usuario.setSenha(rs.getString("usu_senha"));
                 usuario.setDt_cadastro(rs.getDate("usu_dt_inclusao"));
-                
-                usuario.setTipo(tipo);
             }
                 
             return usuario;

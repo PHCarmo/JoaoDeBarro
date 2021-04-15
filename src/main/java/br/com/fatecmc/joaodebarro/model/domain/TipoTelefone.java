@@ -1,31 +1,35 @@
 package br.com.fatecmc.joaodebarro.model.domain;
 
-import java.util.Date;
+public enum TipoTelefone {
+    
+    CELULAR("Celular"),
+    FIXO("Fixo"),
+    VOIP("VoIP");
+    
+    private final String descricao;
 
-public class TipoTelefone extends EntidadeDominio {
-    private String nome;
-
-    public TipoTelefone() {
-        super();
-        this.nome = "";
+    private TipoTelefone(String descricao) {
+        this.descricao = descricao;
     }
 
-    public TipoTelefone(String nome) {
-        super();
-        this.nome = nome;
+    public String getDescricao() {
+        return descricao;
+    }
+    
+    public int getId() {
+        return this.ordinal() + 1;
     }
 
-    public TipoTelefone(String nome, int id, Date dt_cadastro) {
-        super(id, dt_cadastro);
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public static TipoTelefone idToEnum(int id) {
+        switch (id) {
+            case 1:
+                return CELULAR;
+            case 2:
+                return FIXO;
+            case 3:
+                return VOIP;
+        }
+        return null;
     }
     
 }
