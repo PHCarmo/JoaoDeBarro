@@ -2,8 +2,8 @@ package br.com.fatecmc.joaodebarro.model.domain;
 
 public enum BandeiraCartao {
 
-    AMERICANEX("American Express"),
-    DINERSC("Diners Club"),
+    AMERICAN_EX("American Express"),
+    DINERS_C("Diners Club"),
     ELO("Elo"),
     HIPERC("Hipercard"),
     MASTERC("MasterCard"),
@@ -26,9 +26,9 @@ public enum BandeiraCartao {
     public static BandeiraCartao idToEnum(int id) {
         switch (id) {
             case 1:
-                return AMERICANEX;
+                return AMERICAN_EX;
             case 2:
-                return DINERSC;
+                return DINERS_C;
             case 3:
                 return ELO;
             case 4:

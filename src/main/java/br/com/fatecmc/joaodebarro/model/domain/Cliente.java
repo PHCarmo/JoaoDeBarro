@@ -16,6 +16,7 @@ public class Cliente extends EntidadeDominio {
     private Date dt_nascimento;
     private Collection<Endereco> enderecos;
     private Collection<Cartao> cartoes;
+    private Collection<ValeTroca> vales;
     private boolean status;
 
     public Cliente() {
@@ -31,13 +32,14 @@ public class Cliente extends EntidadeDominio {
         this.dt_nascimento = new Date();
         this.enderecos = new ArrayList<>();
         this.cartoes = new ArrayList<>();
+        this.vales = new ArrayList<>();
         this.status = false;
     }
 
     public Cliente(Usuario usuario, String codigo, String nome, String cpf,
             Genero genero, TipoTelefone tel_tipo, String tel_ddd,
             String tel_numero, Date dt_nascimento, Collection<Endereco> enderecos,
-            Collection<Cartao> cartoes, boolean status) {
+            Collection<Cartao> cartoes, Collection<ValeTroca> vales, boolean status) {
         super();
         this.usuario = usuario;
         this.codigo = codigo;
@@ -50,13 +52,15 @@ public class Cliente extends EntidadeDominio {
         this.dt_nascimento = dt_nascimento;
         this.enderecos = enderecos;
         this.cartoes = cartoes;
+        this.vales = vales;
         this.status = status;
     }
 
     public Cliente(Usuario usuario, String codigo, String nome, String cpf,
             Genero genero, TipoTelefone tel_tipo, String tel_ddd,
             String tel_numero, Date dt_nascimento, Collection<Endereco> enderecos,
-            Collection<Cartao> cartoes, boolean status, int id, Date dt_cadastro) {
+            Collection<Cartao> cartoes, Collection<ValeTroca> vales, boolean status,
+            int id, Date dt_cadastro) {
         super(id, dt_cadastro);
         this.usuario = usuario;
         this.codigo = codigo;
@@ -69,6 +73,7 @@ public class Cliente extends EntidadeDominio {
         this.dt_nascimento = dt_nascimento;
         this.enderecos = enderecos;
         this.cartoes = cartoes;
+        this.vales = vales;
         this.status = status;
     }
 
@@ -158,6 +163,14 @@ public class Cliente extends EntidadeDominio {
 
     public void setCartoes(Collection<Cartao> cartoes) {
         this.cartoes = cartoes;
+    }
+
+    public Collection<ValeTroca> getVales() {
+        return vales;
+    }
+
+    public void setVales(Collection<ValeTroca> vales) {
+        this.vales = vales;
     }
 
     public boolean getStatus() {
