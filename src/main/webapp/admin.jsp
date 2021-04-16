@@ -23,6 +23,7 @@
                 <nav class="nav-sidebar">
                     <ul class="nav tabs">
                         <li class="col-12 active"><a href="#tab_clientes"   data-toggle="tab">Clientes</a></li>
+                        <li class="col-12"><a href="#tab_no_content"        data-toggle="tab">Cupons</a></li>
                         <li class="col-12"><a href="#tab_dashboard"         data-toggle="tab">Dashboard</a></li>
                         <li class="col-12"><a href="#tab_log"               data-toggle="tab">Log Sistêmico</a></li>
                         <li class="col-12"><a href="#tab_parametros"        data-toggle="tab">Parâmetros</a></li>
