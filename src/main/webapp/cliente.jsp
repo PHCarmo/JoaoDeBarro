@@ -43,7 +43,6 @@
                     <ul class="nav tabs">
                         <li class="col-12"><a href="#tab_alter_pass"    data-toggle="tab">Alterar Senha</a></li>
                         <li class="col-12 active"><a href="#tab_dados"  data-toggle="tab">Cadastro</a></li>
-                        <li class="col-12"><a href="carrinho.jsp"                        >Carrinho</a></li>
                         <li class="col-12"><a href="#tab_cartao"        data-toggle="tab">Cartões</a></li>
                         <li class="col-12"><a href="#tab_compra"        data-toggle="tab">Compras</a></li>
                         <li class="col-12"><a href="#tab_endereco"      data-toggle="tab">Endereços</a></li>
