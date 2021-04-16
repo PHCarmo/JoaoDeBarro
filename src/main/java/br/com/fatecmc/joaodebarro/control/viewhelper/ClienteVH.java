@@ -3,7 +3,6 @@ package br.com.fatecmc.joaodebarro.control.viewhelper;
 import br.com.fatecmc.joaodebarro.model.domain.*;
 import br.com.fatecmc.joaodebarro.util.ParameterParser;
 import java.io.IOException;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,20 +11,21 @@ public class ClienteVH implements IViewHelper {
 
     @Override
     public EntidadeDominio getEntidade(HttpServletRequest request) {
-        int id_cliente =    ParameterParser.toInt(request.getParameter("cli_id"));
-        int id_usuario =    ParameterParser.toInt(request.getParameter("cli_usu_id"));
-        String nome =       request.getParameter("cli_nome");
-        String cpf =        request.getParameter("cli_cpf");
-        int id_genero =     ParameterParser.toInt(request.getParameter("cli_gen_id"));
-        int id_tel_tipo =   ParameterParser.toInt(request.getParameter("cli_tel_tte_id"));
-        String tel_ddd =    request.getParameter("cli_tel_ddd");
-        String tel_numero = request.getParameter("cli_tel_numero");
-        Date dt_nasc =      ParameterParser.toDate(request.getParameter("cli_dt_nascimento"));
-        boolean status =    ParameterParser.toBoolean(request.getParameter("cli_status"));
+        Cliente cliente = new Cliente();
+        Usuario usuario = new Usuario();
         
-        Usuario usuario = new Usuario("", "", null, id_usuario, null);
-        Cliente cliente = new Cliente(usuario, "", nome, cpf, Genero.idToEnum(id_genero), TipoTelefone.idToEnum(id_tel_tipo),
-                tel_ddd, tel_numero, dt_nasc, null, null, status, id_cliente, new Date());
+        cliente.setId(ParameterParser.toInt(request.getParameter("cli_id")));
+        usuario.setId(ParameterParser.toInt(request.getParameter("cli_usu_id")));
+        cliente.setNome(request.getParameter("cli_nome"));
+        cliente.setCpf(request.getParameter("cli_cpf"));
+        cliente.setGenero(Genero.idToEnum(ParameterParser.toInt(request.getParameter("cli_gen_id"))));
+        cliente.setTel_tipo(TipoTelefone.idToEnum(ParameterParser.toInt(request.getParameter("cli_tel_tte_id"))));
+        cliente.setTel_ddd(request.getParameter("cli_tel_ddd"));
+        cliente.setTel_numero(request.getParameter("cli_tel_numero"));
+        cliente.setDt_nascimento(ParameterParser.toDate(request.getParameter("cli_dt_nascimento")));
+        cliente.setStatus(ParameterParser.toBoolean(request.getParameter("cli_status")));
+               
+        cliente.setUsuario(usuario);
         return cliente;
     }
 
