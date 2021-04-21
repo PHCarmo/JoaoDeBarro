@@ -18,6 +18,7 @@ public class Facade implements IFacade {
         daos = new HashMap<>();
         daos.put(Cliente.class.getName(), new ClienteDAO());
         daos.put(Usuario.class.getName(), new UsuarioDAO());
+        daos.put(Produto.class.getName(), new ProdutoDAO());
     }
 
     private void initStrategy() {

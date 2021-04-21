@@ -1,24 +1,8 @@
 <%@ include file="header.jsp" %>
+<%@ page import="br.com.fatecmc.joaodebarro.model.domain.*"%>
+<%@ page import="br.com.fatecmc.joaodebarro.util.Mask"%>
 <%
-    String operacao =       request.getParameter("operacao");
-    String prd_id =         request.getParameter("cli_id");
-    String nome =           request.getParameter("cli_nome");
-    String cpf =            request.getParameter("cli_cpf");
-    String id_genero =      request.getParameter("cli_gen_id");
-    String id_tel_tipo =    request.getParameter("cli_tel_tte_id");
-    String tel_ddd =        request.getParameter("cli_tel_ddd");
-    String tel_numero =     request.getParameter("cli_tel_numero");
-    String dt_nasc =        request.getParameter("cli_dt_nascimento");
-    
-    if(operacao == null)    operacao = "";
-    if(prd_id == null)      prd_id = "";
-    if(nome == null)        nome = "";
-    if(cpf == null)         cpf = "";
-    if(id_genero == null)   id_genero = "";
-    if(id_tel_tipo == null) id_tel_tipo = "";
-    if(tel_ddd == null)     tel_ddd = "";
-    if(tel_numero == null)  tel_numero = "";
-    if(dt_nasc == null)     dt_nasc = "";
+    Produto prod = (Produto) request.getAttribute("produto");
 %>
 
 <div class="brand_color">
@@ -42,43 +26,43 @@
                 <form class="main_form" method="POST" action="carrinho.jsp">
                     <div class="row">
                         <div class="col-7" style="align-self: center;">
-                            <center><img src="images/produtos/1.png" alt="img" /></center>
+                            <center><img src="images/produtos/<%=prod.getImg_nome()%>" alt="img" /></center>
                         </div>
                         <div class="col-5">
                             <div class="col-12">
                                 <h2>
-                                    <span>Porcelanato</span>
-                                    <strong class="float-right">Piso</strong>
+                                    <span><%=prod.getDescricao()%></span>
+                                    <strong class="float-right"><%=prod.getTipo().getDescricao()%></strong>
                                     <hr>
                                 </h2>
                             </div>
                             <div class="col-12">
                                 <h4>
                                     <strong>Marca: </strong>
-                                    <span>Colormix</span>
+                                    <span><%=prod.getMarca()%></span>
                                     <a class="invisible">-----</a>
                                     <strong>PEI: </strong>
-                                    <span>3</span>
+                                    <span><%=prod.getPei()%></span>
                                 </h4>
                                 <h4>
                                     <strong>Material: </strong>
-                                    <span class="float-right">Porcelanato</span>
+                                    <span class="float-right"><%=prod.getMaterial()%></span>
                                 </h4>
                                 <h4>
                                     <strong>Dimensões: </strong>
-                                    <span class="float-right">60 X 60 cm</span>
+                                    <span class="float-right"><%=prod.getComprimento()%> X <%=prod.getLargura()%> cm</span>
                                 </h4>
                                 <h4>
                                     <strong>Cor/Tonalidade: </strong>
-                                    <span class="float-right">Branco</span>
+                                    <span class="float-right"><%=prod.getCor_tonalidade()%></span>
                                 </h4>
                                 <h4>
                                     <strong>Preço Unitário: </strong>
-                                    <span class="float-right">R$ 99,90</span>
+                                    <span class="float-right"><%=Mask.toMoney(prod.getValor_venda())%></span>
                                 </h4>
                                 <h4>
                                     <strong>Código de Barras: </strong>
-                                    <span class="float-right">568754456745</span>
+                                    <span class="float-right"><%=prod.getCodigo_barra()%></span>
                                     <hr style="border: none">
                                     <hr style="border: none">
                                 </h4>
