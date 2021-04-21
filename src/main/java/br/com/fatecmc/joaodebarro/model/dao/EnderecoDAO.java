@@ -10,7 +10,7 @@ public class EnderecoDAO implements IDAO {
     private Connection conn;
 
     @Override
-    public int salvar(EntidadeDominio entidade) {
+    public EntidadeDominio salvar(EntidadeDominio entidade) {
         int id = 0;
         this.conn = ConnectionFactory.getConnection();
         String sql = "INSERT INTO ENDERECOS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -43,7 +43,7 @@ public class EnderecoDAO implements IDAO {
                 stmt.executeUpdate();
                 
                 ResultSet rs = stmt.getGeneratedKeys();
-                if(rs.next()) id = rs.getInt(1);
+                if(rs.next()) entidade.setId(rs.getInt(1));
                 
                 conn.commit();	
             } catch (SQLException ex) {
@@ -52,7 +52,7 @@ public class EnderecoDAO implements IDAO {
                 ConnectionFactory.closeConnection(conn, stmt);
             }
         }
-        return id;
+        return entidade;
     }
 
     @Override

@@ -10,8 +10,7 @@ public class UsuarioDAO implements IDAO {
     private Connection conn;
 
     @Override
-    public int salvar(EntidadeDominio entidade) {
-        int id = 0;
+    public EntidadeDominio salvar(EntidadeDominio entidade) {
         this.conn = ConnectionFactory.getConnection();
         String sql = "INSERT INTO USUARIOS VALUES(?, ?, ?, ?, ?)";
 
@@ -31,7 +30,7 @@ public class UsuarioDAO implements IDAO {
                 stmt.executeUpdate();
                 
                 ResultSet rs = stmt.getGeneratedKeys();
-                if(rs.next()) id = rs.getInt(1);
+                if(rs.next()) entidade.setId(rs.getInt(1));
                 
                 conn.commit();	
             } catch (SQLException ex) {
@@ -40,7 +39,7 @@ public class UsuarioDAO implements IDAO {
                 ConnectionFactory.closeConnection(conn, stmt);
             }
         }
-        return id;
+        return entidade;
     }
 
     @Override
