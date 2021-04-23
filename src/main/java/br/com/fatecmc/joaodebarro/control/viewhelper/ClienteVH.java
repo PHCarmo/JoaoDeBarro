@@ -3,6 +3,7 @@ package br.com.fatecmc.joaodebarro.control.viewhelper;
 import br.com.fatecmc.joaodebarro.model.domain.*;
 import br.com.fatecmc.joaodebarro.util.ParameterParser;
 import java.io.IOException;
+import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +25,8 @@ public class ClienteVH implements IViewHelper {
         cliente.setTel_numero(request.getParameter("cli_tel_numero"));
         cliente.setDt_nascimento(ParameterParser.toDate(request.getParameter("cli_dt_nascimento")));
         cliente.setStatus(ParameterParser.toBoolean(request.getParameter("cli_status")));
-               
+        
+        cliente.setEnderecos(Arrays.asList((Endereco)new EnderecoVH().getEntidade(request)));
         cliente.setUsuario(usuario);
         return cliente;
     }
@@ -34,13 +36,16 @@ public class ClienteVH implements IViewHelper {
             HttpServletResponse response) throws ServletException, IOException {
         switch(request.getParameter("operacao")){
             case "ALTERAR":
-                response.sendRedirect("/JoaoDeBarro/faces/cliente.jsp"); break;
+                response.sendRedirect("/JoaoDeBarro/faces/cliente?cli_id="+request.getParameter("cli_id")+"&operacao=CONSULTAR"); break;
             case "ALTERAR_STATUS":
                 response.sendRedirect("/JoaoDeBarro/faces/admin.jsp"); break;
             case "VISUALIZAR":
                 response.sendRedirect("/JoaoDeBarro/faces/admin.jsp"); break;
-            default:
-                response.sendRedirect("/JoaoDeBarro/faces/cliente.jsp?cli_id="+resultado);
+            case "CONSULTAR":
+                request.setAttribute("cliente", resultado);
+                request.getRequestDispatcher("cliente.jsp").forward(request, response); break;
+            case "SALVAR":
+                response.sendRedirect("/JoaoDeBarro/faces/cliente?cli_id="+((Cliente)resultado).getId()+"&operacao=CONSULTAR"); break;
         }
     }
     

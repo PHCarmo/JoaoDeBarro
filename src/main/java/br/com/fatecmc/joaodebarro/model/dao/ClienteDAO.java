@@ -45,6 +45,10 @@ public class ClienteDAO implements IDAO {
             } finally {
                 ConnectionFactory.closeConnection(conn, stmt);
             }
+            for (Endereco endereco : ((Cliente) entidade).getEnderecos()) {
+                endereco.setCliente_id(entidade.getId());
+                new EnderecoDAO().salvar(endereco);
+            }
         }
         return entidade;
     }
@@ -196,7 +200,9 @@ public class ClienteDAO implements IDAO {
                 
                 cliente.setUsuario(usuario);
             }
-                
+            cliente.setEnderecos(((Cliente) new EnderecoDAO().consultarPorCliente(cliente)).getEnderecos());
+            cliente.setCartoes(((Cliente) new CartaoDAO().consultarPorCliente(cliente)).getCartoes());
+            cliente.setVales(((Cliente) new ValeTrocaDAO().consultarPorCliente(cliente)).getVales());
             return cliente;
         } catch (SQLException ex) {
             System.out.println("Não foi possível consultar os dados no banco de dados.\nErro: " + ex.getMessage());

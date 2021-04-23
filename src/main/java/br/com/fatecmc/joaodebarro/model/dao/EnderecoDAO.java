@@ -11,9 +11,8 @@ public class EnderecoDAO implements IDAO {
 
     @Override
     public EntidadeDominio salvar(EntidadeDominio entidade) {
-        int id = 0;
         this.conn = ConnectionFactory.getConnection();
-        String sql = "INSERT INTO ENDERECOS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ENDERECOS VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = null;
         
@@ -193,6 +192,53 @@ public class EnderecoDAO implements IDAO {
             }
                 
             return endereco;
+        } catch (SQLException ex) {
+            System.out.println("Não foi possível consultar os dados no banco de dados.\nErro: " + ex.getMessage());
+        } finally {
+            ConnectionFactory.closeConnection(conn, stmt, rs);
+        }
+        return null;
+    }
+    
+    public EntidadeDominio consultarPorCliente(Cliente cliente) {
+        this.conn = ConnectionFactory.getConnection();
+        String sql = "SELECT * FROM ENDERECOS WHERE end_cli_id=?";
+        
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, cliente.getId());
+                
+            rs = stmt.executeQuery();
+            
+            cliente.setEnderecos(new ArrayList<Endereco>());
+            while(rs.next()) {
+                Endereco endereco = new Endereco();
+                
+                endereco.setId(rs.getInt("end_id"));
+                endereco.setCliente_id(rs.getInt("end_cli_id"));
+                endereco.setApelido(rs.getString("end_nome"));
+                endereco.setTipo(TipoEndereco.idToEnum(rs.getInt("end_ten_id")));
+                endereco.setTipo_res(TipoResidencia.idToEnum(rs.getInt("end_tre_id")));
+                endereco.setTipo_log(TipoLogradouro.idToEnum(rs.getInt("end_tlo_id")));
+                endereco.setLogradouro(rs.getString("end_logradouro"));
+                endereco.setNumero(rs.getString("end_numero"));
+                endereco.setBairro(rs.getString("end_bairro"));
+                endereco.setCep(rs.getString("end_cep"));
+                endereco.setCidade(rs.getString("end_cidade"));
+                endereco.setEstado(rs.getString("end_estado"));
+                endereco.setPais(rs.getString("end_pais"));
+                endereco.setObservacao(rs.getString("end_observacao"));
+                endereco.setCobranca(rs.getBoolean("end_cobranca"));
+                endereco.setEntrega(rs.getBoolean("end_entrega"));
+                endereco.setDt_cadastro(rs.getDate("end_dt_inclusao"));
+                
+                cliente.getEnderecos().add(endereco);
+            }
+                
+            return cliente;
         } catch (SQLException ex) {
             System.out.println("Não foi possível consultar os dados no banco de dados.\nErro: " + ex.getMessage());
         } finally {
