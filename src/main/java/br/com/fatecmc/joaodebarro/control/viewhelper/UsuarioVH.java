@@ -1,7 +1,6 @@
 package br.com.fatecmc.joaodebarro.control.viewhelper;
 
 import br.com.fatecmc.joaodebarro.model.domain.*;
-import br.com.fatecmc.joaodebarro.util.ParameterParser;
 import java.io.IOException;
 import java.util.Date;
 import javax.servlet.ServletException;
@@ -22,7 +21,7 @@ public class UsuarioVH implements IViewHelper {
     @Override
     public void setView(Object resultado, HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/JoaoDeBarro/faces/form_cliente.jsp?cli_usu_id="+resultado);
+        response.sendRedirect("/JoaoDeBarro/faces/form_cliente.jsp?cli_usu_id="+((Usuario)resultado).getId());
     }
     
 }
