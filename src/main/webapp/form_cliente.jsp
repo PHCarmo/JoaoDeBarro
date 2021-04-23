@@ -41,7 +41,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form class="main_form" method="POST" action="./Cliente">
+                <form class="main_form" method="POST" action="./cliente">
                     <div class="row">
                         <div class="col-12">
                             <input class="form-control" type="hidden" name="cli_id" value="<%=cli_id%>">
@@ -147,7 +147,7 @@
                             <input class="form-control" placeholder="Observação" type="text" maxlength="50" name="end_observacao"></textarea>
                         </div>
                         <div class="col-3">
-                            <select class="form-control" name="end_proposito" readonly>
+                            <select class="form-control" name="end_proposito">
                                 <option value="">Selecione o Propósito</option>
                                 <option value="1">Entrega e Cobrança</option>
                             </select>

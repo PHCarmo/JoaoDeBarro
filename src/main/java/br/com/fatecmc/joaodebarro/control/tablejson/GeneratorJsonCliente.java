@@ -21,7 +21,7 @@ public class GeneratorJsonCliente implements IGeneratorJson {
                     +"\""+ a.getUsuario().getId() + "\","
                     +"\""+ a.getNome()+ "\","
                     +"\""+ Mask.toCPF(a.getCpf()) + "\","
-                    +"\"<a class='btn btn-default' title='Ativar/Inativar' href='./Cliente?operacao=ALTERAR_STATUS"
+                    +"\"<a class='btn btn-default' title='Ativar/Inativar' href='./cliente?operacao=ALTERAR_STATUS"
                     +"&cli_id="+ a.getId()
                     +"&cli_status="+ a.getStatus()
                     +"'><img class='icon' src='icon/power.png' /></a>"

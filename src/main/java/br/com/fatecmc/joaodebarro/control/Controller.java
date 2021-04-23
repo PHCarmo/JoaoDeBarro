@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "Controller",
-        urlPatterns = {"/Cliente", "/Registrar", "/TableConstructor",
+        urlPatterns = {"/cliente", "/Registrar", "/TableConstructor",
         "/produto"})
 public class Controller extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -33,7 +33,7 @@ public class Controller extends HttpServlet {
         cmds.put("GERAR_TABELA", new ConsultarCommand());
         
         vhs = new HashMap<>();
-        vhs.put("/JoaoDeBarro/faces/Cliente", new ClienteVH());
+        vhs.put("/JoaoDeBarro/faces/cliente", new ClienteVH());
         vhs.put("/JoaoDeBarro/faces/Registrar", new UsuarioVH());
         vhs.put("/JoaoDeBarro/faces/TableConstructor", new DataTableVH());
         vhs.put("/JoaoDeBarro/faces/produto", new ProdutoVH());
