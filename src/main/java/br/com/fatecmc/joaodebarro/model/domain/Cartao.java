@@ -7,6 +7,7 @@ public class Cartao extends EntidadeDominio {
     private String numero;
     private String nome;
     private String cvv;
+    private Date validade;
 
     public Cartao() {
         super();
@@ -14,23 +15,27 @@ public class Cartao extends EntidadeDominio {
         this.numero = "";
         this.nome = "";
         this.cvv = "";
+        this.validade =  new Date();
     }
 
-    public Cartao(BandeiraCartao bandeira, String numero, String nome, String cvv) {
+    public Cartao(BandeiraCartao bandeira, String numero, String nome, String cvv,
+            Date validade) {
         super();
         this.bandeira = bandeira;
         this.numero = numero;
         this.nome = nome;
         this.cvv = cvv;
+        this.validade = validade;
     }
 
     public Cartao(BandeiraCartao bandeira, String numero, String nome, String cvv,
-            int id, Date dt_cadastro) {
+            Date validade, int id, Date dt_cadastro) {
         super(id, dt_cadastro);
         this.bandeira = bandeira;
         this.numero = numero;
         this.nome = nome;
         this.cvv = cvv;
+        this.validade = validade;
     }
 
     public BandeiraCartao getBandeira() {
@@ -63,6 +68,14 @@ public class Cartao extends EntidadeDominio {
 
     public void setCvv(String cvv) {
         this.cvv = cvv;
+    }
+
+    public Date getValidade() {
+        return validade;
+    }
+
+    public void setValidade(Date validade) {
+        this.validade = validade;
     }
     
 }
