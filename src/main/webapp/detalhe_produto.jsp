@@ -23,8 +23,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form class="main_form" method="POST" action="carrinho.jsp">
+                <form class="main_form" method="POST" action="./item">
                     <div class="row">
+                        <div class="col-12">
+                            <input class="form-control" type="hidden" name="prd_id" value="<%=prod.getId()%>">
+                        </div>
+                        
                         <div class="col-7" style="align-self: center;">
                             <center><img src="images/produtos/<%=prod.getImg_nome()%>" alt="img" /></center>
                         </div>
@@ -70,7 +74,7 @@
                             <div class="col-12">
                                 <h4>
                                     <strong>Quantidade: </strong>
-                                    <input class="form-control-sm float-right" type="number" value="1" min="1" style="width: 100px;">
+                                    <input class="form-control-sm float-right" type="number" name="pcr_qtd" value="1" min="1" style="width: 100px;">
                                 </h4>
                                 <h4>
                                     <strong>Preço Total: </strong>
@@ -80,7 +84,7 @@
                         </div>
                         <div class="col-12">
                             <hr style="border: none">
-                            <button class="send float-right" name="operacao" value="ADICIONAR">Adicionar ao Carrinho!</button>
+                            <button class="send float-right" name="operacao" value="SALVAR">Adicionar ao Carrinho!</button>
                         </div>
                     </div>
                 </form>
