@@ -12,6 +12,7 @@ public class JsonGenerator {
     public JsonGenerator() {
         cmds = new HashMap<>();
         cmds.put("Cliente", new ClienteDataCommand());
+        cmds.put("Carrinho", new CarrinhoDataCommand());
     }
 
     public String gerar(List<EntidadeDominio> entidades, String table) {

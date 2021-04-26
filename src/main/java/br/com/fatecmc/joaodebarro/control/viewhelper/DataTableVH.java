@@ -3,6 +3,7 @@ package br.com.fatecmc.joaodebarro.control.viewhelper;
 import br.com.fatecmc.joaodebarro.control.tablejson.JsonGenerator;
 import br.com.fatecmc.joaodebarro.model.domain.*;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,16 +17,26 @@ public class DataTableVH implements IViewHelper {
     public DataTableVH() {
         entidades = new HashMap<>();
         entidades.put("Cliente", new Cliente());
+        entidades.put("Carrinho", new Carrinho());
     }
 
     @Override
     public EntidadeDominio getEntidade(HttpServletRequest request) {
-        return entidades.get(request.getParameter("tabela"));
+        EntidadeDominio entidade = entidades.get(request.getParameter("tabela"));
+        
+        if(entidade instanceof Carrinho){
+            if(request.getSession().getAttribute("car_id") == null) entidade.setId(-1);
+            else entidade.setId((int) request.getSession().getAttribute("car_id"));
+        }
+        
+        return entidade;
     }
 
     @Override
     public void setView(Object resultado, HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
+        if(!(resultado instanceof List)) resultado = Arrays.asList(resultado);
+        
         String json = new JsonGenerator().gerar((List<EntidadeDominio>) resultado,
                 request.getParameter("tabela"));
         

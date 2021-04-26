@@ -18,6 +18,6 @@ $(document).ready(function() {
         }],
         "order": [[1, "asc"]],
         "processing": true,
-        "ajax": "./json/data_carr_table.json"
+        "ajax": "TableConstructor?tabela=Carrinho&operacao=GERAR_TABELA"
     });
 });
