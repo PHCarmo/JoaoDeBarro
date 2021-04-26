@@ -2,22 +2,28 @@ package br.com.fatecmc.joaodebarro.model.domain;
 
 public enum StatusPedido {
     
-    EM_PROCESSAMENTO("Em Processamento"),
-    REPROVADA("Reprovada"),
-    APROVADA("Aprovada"),
-    EM_TRANSITO("Em Trânsito"),
-    ENTREGUE("Entregue"),
-    EM_TROCA("Em Troca"),
-    TROCA_AUTORIZADA("Troca Autorizada");
+    EM_PROCESSAMENTO("Em Processamento", "lightblue"),
+    REPROVADA("Reprovada", "red"),
+    APROVADA("Aprovada", "blue"),
+    EM_TRANSITO("Em Trânsito", "orange"),
+    ENTREGUE("Entregue", "green"),
+    EM_TROCA("Em Troca", "yellow"),
+    TROCA_AUTORIZADA("Troca Autorizada", "lightgreen");
         
     private final String descricao;
+    private final String cor;
 
-    private StatusPedido(String descricao) {
+    private StatusPedido(String descricao, String cor) {
         this.descricao = descricao;
+        this.cor = cor;
     }
 
     public String getDescricao() {
         return descricao;
+    }
+    
+    public String getCor() {
+        return cor;
     }
     
     public int getId() {
