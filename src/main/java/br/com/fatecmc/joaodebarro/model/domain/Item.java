@@ -44,7 +44,7 @@ public class Item extends EntidadeDominio {
         this.qtd = qtd;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 

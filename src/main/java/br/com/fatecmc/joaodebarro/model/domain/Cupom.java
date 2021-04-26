@@ -44,7 +44,7 @@ public class Cupom extends EntidadeDominio {
         this.valor = valor;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
