@@ -35,7 +35,7 @@ public class CartaoDAO implements IDAO {
                 stmt.executeUpdate();
                 
                 ResultSet rs = stmt.getGeneratedKeys();
-                if(rs.next()) entidade.setId(rs.getInt(1));
+                if(rs.next()) crt.setId(rs.getInt(1));
                 
                 conn.commit();	
             } catch (SQLException ex) {

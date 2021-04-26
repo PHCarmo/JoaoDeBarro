@@ -33,7 +33,7 @@ public class ValeTrocaDAO implements IDAO {
                 stmt.executeUpdate();
                 
                 ResultSet rs = stmt.getGeneratedKeys();
-                if(rs.next()) entidade.setId(rs.getInt(1));
+                if(rs.next()) vt.setId(rs.getInt(1));
                 
                 conn.commit();	
             } catch (SQLException ex) {
