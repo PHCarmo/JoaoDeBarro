@@ -15,29 +15,45 @@ public class ItemVH implements IViewHelper {
     public EntidadeDominio getEntidade(HttpServletRequest request) {
         Produto produto = new Produto();
         produto.setId(ParameterParser.toInt(request.getParameter("prd_id")));
-        
+
         Item item = new Item();
+        item.setId(ParameterParser.toInt(request.getParameter("pcr_id")));
         item.setProduto(produto);
         item.setQtd(ParameterParser.toInt(request.getParameter("pcr_qtd")));
-        
+
         Session session = new Session();
         session.setId(request.getSession().getId());
-        session.setDt_criacao(new Date((long)request.getSession().getCreationTime()));
-        
+        session.setDt_criacao(new Date((long) request.getSession().getCreationTime()));
+
         Carrinho carrinho = new Carrinho();
-        if(request.getSession().getAttribute("car_id") != null)
+        if (request.getSession().getAttribute("car_id") != null)
             carrinho.setId((int) request.getSession().getAttribute("car_id"));
         carrinho.setSession(session);
         carrinho.setItens(Arrays.asList(item));
         
-        return carrinho;
+        switch (request.getParameter("operacao")) {
+            case "EXCLUIR":
+                return item;
+            default:
+                return carrinho;
+        }
     }
 
     @Override
-    public void setView(Object resultado, HttpServletRequest request, 
+    public void setView(Object resultado, HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        request.getSession().setAttribute("car_id", ((Carrinho) resultado).getId());
-        response.sendRedirect("carrinho.jsp");
+        switch (request.getParameter("operacao")) {
+            case "SALVAR":
+                request.getSession().setAttribute("car_id", ((Carrinho) resultado).getId());
+                response.sendRedirect("carrinho.jsp");
+                break;
+            case "EXCLUIR":
+                response.sendRedirect("carrinho.jsp");
+                break;
+            default:
+                response.sendRedirect("carrinho.jsp");
+                break;
+        }
     }
-    
+
 }
