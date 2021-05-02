@@ -1,10 +1,11 @@
 <%@ include file="header.jsp" %>
 <%
     String operacao =       request.getParameter("operacao");
-    String temp =           request.getParameter("cli_id");
+    String cli_id =         request.getSession(false).getAttribute("cli_id").toString();
+    String temp = "";
     
     if(operacao == null)    operacao = "";
-    if(temp == null)        temp = "";
+    if(cli_id == null)      cli_id = "";
 %>
 
 <div class="brand_color">
@@ -25,10 +26,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form class="main_form" method="POST" action="./cliente.jsp">
+                <form class="main_form" method="POST" action="./cartao">
                     <div class="row">
                         <div class="col-12">
-                            <input class="form-control" type="hidden" name="crt_id" value="<%=temp%>">
+                            <input class="form-control" type="hidden" name="cli_id" value="<%=cli_id%>">
                         </div>
                         
                         <div class="col-12">
@@ -60,17 +61,17 @@
                         <div class="col-3">
                             <select class="form-control" name="crt_ano_validade">
                                 <option value="">Ano da Validade</option>
-                                <option value="1">2021</option>
-                                <option value="2">2022</option>
-                                <option value="3">2023</option>
-                                <option value="4">2024</option>
-                                <option value="5">2025</option>
-                                <option value="6">2026</option>
-                                <option value="7">2027</option>
-                                <option value="8">2028</option>
-                                <option value="9">2029</option>
-                                <option value="10">2030</option>
-                                <option value="11">2031</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
+                                <option value="2031">2031</option>
                             </select>
                         </div>
                         <div class="col-3">

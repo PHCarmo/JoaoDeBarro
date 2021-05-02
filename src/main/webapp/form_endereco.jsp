@@ -1,7 +1,7 @@
-<%@ include file="header.jsp" %>
+    <%@ include file="header.jsp" %>
 <%
     String operacao =       request.getParameter("operacao");
-    String prd_id =         request.getParameter("cli_id");
+    String cli_id =         request.getSession(false).getAttribute("cli_id").toString();
     String nome =           request.getParameter("cli_nome");
     String cpf =            request.getParameter("cli_cpf");
     String id_genero =      request.getParameter("cli_gen_id");
@@ -11,7 +11,7 @@
     String dt_nasc =        request.getParameter("cli_dt_nascimento");
     
     if(operacao == null)    operacao = "";
-    if(prd_id == null)      prd_id = "";
+    if(cli_id == null)      cli_id = "";
     if(nome == null)        nome = "";
     if(cpf == null)         cpf = "";
     if(id_genero == null)   id_genero = "";
@@ -39,10 +39,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form class="main_form" method="POST" action="./cliente.jsp">
+                <form class="main_form" method="POST" action="./endereco">
                     <div class="row">
                         <div class="col-12">
-                            <input class="form-control" type="hidden" name="cli_id" value="<%=prd_id%>">
+                            <input class="form-control" type="hidden" name="cli_id" value="<%=cli_id%>">
                         </div>
                         
                         <div class="col-12">

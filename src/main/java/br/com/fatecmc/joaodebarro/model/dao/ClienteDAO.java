@@ -17,37 +17,42 @@ public class ClienteDAO implements IDAO {
         PreparedStatement stmt = null;
         
         if(entidade instanceof Cliente){
-            try {
-                conn.setAutoCommit(false);
-                
-                stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                stmt.setInt(1, 0);
-                stmt.setString(2, "");
-                stmt.setInt(3, ((Cliente) entidade).getUsuario().getId());
-                stmt.setString(4, ((Cliente) entidade).getNome());
-                stmt.setInt(5, ((Cliente) entidade).getGenero().getId());
-                stmt.setString(6, ((Cliente) entidade).getCpf());
-                stmt.setInt(7, ((Cliente) entidade).getTel_tipo().getId());
-                stmt.setString(8, ((Cliente) entidade).getTel_ddd());
-                stmt.setString(9, ((Cliente) entidade).getTel_numero());
-                stmt.setDate(10, new Date(((Cliente) entidade).getDt_nascimento().getTime()));
-                stmt.setBoolean(11, true);
-                stmt.setDate(12, null);
+            if(entidade.getId() == 0){
+                try {
+                    conn.setAutoCommit(false);
+                    
+                    stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    stmt.setInt(1, 0);
+                    stmt.setString(2, "");
+                    stmt.setInt(3, ((Cliente) entidade).getUsuario().getId());
+                    stmt.setString(4, ((Cliente) entidade).getNome());
+                    stmt.setInt(5, ((Cliente) entidade).getGenero().getId());
+                    stmt.setString(6, ((Cliente) entidade).getCpf());
+                    stmt.setInt(7, ((Cliente) entidade).getTel_tipo().getId());
+                    stmt.setString(8, ((Cliente) entidade).getTel_ddd());
+                    stmt.setString(9, ((Cliente) entidade).getTel_numero());
+                    stmt.setDate(10, new Date(((Cliente) entidade).getDt_nascimento().getTime()));
+                    stmt.setBoolean(11, true);
+                    stmt.setDate(12, null);
 
-                stmt.executeUpdate();
-                
-                ResultSet rs = stmt.getGeneratedKeys();
-                if(rs.next()) entidade.setId(rs.getInt(1));
-                
-                conn.commit();	
-            } catch (SQLException ex) {
-                System.out.println("Não foi possível salvar os dados no banco de dados.\nErro: " + ex.getMessage());
-            } finally {
-                ConnectionFactory.closeConnection(conn, stmt);
+                    stmt.executeUpdate();
+                    
+                    ResultSet rs = stmt.getGeneratedKeys();
+                    if(rs.next()) entidade.setId(rs.getInt(1));
+
+                    conn.commit();
+                } catch (SQLException ex) {
+                    System.out.println("Não foi possível salvar os dados no banco de dados.\nErro: " + ex.getMessage());
+                } finally {
+                    ConnectionFactory.closeConnection(conn, stmt);
+                }
             }
             for (Endereco endereco : ((Cliente) entidade).getEnderecos()) {
                 endereco.setCliente_id(entidade.getId());
                 new EnderecoDAO().salvar(endereco);
+            }
+            for (Cartao cartao : ((Cliente) entidade).getCartoes()) {
+                new CartaoDAO().salvar(entidade);
             }
         }
         return entidade;

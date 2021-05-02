@@ -30,7 +30,9 @@ public class EnderecoVH implements IViewHelper {
             endereco.setEntrega(pe.getEntrega());
             endereco.setCobranca(pe.getCobranca());
         }
-        endereco.setCliente_id(ParameterParser.toInt(request.getParameter("cli_id")));
+        String cli_id = request.getParameter("cli_id") == null ?
+                request.getSession(false).getAttribute("cli_id").toString() : request.getParameter("cli_id");
+        endereco.setCliente_id(ParameterParser.toInt(cli_id));
         
         return endereco;
     }

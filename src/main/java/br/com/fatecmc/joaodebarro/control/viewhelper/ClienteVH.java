@@ -15,7 +15,9 @@ public class ClienteVH implements IViewHelper {
         Cliente cliente = new Cliente();
         Usuario usuario = new Usuario();
         
-        cliente.setId(ParameterParser.toInt(request.getParameter("cli_id")));
+        String cli_id = request.getParameter("cli_id") == null ?
+                request.getSession(false).getAttribute("cli_id").toString() : request.getParameter("cli_id");
+        cliente.setId(ParameterParser.toInt(cli_id));
         usuario.setId(ParameterParser.toInt(request.getParameter("cli_usu_id")));
         cliente.setNome(request.getParameter("cli_nome"));
         cliente.setCpf(request.getParameter("cli_cpf"));
@@ -26,7 +28,10 @@ public class ClienteVH implements IViewHelper {
         cliente.setDt_nascimento(ParameterParser.toDate(request.getParameter("cli_dt_nascimento")));
         cliente.setStatus(ParameterParser.toBoolean(request.getParameter("cli_status")));
         
-        cliente.setEnderecos(Arrays.asList((Endereco)new EnderecoVH().getEntidade(request)));
+        if(request.getRequestURI().contains("endereco"))
+            cliente.setEnderecos(Arrays.asList((Endereco)new EnderecoVH().getEntidade(request)));
+        if(request.getRequestURI().contains("cartao"))
+            cliente.setCartoes(Arrays.asList((Cartao)new CartaoVH().getEntidade(request)));
         cliente.setUsuario(usuario);
         return cliente;
     }
@@ -36,7 +41,7 @@ public class ClienteVH implements IViewHelper {
             HttpServletResponse response) throws ServletException, IOException {
         switch(request.getParameter("operacao")){
             case "ALTERAR":
-                response.sendRedirect("/JoaoDeBarro/faces/cliente?cli_id="+request.getParameter("cli_id")+"&operacao=CONSULTAR"); break;
+                response.sendRedirect("/JoaoDeBarro/faces/cliente?operacao=CONSULTAR"); break;
             case "ALTERAR_STATUS":
                 response.sendRedirect("/JoaoDeBarro/faces/admin.jsp"); break;
             case "VISUALIZAR":
@@ -45,7 +50,8 @@ public class ClienteVH implements IViewHelper {
                 request.setAttribute("cliente", resultado);
                 request.getRequestDispatcher("cliente.jsp").forward(request, response); break;
             case "SALVAR":
-                response.sendRedirect("/JoaoDeBarro/faces/cliente?cli_id="+((Cliente)resultado).getId()+"&operacao=CONSULTAR"); break;
+                request.getSession().setAttribute("cli_id", ((Cliente)resultado).getId());
+                response.sendRedirect("/JoaoDeBarro/faces/cliente?operacao=CONSULTAR"); break;
         }
     }
     

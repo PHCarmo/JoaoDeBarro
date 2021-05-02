@@ -70,10 +70,6 @@
                             <form class="main_form" action="./cliente">
                                 <div class="row">
                                     <div class="col-12">
-                                        <input class="form-control" type="hidden" name="cli_id" value="<%=clie.getId()%>">
-                                    </div>
-
-                                    <div class="col-12">
                                         <h2>Dados Pessoais<strong class="color-red">*</strong></h2>
                                     </div>
                                     <div class="col-9">
