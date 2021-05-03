@@ -28,7 +28,7 @@ public class ClienteVH implements IViewHelper {
         cliente.setDt_nascimento(ParameterParser.toDate(request.getParameter("cli_dt_nascimento")));
         cliente.setStatus(ParameterParser.toBoolean(request.getParameter("cli_status")));
         
-        if(request.getRequestURI().contains("endereco"))
+        if(!request.getRequestURI().contains("cartao"))
             cliente.setEnderecos(Arrays.asList((Endereco)new EnderecoVH().getEntidade(request)));
         if(request.getRequestURI().contains("cartao"))
             cliente.setCartoes(Arrays.asList((Cartao)new CartaoVH().getEntidade(request)));
