@@ -133,7 +133,7 @@
                                                 content.append("<div class='card-body'>");
                                                 content.append("<h2>"+crt.getNumero()+"</h2>");
                                                 content.append("<strong>"+crt.getNome()+"</strong><br>");
-                                                content.append("<span><strong>Validade: </strong>11/2011</span>");
+                                                content.append("<span><strong>Validade: </strong>"+Mask.toMonthYear(crt.getValidade())+"</span>");
                                                 content.append("<span class='float-right'><strong>CVV: </strong>"+crt.getCvv()+"</span>");
                                                 content.append("<hr style='border: none'>");
                                                 content.append("<img class='icon' src='icon/"+crt.getBandeira().getIcon_nome()+"' />");
