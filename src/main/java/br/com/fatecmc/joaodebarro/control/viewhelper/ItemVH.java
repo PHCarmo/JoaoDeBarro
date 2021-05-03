@@ -42,18 +42,9 @@ public class ItemVH implements IViewHelper {
     @Override
     public void setView(Object resultado, HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        switch (request.getParameter("operacao")) {
-            case "SALVAR":
-                request.getSession().setAttribute("car_id", ((Carrinho) resultado).getId());
-                response.sendRedirect("carrinho.jsp");
-                break;
-            case "EXCLUIR":
-                response.sendRedirect("carrinho.jsp");
-                break;
-            default:
-                response.sendRedirect("carrinho.jsp");
-                break;
-        }
+        if (request.getParameter("operacao").equals("SALVAR"))
+            request.getSession().setAttribute("car_id", ((Carrinho) resultado).getId());
+        response.sendRedirect("./carrinho?operacao=CONSULTAR");
     }
 
 }

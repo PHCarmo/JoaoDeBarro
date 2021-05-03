@@ -1,4 +1,11 @@
 <%@ include file="header.jsp" %>
+<%@ page import="br.com.fatecmc.joaodebarro.model.domain.*"%>
+<%@ page import="br.com.fatecmc.joaodebarro.util.Mask"%>
+<%
+    Cliente clie = (Cliente) request.getAttribute("cliente");
+    StringBuilder content;
+%>
+
 <div class="brand_color">
     <div class="container">
         <div class="row">
@@ -18,61 +25,82 @@
                     <div class="row">
                         <h2 class="col-12">Checkout</h2>
                         <div class="col-12 text-justify">
-                            <strong class="ornage_color">Atenï¿½ï¿½o!</strong>
-                            <span>Antes de finalizar a compra revise atentamente os itens ï¿½ direita.</span>
+                            <strong class="ornage_color">Atenção!</strong>
+                            <span>Antes de finalizar a compra revise atentamente os itens à direita.</span>
                             <hr style="border: none">
                         </div>
-                        
-                        <!-- Modal de Cadastro de Endereï¿½o -->
+
+                        <!-- Modal de Cadastro de Endereço -->
                         <div style="display: none;max-width: 450px;" id="modal-add-endereco" >
                             <h3 class="col-12">Deseja abandonar o Checkout?</h3>
                             <div class="col-12 text-justify">
-                                <span>Vocï¿½ serï¿½ redirecionado para o cadastro de um novo endereï¿½o. <strong>Tem certeza?</strong></span>
+                                <span>Você será redirecionado para o cadastro de um novo endereço. <strong>Tem certeza?</strong></span>
                                 <hr style="border: none">
                             </div>
                             <div class="col-12">
                                 <a class="float-left" data-fancybox-close href="javascript:;"><strong>Ficar Aqui</strong></a>
                                 <a href="form_endereco.jsp"><strong class="ornage_color float-right">Absoluta!</strong></a>
-                        </div>
+                            </div>
                         </div>
                         <!-- ########## -->
                         
                         <h2 class="col-12">Entrega <a data-fancybox class="add-endereco-show" href="javascript:;"><img src="icon/plus.png" /></a></h2>
                         <div class="col-12">
                             <table class="table dataTable">
-                                <tr role="row">
-                                    <td><input type="radio" name="entrega"></td>
-                                    <td>
-                                        <strong>Minha Casa</strong><br>
-                                        <span>Rua da Imprensa, Nï¿½ 200 - Bloco C, Monte Castelo, Campo Grande/MS</span>
-                                    </td>
-                                </tr>
-                                <tr role="row">
-                                    <td><input type="radio" name="entrega"></td>
-                                    <td>
-                                        <strong>Casa da Sogra</strong><br>
-                                        <span>Avenida Tocantins, Nï¿½ 10 - Portï¿½o Azul, Vila Jardim Rio Claro, Jataï¿½/GO</span>
-                                    </td>
-                                </tr>
+                                <%  
+                                    content = new StringBuilder();
+
+                                    if(clie.getEnderecos().isEmpty()){
+                                        content.append("<tr role='row'><td><strong>Sem endereços por aqui.</strong><br></td></tr>");
+                                    }else{
+                                        for(Endereco end: clie.getEnderecos()){
+                                            if(end.getEntrega()){
+                                                content.append("<tr role='row'>");
+                                                content.append("<td><input type='radio' name='entrega' value='"+end.getId()+"'></td>");
+                                                content.append("<td>");
+                                                content.append("<strong>"+end.getApelido()+"</strong><br>");
+                                                content.append("<span>"+end.getTipo_log().getDescricao()+" "+end.getLogradouro()+", Nº "+end.getNumero()+" - "+end.getObservacao()+", "+end.getBairro()+", "+end.getCidade()+"/"+end.getEstado()+"</span>");
+                                                content.append("</td>");
+                                                content.append("</tr>");
+                                            }
+                                        }
+                                    }
+
+                                    out.println(content.toString());
+                                %>
                             </table>
                         </div>
 
-                        <h2 class="col-12">Cobranï¿½a <a data-fancybox class="add-endereco-show" href="javascript:;"><img src="icon/plus.png" /></a></h2>
+                        <h2 class="col-12">Cobrança <a data-fancybox class="add-endereco-show" href="javascript:;"><img src="icon/plus.png" /></a></h2>
                         <div class="col-12">
                             <table class="table dataTable">
-                                <tr role="row">
-                                    <td><input type="radio" name="cobranca"></td>
-                                    <td>
-                                        <strong>Casa da Sogra</strong><br>
-                                        <span>Avenida Tocantins, Nï¿½ 10 - Portï¿½o Azul, Vila Jardim Rio Claro, Jataï¿½/GO</span>
-                                    </td>
-                                </tr>
+                                <%  
+                                    content = new StringBuilder();
+
+                                    if(clie.getEnderecos().isEmpty()){
+                                        content.append("<tr role='row'><td><strong>Sem endereços por aqui.</strong><br></td></tr>");
+                                    }else{
+                                        for(Endereco end: clie.getEnderecos()){
+                                            if(end.getCobranca()){
+                                                content.append("<tr role='row'>");
+                                                content.append("<td><input type='radio' name='cobranca' value='"+end.getId()+"'></td>");
+                                                content.append("<td>");
+                                                content.append("<strong>"+end.getApelido()+"</strong><br>");
+                                                content.append("<span>"+end.getTipo_log().getDescricao()+" "+end.getLogradouro()+", Nº "+end.getNumero()+" - "+end.getObservacao()+", "+end.getBairro()+", "+end.getCidade()+"/"+end.getEstado()+"</span>");
+                                                content.append("</td>");
+                                                content.append("</tr>");
+                                            }
+                                        }
+                                    }
+
+                                    out.println(content.toString());
+                                %>
                             </table>
                         </div>
                         <div class="col-12">
                             <hr style="border: none">
                         </div>
-                        
+
                         <h2 class="col-12">Descontos</h2>
                         <div class="col-7">
                             <input class="form-control" placeholder="Cupom" type="text" name="usu_si_email" maxlength="10" style="margin: 0px 0px 15px;">
@@ -80,21 +108,35 @@
                         <div class="col-5">
                             <button class="send" name="operacao" value="#">Validar</button>
                         </div>
-                        <h4 class="col-12">Vale-Troca Disponï¿½vel</h4>
+                        <h4 class="col-12">Vales-Troca Disponíveis</h4>
                         <div class="col-12">
-                            <p><input type="checkbox"> VLT3256 - R$30,00</p>
-                            <p><input type="checkbox"> VLT2794 - R$15,00</p>
-                            <p><input type="checkbox"> VLT7034 - R$5,00</p>
+                            <%  
+                                content = new StringBuilder();
+                                int idx_vt = 0;
+
+                                if(clie.getVales().isEmpty()){
+                                    content.append("<tr role='row'><td><strong>Nenhum vale-troca encontrado.</strong><br></td></tr>");
+                                }else{
+                                    for(ValeTroca vt: clie.getVales()){
+                                        content.append("<p><input type='checkbox' name='vt["+idx_vt+"]' value='"+vt.getId()+"'> ");
+                                        content.append(vt.getCodigo()+" - "+Mask.toMoney(vt.getValor()));
+                                        content.append("</p>");
+                                        idx_vt++;
+                                    }
+                                }
+
+                                out.println(content.toString());
+                            %>
                         </div>
                         <div class="col-12">
                             <hr style="border: none">
                         </div>
-                        
-                        <!-- Modal de Cadastro de Endereï¿½o -->
+
+                        <!-- Modal de Cadastro de Endereço -->
                         <div style="display: none;max-width: 450px;" id="modal-add-cartao" >
                             <h3 class="col-12">Deseja abandonar o Checkout?</h3>
                             <div class="col-12 text-justify">
-                                <span>Vocï¿½ serï¿½ redirecionado para o cadastro de um novo cartï¿½o de crï¿½dito. <strong>Tem certeza?</strong></span>
+                                <span>Você será redirecionado para o cadastro de um novo cartão de crédito. <strong>Tem certeza?</strong></span>
                                 <hr style="border: none">
                             </div>
                             <div class="col-12">
@@ -107,30 +149,36 @@
                         <h2 class="col-12">Pagamento <a data-fancybox class="add-cartao-show" href="javascript:;"><img src="icon/plus.png" /></a></h2>
                         <div class="col-12">
                             <table class="table dataTable">
-                                <tr role="row">
-                                    <td><input type="radio" name="pagamento"></td>
-                                    <td>
-                                        <strong>4256 9097 4245 5368</strong><br>
-                                        <span>Julia Rodrigues Souza</span><br>
-                                        <span><strong>Validade: </strong>11/2023</span>
-                                        <span class="float-right"><strong>CVV: </strong>755</span>
-                                    </td>
-                                </tr>
-                                <tr role="row">
-                                    <td><input type="radio" name="pagamento"></td>
-                                    <td>
-                                        <strong>4026 6964 6333 4307</strong><br>
-                                        <span>Nicolas Ferreira da Silva</span><br>
-                                        <span><strong>Validade: </strong>11/2023</span>
-                                        <span class="float-right"><strong>CVV: </strong>808</span>
-                                    </td>
-                                </tr>
+                                <%  
+                                    content = new StringBuilder();
+                                    int idx_crt = 0;
+                                    
+                                    if(clie.getCartoes().isEmpty()){
+                                        content.append("<tr role='row'><td><strong>Sem registros de cartões.</strong><br></td></tr>");
+                                    }else{
+                                        for(Cartao crt: clie.getCartoes()){
+                                            content.append("<tr role='row'>");
+                                            content.append("<td>");
+                                            content.append("<center><strong>"+crt.getNumero()+"</strong><br></center>");
+                                            content.append("<span>"+crt.getNome()+"</span><br>");
+                                            content.append("<span><strong>Validade: </strong>"+Mask.toMonthYear(crt.getValidade())+"</span>");
+                                            content.append("<span class='float-right'><strong>CVV: </strong>"+crt.getCvv()+"</span>");
+                                            content.append("<hr style='border: none'>");
+                                            content.append("<input class='form-control' placeholder='Valor a Pagar' type='number' name='crt["+idx_crt+"]' style='margin: 0px 0px 0px 0px;'>");
+                                            content.append("</td>");
+                                            content.append("</tr>");
+                                            idx_crt++;
+                                        }
+                                    }
+
+                                    out.println(content.toString());
+                                %>
                             </table>
                         </div>
                         <div class="col-12">
                             <hr style="border: none">
                         </div>
-                        
+
                         <h2 class="col-12">Resumo</h2>
                         <div class="col-12">
                             <strong>Subtotal: </strong>
@@ -139,10 +187,13 @@
                             <span class="float-right">+ R$10,00</span><br>
                             <strong>Abatimentos: </strong>
                             <span class="float-right">- R$40,00</span><br>
+                            <hr style="border: none">
                             <strong>Total: </strong>
-                            <span class="float-right">R$11.208,60</span>
+                            <span class="float-right">R$11.208,60</span><br>
+                            <strong>Total Pago: </strong>
+                            <span class="float-right">R$0,00</span>
                         </div>
-                        
+
                         <div class="col-12">
                             <hr style="border: none">
                             <button class="send" name="operacao" value="SALVAR">Finalizar!</button>
@@ -150,11 +201,11 @@
                     </div>
                 </form>
             </div>
-            
+
             <div class="row col align-items-center"></div>
-            
+
             <div class="col-8">
-                <form class="main_form" action="#" method="POST">
+                <form class="main_form" action="./item" method="POST">
                     <div class="row">
                         <h2 class="col-12">Itens</h2>
                     </div>
@@ -162,7 +213,7 @@
                     <div class="row">
                         <div class="col-12">
                             <hr style="border: none">
-                            <button class="send float-right" name="operacao" value="ALTERAR">Salvar Alteraï¿½ï¿½es</button>
+                            <button class="send float-right" name="operacao" value="ALTERAR">Salvar Quantidades</button>
                         </div>
                     </div>
                 </form>
@@ -176,7 +227,7 @@
         "src": "#modal-add-endereco",
         "touch": false,
         "modal": true
-        });
+    });
     $('.add-cartao-show').fancybox({
         "src": "#modal-add-cartao",
         "touch": false,
