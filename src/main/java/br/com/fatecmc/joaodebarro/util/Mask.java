@@ -1,6 +1,7 @@
 package br.com.fatecmc.joaodebarro.util;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -16,6 +17,10 @@ public class Mask {
     
     public static String toMoney(double value){
         return MOEDA_BR.format(value);
+    }
+    
+    public static double fromMoney(String value) throws ParseException{
+        return Double.parseDouble(MOEDA_BR.parse(value).toString());
     }
     
     public static String toMonthYear(Date data){
