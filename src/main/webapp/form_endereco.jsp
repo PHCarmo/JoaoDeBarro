@@ -1,4 +1,4 @@
-    <%@ include file="header.jsp" %>
+<%@ include file="header.jsp" %>
 <%
     String operacao =       request.getParameter("operacao");
     String cli_id =         request.getSession(false).getAttribute("cli_id").toString();
