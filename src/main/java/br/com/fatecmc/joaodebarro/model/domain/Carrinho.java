@@ -42,4 +42,12 @@ public class Carrinho extends EntidadeDominio {
         this.session = session;
     }
     
+    public double getValor_total() {
+        double sum = 0.0;
+        for(Item item: getItens()) {
+            sum += item.getProduto().getValor_venda() * item.getQtd();
+        }
+        return sum;
+    }
+    
 }
