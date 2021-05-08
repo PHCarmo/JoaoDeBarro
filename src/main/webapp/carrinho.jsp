@@ -1,8 +1,13 @@
 <%@ include file="header.jsp" %>
 <%@ page import="br.com.fatecmc.joaodebarro.model.domain.*"%>
 <%@ page import="br.com.fatecmc.joaodebarro.util.Mask"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
 <%
     Cliente clie = (Cliente) request.getAttribute("cliente");
+    Carrinho carr = (Carrinho) request.getAttribute("carrinho");
+    List<Cupom> cupons = (ArrayList<Cupom>) request.getAttribute("cupons");
+    
     StringBuilder content;
 %>
 
@@ -25,16 +30,16 @@
                     <div class="row">
                         <h2 class="col-12">Checkout</h2>
                         <div class="col-12 text-justify">
-                            <strong class="ornage_color">Atenção!</strong>
-                            <span>Antes de finalizar a compra revise atentamente os itens à direita.</span>
+                            <strong class="ornage_color">Atenï¿½ï¿½o!</strong>
+                            <span>Antes de finalizar a compra revise atentamente os itens ï¿½ direita.</span>
                             <hr style="border: none">
                         </div>
 
-                        <!-- Modal de Cadastro de Endereço -->
+                        <!-- Modal de Cadastro de Endereï¿½o -->
                         <div style="display: none;max-width: 450px;" id="modal-add-endereco" >
                             <h3 class="col-12">Deseja abandonar o Checkout?</h3>
                             <div class="col-12 text-justify">
-                                <span>Você será redirecionado para o cadastro de um novo endereço. <strong>Tem certeza?</strong></span>
+                                <span>Vocï¿½ serï¿½ redirecionado para o cadastro de um novo endereï¿½o. <strong>Tem certeza?</strong></span>
                                 <hr style="border: none">
                             </div>
                             <div class="col-12">
@@ -51,7 +56,7 @@
                                     content = new StringBuilder();
 
                                     if(clie.getEnderecos().isEmpty()){
-                                        content.append("<tr role='row'><td><strong>Sem endereços por aqui.</strong><br></td></tr>");
+                                        content.append("<tr role='row'><td><strong>Sem endereï¿½os por aqui.</strong><br></td></tr>");
                                     }else{
                                         for(Endereco end: clie.getEnderecos()){
                                             if(end.getEntrega()){
@@ -59,7 +64,7 @@
                                                 content.append("<td><input type='radio' name='entrega' value='"+end.getId()+"'></td>");
                                                 content.append("<td>");
                                                 content.append("<strong>"+end.getApelido()+"</strong><br>");
-                                                content.append("<span>"+end.getTipo_log().getDescricao()+" "+end.getLogradouro()+", Nº "+end.getNumero()+" - "+end.getObservacao()+", "+end.getBairro()+", "+end.getCidade()+"/"+end.getEstado()+"</span>");
+                                                content.append("<span>"+end.getTipo_log().getDescricao()+" "+end.getLogradouro()+", Nï¿½ "+end.getNumero()+" - "+end.getObservacao()+", "+end.getBairro()+", "+end.getCidade()+"/"+end.getEstado()+"</span>");
                                                 content.append("</td>");
                                                 content.append("</tr>");
                                             }
@@ -71,14 +76,14 @@
                             </table>
                         </div>
 
-                        <h2 class="col-12">Cobrança <a data-fancybox class="add-endereco-show" href="javascript:;"><img src="icon/plus.png" /></a></h2>
+                        <h2 class="col-12">Cobranï¿½a <a data-fancybox class="add-endereco-show" href="javascript:;"><img src="icon/plus.png" /></a></h2>
                         <div class="col-12">
                             <table class="table dataTable">
                                 <%  
                                     content = new StringBuilder();
 
                                     if(clie.getEnderecos().isEmpty()){
-                                        content.append("<tr role='row'><td><strong>Sem endereços por aqui.</strong><br></td></tr>");
+                                        content.append("<tr role='row'><td><strong>Sem endereï¿½os por aqui.</strong><br></td></tr>");
                                     }else{
                                         for(Endereco end: clie.getEnderecos()){
                                             if(end.getCobranca()){
@@ -86,7 +91,7 @@
                                                 content.append("<td><input type='radio' name='cobranca' value='"+end.getId()+"'></td>");
                                                 content.append("<td>");
                                                 content.append("<strong>"+end.getApelido()+"</strong><br>");
-                                                content.append("<span>"+end.getTipo_log().getDescricao()+" "+end.getLogradouro()+", Nº "+end.getNumero()+" - "+end.getObservacao()+", "+end.getBairro()+", "+end.getCidade()+"/"+end.getEstado()+"</span>");
+                                                content.append("<span>"+end.getTipo_log().getDescricao()+" "+end.getLogradouro()+", Nï¿½ "+end.getNumero()+" - "+end.getObservacao()+", "+end.getBairro()+", "+end.getCidade()+"/"+end.getEstado()+"</span>");
                                                 content.append("</td>");
                                                 content.append("</tr>");
                                             }
@@ -102,13 +107,23 @@
                         </div>
 
                         <h2 class="col-12">Descontos</h2>
-                        <div class="col-7">
-                            <input class="form-control" placeholder="Cupom" type="text" name="usu_si_email" maxlength="10" style="margin: 0px 0px 15px;">
+                        <div class="col-12">
+                            <select class="form-control" name="cpm_id">
+                                <option value="">Cupom</option>
+                                <%  
+                                    content = new StringBuilder();
+
+                                    if(cupons != null){
+                                        for(Cupom cpm: cupons){
+                                            content.append("<option value='"+cpm.getId()+"'>"+cpm.getNome()+"</option>");
+                                        }
+                                    }
+
+                                    out.println(content.toString());
+                                %>
+                            </select>
                         </div>
-                        <div class="col-5">
-                            <button class="send" name="operacao" value="#">Validar</button>
-                        </div>
-                        <h4 class="col-12">Vales-Troca Disponíveis</h4>
+                        <h4 class="col-12">Vales-Troca Disponï¿½veis</h4>
                         <div class="col-12">
                             <%  
                                 content = new StringBuilder();
@@ -132,11 +147,11 @@
                             <hr style="border: none">
                         </div>
 
-                        <!-- Modal de Cadastro de Endereço -->
+                        <!-- Modal de Cadastro de Endereï¿½o -->
                         <div style="display: none;max-width: 450px;" id="modal-add-cartao" >
                             <h3 class="col-12">Deseja abandonar o Checkout?</h3>
                             <div class="col-12 text-justify">
-                                <span>Você será redirecionado para o cadastro de um novo cartão de crédito. <strong>Tem certeza?</strong></span>
+                                <span>Vocï¿½ serï¿½ redirecionado para o cadastro de um novo cartï¿½o de crï¿½dito. <strong>Tem certeza?</strong></span>
                                 <hr style="border: none">
                             </div>
                             <div class="col-12">
@@ -154,7 +169,7 @@
                                     int idx_crt = 0;
                                     
                                     if(clie.getCartoes().isEmpty()){
-                                        content.append("<tr role='row'><td><strong>Sem registros de cartões.</strong><br></td></tr>");
+                                        content.append("<tr role='row'><td><strong>Sem registros de cartï¿½es.</strong><br></td></tr>");
                                     }else{
                                         for(Cartao crt: clie.getCartoes()){
                                             content.append("<tr role='row'>");
@@ -182,16 +197,16 @@
                         <h2 class="col-12">Resumo</h2>
                         <div class="col-12">
                             <strong>Subtotal: </strong>
-                            <span class="float-right">R$11.238,60</span><br>
-                            <strong>Frete: </strong>
-                            <span class="float-right">+ R$10,00</span><br>
-                            <strong>Abatimentos: </strong>
-                            <span class="float-right">- R$40,00</span><br>
+                            <span class="float-right"><%= Mask.toMoney(carr.getValor_total()) %></span><br>
+                            <strong>+&nbsp;Frete: </strong>
+                            <span class="float-right">R$ 10,00</span><br>
+                            <strong>-&nbsp;Abatimentos: </strong>
+                            <span class="float-right">R$ 0,00</span><br>
                             <hr style="border: none">
                             <strong>Total: </strong>
-                            <span class="float-right">R$11.208,60</span><br>
+                            <span class="float-right"><%= Mask.toMoney(carr.getValor_total() + 10.0) %></span><br>
                             <strong>Total Pago: </strong>
-                            <span class="float-right">R$0,00</span>
+                            <span class="float-right">R$ 0,00</span>
                         </div>
 
                         <div class="col-12">
