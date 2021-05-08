@@ -28,7 +28,10 @@ public class PedidoDAO implements IDAO {
                 stmt.setInt(5, 0);
                 stmt.setInt(6, ((Pedido) entidade).getEnd_entrega().getId());
                 stmt.setInt(7, ((Pedido) entidade).getEnd_cobranca().getId());
-                stmt.setInt(8, ((Pedido) entidade).getCupom().getId());
+                if(((Pedido) entidade).getCupom().getId() == 0)
+                    stmt.setNull(8, Types.INTEGER);
+                else
+                    stmt.setInt(8, ((Pedido) entidade).getCupom().getId());
                 stmt.setDouble(9, ((Pedido) entidade).getValor_frete());
                 stmt.setDouble(10, ((Pedido) entidade).getValor_desconto());
                 stmt.setDouble(11, ((Pedido) entidade).getValor_produtos());
