@@ -42,7 +42,18 @@ public class PedidoDAO implements IDAO {
                 ResultSet rs = stmt.getGeneratedKeys();
                 if(rs.next()) entidade.setId(rs.getInt(1));
                 
-                conn.commit();	
+                conn.commit();
+                
+                for(ValeTroca vt: ((Pedido) entidade).getVales()){
+                    Pedido pedido = new Pedido();
+                    pedido.getVales().add(vt);
+                    new ValeTrocaDAO().alterar(pedido);
+                }
+                for(Pagamento pgmt: ((Pedido) entidade).getPagamentos()){
+                    Pedido pedido = new Pedido();
+                    pedido.getPagamentos().add(pgmt);
+                    new PagamentoDAO().salvar(pedido);                    
+                }
             } catch (SQLException ex) {
                 System.out.println("Não foi possível salvar os dados no banco de dados.\nErro: " + ex.getMessage());
             } finally {
