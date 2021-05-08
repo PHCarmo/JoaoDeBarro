@@ -14,6 +14,10 @@ public class ParameterParser {
         return texto == null || texto.equals("") ? 0 : Integer.parseInt(texto);
     }
     
+    public static int toInt(Object texto){
+        return texto == null ? 0 : Integer.parseInt(texto.toString());
+    }
+    
     public static double toDouble(String texto){
         return texto == null || texto.equals("") ? 0.0 : Double.parseDouble(texto);
     }
