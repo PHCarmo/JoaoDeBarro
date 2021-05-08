@@ -78,7 +78,7 @@
                                 </h4>
                                 <h4>
                                     <strong>Preço Total: </strong>
-                                    <span class="float-right">R$ 99,90</span>
+                                    <span class="float-right"><%=Mask.toMoney(prod.getValor_venda())%></span>
                                 </h4>
                             </div>
                         </div>
