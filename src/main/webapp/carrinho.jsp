@@ -8,6 +8,7 @@
     Carrinho carr = (Carrinho) request.getAttribute("carrinho");
     List<Cupom> cupons = (ArrayList<Cupom>) request.getAttribute("cupons");
     
+    String error = (String) request.getAttribute("Error");
     StringBuilder content;
 %>
 
@@ -28,18 +29,31 @@
             <div class="col-4">
                 <form class="main_form" action="./pedido" method="POST">
                     <div class="row">
+                        <!-- Modal de Alertas -->
+                        <div style="display: none;max-width: 650px;" id="modal-error-alert" >
+                            <h3 class="col-12">Algo deu errado!</h3>
+                            <div class="col-12 text-justify">
+                                <span><%= error != null ? error : "" %></span>
+                                <hr style="border: none">
+                            </div>
+                            <div class="col-12">
+                                <a data-fancybox-close href="javascript:;"><strong class="ornage_color float-right">OK!</strong></a>
+                            </div>
+                        </div>
+                        <!-- End Modal -->
+                        
                         <h2 class="col-12">Checkout</h2>
                         <div class="col-12 text-justify">
-                            <strong class="ornage_color">Atenï¿½ï¿½o!</strong>
-                            <span>Antes de finalizar a compra revise atentamente os itens ï¿½ direita.</span>
+                            <strong class="ornage_color">Atenção!</strong>
+                            <span>Antes de finalizar a compra revise atentamente os itens à direita.</span>
                             <hr style="border: none">
                         </div>
 
-                        <!-- Modal de Cadastro de Endereï¿½o -->
+                        <!-- Modal de Cadastro de Endereço -->
                         <div style="display: none;max-width: 450px;" id="modal-add-endereco" >
                             <h3 class="col-12">Deseja abandonar o Checkout?</h3>
                             <div class="col-12 text-justify">
-                                <span>Vocï¿½ serï¿½ redirecionado para o cadastro de um novo endereï¿½o. <strong>Tem certeza?</strong></span>
+                                <span>Você será redirecionado para o cadastro de um novo endereço. <strong>Tem certeza?</strong></span>
                                 <hr style="border: none">
                             </div>
                             <div class="col-12">
@@ -47,7 +61,7 @@
                                 <a href="form_endereco.jsp"><strong class="ornage_color float-right">Absoluta!</strong></a>
                             </div>
                         </div>
-                        <!-- ########## -->
+                        <!-- End Modal -->
                         
                         <h2 class="col-12">Entrega <a data-fancybox class="add-endereco-show" href="javascript:;"><img src="icon/plus.png" /></a></h2>
                         <div class="col-12">
@@ -56,7 +70,7 @@
                                     content = new StringBuilder();
 
                                     if(clie.getEnderecos().isEmpty()){
-                                        content.append("<tr role='row'><td><strong>Sem endereï¿½os por aqui.</strong><br></td></tr>");
+                                        content.append("<tr role='row'><td><strong>Sem endereços por aqui.</strong><br></td></tr>");
                                     }else{
                                         for(Endereco end: clie.getEnderecos()){
                                             if(end.getEntrega()){
@@ -64,7 +78,7 @@
                                                 content.append("<td><input type='radio' name='entrega' value='"+end.getId()+"'></td>");
                                                 content.append("<td>");
                                                 content.append("<strong>"+end.getApelido()+"</strong><br>");
-                                                content.append("<span>"+end.getTipo_log().getDescricao()+" "+end.getLogradouro()+", Nï¿½ "+end.getNumero()+" - "+end.getObservacao()+", "+end.getBairro()+", "+end.getCidade()+"/"+end.getEstado()+"</span>");
+                                                content.append("<span>"+end.getTipo_log().getDescricao()+" "+end.getLogradouro()+", Nº "+end.getNumero()+" - "+end.getObservacao()+", "+end.getBairro()+", "+end.getCidade()+"/"+end.getEstado()+"</span>");
                                                 content.append("</td>");
                                                 content.append("</tr>");
                                             }
@@ -76,14 +90,14 @@
                             </table>
                         </div>
 
-                        <h2 class="col-12">Cobranï¿½a <a data-fancybox class="add-endereco-show" href="javascript:;"><img src="icon/plus.png" /></a></h2>
+                        <h2 class="col-12">Cobrança <a data-fancybox class="add-endereco-show" href="javascript:;"><img src="icon/plus.png" /></a></h2>
                         <div class="col-12">
                             <table class="table dataTable">
                                 <%  
                                     content = new StringBuilder();
 
                                     if(clie.getEnderecos().isEmpty()){
-                                        content.append("<tr role='row'><td><strong>Sem endereï¿½os por aqui.</strong><br></td></tr>");
+                                        content.append("<tr role='row'><td><strong>Sem endereços por aqui.</strong><br></td></tr>");
                                     }else{
                                         for(Endereco end: clie.getEnderecos()){
                                             if(end.getCobranca()){
@@ -91,7 +105,7 @@
                                                 content.append("<td><input type='radio' name='cobranca' value='"+end.getId()+"'></td>");
                                                 content.append("<td>");
                                                 content.append("<strong>"+end.getApelido()+"</strong><br>");
-                                                content.append("<span>"+end.getTipo_log().getDescricao()+" "+end.getLogradouro()+", Nï¿½ "+end.getNumero()+" - "+end.getObservacao()+", "+end.getBairro()+", "+end.getCidade()+"/"+end.getEstado()+"</span>");
+                                                content.append("<span>"+end.getTipo_log().getDescricao()+" "+end.getLogradouro()+", Nº "+end.getNumero()+" - "+end.getObservacao()+", "+end.getBairro()+", "+end.getCidade()+"/"+end.getEstado()+"</span>");
                                                 content.append("</td>");
                                                 content.append("</tr>");
                                             }
@@ -123,7 +137,7 @@
                                 %>
                             </select>
                         </div>
-                        <h4 class="col-12">Vales-Troca Disponï¿½veis</h4>
+                        <h4 class="col-12">Vales-Troca Disponíveis</h4>
                         <div class="col-12">
                             <%  
                                 content = new StringBuilder();
@@ -145,11 +159,11 @@
                             <hr style="border: none">
                         </div>
 
-                        <!-- Modal de Cadastro de Endereï¿½o -->
+                        <!-- Modal de Cadastro de Cartões de Crédito -->
                         <div style="display: none;max-width: 450px;" id="modal-add-cartao" >
                             <h3 class="col-12">Deseja abandonar o Checkout?</h3>
                             <div class="col-12 text-justify">
-                                <span>Vocï¿½ serï¿½ redirecionado para o cadastro de um novo cartï¿½o de crï¿½dito. <strong>Tem certeza?</strong></span>
+                                <span>Você será redirecionado para o cadastro de um novo cartão de crédito. <strong>Tem certeza?</strong></span>
                                 <hr style="border: none">
                             </div>
                             <div class="col-12">
@@ -157,7 +171,7 @@
                                 <a href="form_cartao.jsp"><strong class="ornage_color float-right">Absoluta!</strong></a>
                             </div>
                         </div>
-                        <!-- ########## -->
+                        <!-- End Modal -->
                         
                         <h2 class="col-12">Pagamento <a data-fancybox class="add-cartao-show" href="javascript:;"><img src="icon/plus.png" /></a></h2>
                         <div class="col-12">
@@ -166,7 +180,7 @@
                                     content = new StringBuilder();
                                     
                                     if(clie.getCartoes().isEmpty()){
-                                        content.append("<tr role='row'><td><strong>Sem registros de cartï¿½es.</strong><br></td></tr>");
+                                        content.append("<tr role='row'><td><strong>Sem registros de cartões.</strong><br></td></tr>");
                                     }else{
                                         for(Cartao crt: clie.getCartoes()){
                                             content.append("<tr role='row'>");
@@ -247,5 +261,7 @@
         "touch": false,
         "modal": true
     });
+    
+    <%= error != null ? "$.fancybox.open({'src': '#modal-error-alert','touch': false,'modal': true});" : "" %>
 </script>
 <script src="js/tabela_carrinho.js"></script>

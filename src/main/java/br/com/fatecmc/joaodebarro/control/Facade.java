@@ -19,6 +19,7 @@ public class Facade implements IFacade {
         daos.put(Cliente.class.getName(), new ClienteDAO());
         daos.put(Usuario.class.getName(), new UsuarioDAO());
         daos.put(Produto.class.getName(), new ProdutoDAO());
+        daos.put(Venda.class.getName(), new VendaDAO());
         daos.put(Carrinho.class.getName(), new ItemDAO());
         daos.put(Item.class.getName(), new ItemDAO());
         daos.put(Pedido.class.getName(), new PedidoDAO());
@@ -28,19 +29,16 @@ public class Facade implements IFacade {
     private void initStrategy() {
         rns = new HashMap<>();
 
-        ValidarExistenciaAluno validar_existencia_aluno = new ValidarExistenciaAluno();
+        CamposObrigatoriosPedido cop = new CamposObrigatoriosPedido();
         
-        List<IStrategy> rns_cliente = new ArrayList<>();
-        rns_cliente.add(validar_existencia_aluno);
+        List<IStrategy> rns_pedido = new ArrayList<>();
+        rns_pedido.add(cop);
         
-        List<IStrategy> rns_usuario = new ArrayList<>();
-        
-        rns.put(Cliente.class.getName(), rns_cliente);
-        rns.put(Usuario.class.getName(), rns_usuario);
+        rns.put("SALVAR" + Pedido.class.getName(), rns_pedido);
     }
     
-    private String processStrategys(EntidadeDominio entidade) {
-        List<IStrategy> regras = rns.get(entidade.getClass().getName());
+    private String processStrategys(String operacao, EntidadeDominio entidade) {
+        List<IStrategy> regras = rns.get(operacao + entidade.getClass().getName());
 
         StringBuilder final_message = new StringBuilder();
         if (regras != null) {
@@ -48,8 +46,9 @@ public class Facade implements IFacade {
                 String message = strategy.process(entidade);
 
                 if(message != null) {
+                    if(final_message.length() > 0)
+                        final_message.append("\n");
                     final_message.append(message);
-                    final_message.append("\n");
                 }
             }
         }
@@ -59,7 +58,7 @@ public class Facade implements IFacade {
     
     @Override
     public Object salvar(EntidadeDominio entidade) {
-        String error_message = processStrategys(entidade);
+        String error_message = processStrategys("SALVAR", entidade);
         if (error_message == null) {
             IDAO dao = daos.get(entidade.getClass().getName());
             return dao.salvar(entidade);
@@ -70,7 +69,7 @@ public class Facade implements IFacade {
 
     @Override
     public String alterar(EntidadeDominio entidade) {
-        String error_message = processStrategys(entidade);
+        String error_message = processStrategys("ALTERAR", entidade);
         if (error_message == null) {
             IDAO dao = daos.get(entidade.getClass().getName());
             dao.alterar(entidade);
@@ -82,7 +81,7 @@ public class Facade implements IFacade {
 
     @Override
     public String excluir(EntidadeDominio entidade) {
-        String error_message = processStrategys(entidade);
+        String error_message = processStrategys("EXCLUIR", entidade);
         if (error_message == null) {
             IDAO dao = daos.get(entidade.getClass().getName());
             dao.excluir(entidade.getId());
@@ -94,7 +93,7 @@ public class Facade implements IFacade {
 
     @Override
     public Object consultar(EntidadeDominio entidade) {
-        String error_message = processStrategys(entidade);
+        String error_message = processStrategys("CONSULTAR", entidade);
         if (error_message == null) {
             IDAO dao = daos.get(entidade.getClass().getName());
             int id = entidade.getId();
