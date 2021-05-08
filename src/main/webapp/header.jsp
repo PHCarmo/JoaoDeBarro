@@ -73,7 +73,12 @@
                                         <li><a href="#">Lorem</a></li>
                                         <li><a href="#">Ipsum</a></li>
                                         <li class="last">
-                                            <a href="login.jsp" id="user"><img src="icon/user.png" alt="icon" /></a>
+                                            <%
+                                                if(request.getSession().getAttribute("cli_id") != null)
+                                                    out.println("<a href='./cliente?operacao=CONSULTAR' id='user'><img src='icon/user-login.png' alt='icon' /></a>");
+                                                else
+                                                    out.println("<a href='login.jsp' id='user'><img src='icon/user.png' alt='icon' /></a>");
+                                            %>
                                         </li>
                                     </ul>
                                 </nav>
