@@ -48,7 +48,7 @@ public class ValeTrocaDAO implements IDAO {
     @Override
     public boolean alterar(EntidadeDominio entidade) {
         this.conn = ConnectionFactory.getConnection();
-        String sql = "UPDATE VALES_TROCAS SET vlt_ped_id=?, vlt_valor=? WHERE vlt_id=?";
+        String sql = "UPDATE VALES_TROCAS SET vlt_ped_id=? WHERE vlt_id=?";
 
         PreparedStatement stmt = null;
         
@@ -57,8 +57,7 @@ public class ValeTrocaDAO implements IDAO {
                 ValeTroca vt = (ValeTroca) ((Pedido) entidade).getVales().toArray()[0];
                 stmt = conn.prepareStatement(sql);
                 stmt.setInt(1, ((Pedido) entidade).getId());
-                stmt.setDouble(2, vt.getValor());
-                stmt.setInt(3, vt.getId());
+                stmt.setInt(2, vt.getId());
                 
                 if(stmt.executeUpdate() == 1) return true;
             } catch (SQLException ex) {
