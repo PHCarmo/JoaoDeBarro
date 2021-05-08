@@ -26,7 +26,7 @@
     <div class="container">
         <div class="row">
             <div class="col-4">
-                <form class="main_form" action="#" method="POST">
+                <form class="main_form" action="./pedido" method="POST">
                     <div class="row">
                         <h2 class="col-12">Checkout</h2>
                         <div class="col-12 text-justify">
@@ -127,16 +127,14 @@
                         <div class="col-12">
                             <%  
                                 content = new StringBuilder();
-                                int idx_vt = 0;
 
                                 if(clie.getVales().isEmpty()){
                                     content.append("<tr role='row'><td><strong>Nenhum vale-troca encontrado.</strong><br></td></tr>");
                                 }else{
                                     for(ValeTroca vt: clie.getVales()){
-                                        content.append("<p><input type='checkbox' name='vt["+idx_vt+"]' value='"+vt.getId()+"'> ");
+                                        content.append("<p><input type='checkbox' name='vt' value='"+vt.getId()+"'> ");
                                         content.append(vt.getCodigo()+" - "+Mask.toMoney(vt.getValor()));
                                         content.append("</p>");
-                                        idx_vt++;
                                     }
                                 }
 
@@ -166,7 +164,6 @@
                             <table class="table dataTable">
                                 <%  
                                     content = new StringBuilder();
-                                    int idx_crt = 0;
                                     
                                     if(clie.getCartoes().isEmpty()){
                                         content.append("<tr role='row'><td><strong>Sem registros de cart�es.</strong><br></td></tr>");
@@ -179,10 +176,9 @@
                                             content.append("<span><strong>Validade: </strong>"+Mask.toMonthYear(crt.getValidade())+"</span>");
                                             content.append("<span class='float-right'><strong>CVV: </strong>"+crt.getCvv()+"</span>");
                                             content.append("<hr style='border: none'>");
-                                            content.append("<input class='form-control' placeholder='Valor a Pagar' type='number' name='crt["+idx_crt+"]' style='margin: 0px 0px 0px 0px;'>");
+                                            content.append("<input class='form-control' placeholder='Valor a Pagar' type='number' name='crt"+crt.getId()+"' style='margin: 0px 0px 0px 0px;'>");
                                             content.append("</td>");
                                             content.append("</tr>");
-                                            idx_crt++;
                                         }
                                     }
 
@@ -211,7 +207,10 @@
 
                         <div class="col-12">
                             <hr style="border: none">
-                            <button class="send" name="operacao" value="SALVAR">Finalizar!</button>
+                            <%
+                                if(clie.getId() != 0)
+                                    out.println("<button class='send' name='operacao' value='SALVAR'>Finalizar!</button>");
+                            %>
                         </div>
                     </div>
                 </form>

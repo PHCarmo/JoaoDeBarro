@@ -4,7 +4,6 @@ import br.com.fatecmc.joaodebarro.control.command.*;
 import br.com.fatecmc.joaodebarro.control.viewhelper.*;
 import br.com.fatecmc.joaodebarro.model.domain.EntidadeDominio;
 import java.io.IOException;
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "Controller",
         urlPatterns = {"/cliente", "/Registrar", "/TableConstructor",
-            "/produto", "/item", "/endereco", "/cartao", "/carrinho"})
+            "/produto", "/item", "/endereco", "/cartao", "/carrinho", "/pedido"})
 public class Controller extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static String operacao = null;
@@ -42,6 +41,7 @@ public class Controller extends HttpServlet {
         vhs.put("/JoaoDeBarro/faces/produto", new ProdutoVH());
         vhs.put("/JoaoDeBarro/faces/item", new ItemVH());
         vhs.put("/JoaoDeBarro/faces/carrinho", new CarrinhoVH());
+        vhs.put("/JoaoDeBarro/faces/pedido", new PedidoVH());
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
