@@ -12,6 +12,8 @@ public class JsonGenerator {
     public JsonGenerator() {
         cmds = new HashMap<>();
         cmds.put("Cliente", new ClienteDataCommand());
+        cmds.put("Venda", new VendaDataCommand());
+        cmds.put("Compra", new CompraDataCommand());
         cmds.put("Carrinho", new CarrinhoDataCommand());
     }
 

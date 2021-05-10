@@ -22,7 +22,7 @@ $("a[href='#tab_compra']").on('click', function(e){
                 "width": "10%"
             }],
             "processing": true,
-            "ajax": "./json/data_compra_table.json"
+            "ajax": "TableConstructor?tabela=Compra&operacao=GERAR_TABELA"
         });
     }
 });

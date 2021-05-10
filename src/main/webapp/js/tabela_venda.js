@@ -22,7 +22,7 @@ $("a[href='#tab_vendas']").on('click', function(e){
                 "width": "10%"
             }],
             "processing": true,
-            "ajax": "./json/data_venda_table.json"
+            "ajax": "TableConstructor?tabela=Venda&operacao=GERAR_TABELA"
         });
     }
 });
