@@ -63,6 +63,7 @@
                                 <h4>
                                     <strong>Preço Unitário: </strong>
                                     <span class="float-right"><%=Mask.toMoney(prod.getValor_venda())%></span>
+                                    <input type="hidden" value="<%=prod.getValor_venda()%>" id="preco">
                                 </h4>
                                 <h4>
                                     <strong>Código de Barras: </strong>
@@ -74,11 +75,11 @@
                             <div class="col-12">
                                 <h4>
                                     <strong>Quantidade: </strong>
-                                    <input class="form-control-sm float-right" type="number" name="pcr_qtd" value="1" min="1" style="width: 100px;">
+                                    <input class="form-control-sm float-right" type="number" id="pcr_qtd" name="pcr_qtd" value="1" min="1" style="width: 100px;">
                                 </h4>
                                 <h4>
                                     <strong>Preço Total: </strong>
-                                    <span class="float-right"><%=Mask.toMoney(prod.getValor_venda())%></span>
+                                    <span class="float-right" id="lbl_valor_total"><%=Mask.toMoney(prod.getValor_venda())%></span>
                                 </h4>
                             </div>
                         </div>
@@ -93,4 +94,11 @@
     </div>
 </div>
 <!-- end contact -->
+<script>
+    document.getElementById("pcr_qtd").addEventListener("input", function(){        
+        document.getElementById("lbl_valor_total").textContent =
+            (this.value * document.getElementById("preco").value)
+            .toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+    });
+</script>
 <%@ include file="footer.jsp" %>
