@@ -4,6 +4,8 @@ import br.com.fatecmc.joaodebarro.model.domain.*;
 import br.com.fatecmc.joaodebarro.util.ConnectionFactory;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class PedidoDAO implements IDAO {
@@ -44,15 +46,22 @@ public class PedidoDAO implements IDAO {
                 
                 conn.commit();
                 
-                for(ValeTroca vt: ((Pedido) entidade).getVales()){
-                    Pedido pedido = new Pedido();
-                    pedido.getVales().add(vt);
-                    new ValeTrocaDAO().alterar(pedido);
+                Collection<ValeTroca> vts = ((Pedido) entidade).getVales();
+                for(ValeTroca vt: vts){
+                    ((Pedido) entidade).setVales(Arrays.asList(vt));
+                    new ValeTrocaDAO().alterar(entidade);
                 }
-                for(Pagamento pgmt: ((Pedido) entidade).getPagamentos()){
-                    Pedido pedido = new Pedido();
-                    pedido.getPagamentos().add(pgmt);
-                    new PagamentoDAO().salvar(pedido);                    
+                if(((Pedido) entidade).getCliente().getVales().size() > 0)
+                    new ValeTrocaDAO().salvar(((Pedido) entidade).getCliente());
+                Collection<Pagamento> pgmts = ((Pedido) entidade).getPagamentos();
+                for(Pagamento pgmt: pgmts){
+                    ((Pedido) entidade).setPagamentos(Arrays.asList(pgmt));
+                    new PagamentoDAO().salvar(entidade);
+                }
+                for(Item item: ((Carrinho) new CarrinhoDAO().consultar(((Pedido) entidade).getCarrinho().getId())).getItens()){
+                    Produto prod = item.getProduto();
+                    prod.setQtd_estoque(prod.getQtd_estoque() - item.getQtd());
+                    new ProdutoDAO().alterar(prod);
                 }
             } catch (SQLException ex) {
                 System.out.println("Não foi possível salvar os dados no banco de dados.\nErro: " + ex.getMessage());

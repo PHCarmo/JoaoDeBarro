@@ -19,7 +19,6 @@ public class Facade implements IFacade {
         daos.put(Cliente.class.getName(), new ClienteDAO());
         daos.put(Usuario.class.getName(), new UsuarioDAO());
         daos.put(Produto.class.getName(), new ProdutoDAO());
-        daos.put(Venda.class.getName(), new VendaDAO());
         daos.put(Carrinho.class.getName(), new ItemDAO());
         daos.put(Item.class.getName(), new ItemDAO());
         daos.put(Pedido.class.getName(), new PedidoDAO());
@@ -29,10 +28,13 @@ public class Facade implements IFacade {
     private void initStrategy() {
         rns = new HashMap<>();
 
-        CamposObrigatoriosPedido cop = new CamposObrigatoriosPedido();
-        
         List<IStrategy> rns_pedido = new ArrayList<>();
-        rns_pedido.add(cop);
+        rns_pedido.add(new CamposObrigatoriosPedido());
+        rns_pedido.add(new ValorPagoValidoPedido());
+        rns_pedido.add(new ValorMinimoPagoCartao());
+        rns_pedido.add(new QuantidadeProdutosValidaPedido());
+        rns_pedido.add(new ValeTrocaDesnecessarioPedido());
+        rns_pedido.add(new GerarCupomTroca());
         
         rns.put("SALVAR" + Pedido.class.getName(), rns_pedido);
     }
@@ -47,7 +49,7 @@ public class Facade implements IFacade {
 
                 if(message != null) {
                     if(final_message.length() > 0)
-                        final_message.append("\n");
+                        final_message.append("<br>");
                     final_message.append(message);
                 }
             }

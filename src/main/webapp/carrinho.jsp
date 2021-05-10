@@ -121,15 +121,15 @@
                         </div>
 
                         <h2 class="col-12">Descontos</h2>
-                        <div class="col-12">
-                            <select class="form-control" name="cpm_id">
+                        <div class="col-12 wrapper">
+                            <select class="form-control" id="cupom" name="cpm_id">
                                 <option value="">Cupom</option>
                                 <%  
                                     content = new StringBuilder();
 
                                     if(cupons != null){
                                         for(Cupom cpm: cupons){
-                                            content.append("<option value='"+cpm.getId()+"'>"+cpm.getNome()+"</option>");
+                                            content.append("<option value='"+cpm.getId()+"|"+cpm.getValor()+"'>"+cpm.getNome()+"</option>");
                                         }
                                     }
 
@@ -146,7 +146,7 @@
                                     content.append("<tr role='row'><td><strong>Nenhum vale-troca encontrado.</strong><br></td></tr>");
                                 }else{
                                     for(ValeTroca vt: clie.getVales()){
-                                        content.append("<p><input type='checkbox' name='vt' value='"+vt.getId()+"'> ");
+                                        content.append("<p><input class='valetroca' type='checkbox' name='vt' value='"+vt.getId()+"|"+vt.getValor()+"'> ");
                                         content.append(vt.getCodigo()+" - "+Mask.toMoney(vt.getValor()));
                                         content.append("</p>");
                                     }
@@ -190,7 +190,7 @@
                                             content.append("<span><strong>Validade: </strong>"+Mask.toMonthYear(crt.getValidade())+"</span>");
                                             content.append("<span class='float-right'><strong>CVV: </strong>"+crt.getCvv()+"</span>");
                                             content.append("<hr style='border: none'>");
-                                            content.append("<input class='form-control' placeholder='Valor a Pagar' type='number' name='crt"+crt.getId()+"' style='margin: 0px 0px 0px 0px;'>");
+                                            content.append("<input class='form-control cartao' placeholder='Valor a Pagar' type='number' name='crt"+crt.getId()+"' step='.01' style='margin: 0px 0px 0px 0px;'>");
                                             content.append("</td>");
                                             content.append("</tr>");
                                         }
@@ -206,17 +206,26 @@
 
                         <h2 class="col-12">Resumo</h2>
                         <div class="col-12">
+                            <input type="hidden" id="valor_produtos" name="valor_produtos" value="<%= carr.getValor_total() %>">
                             <strong>Subtotal: </strong>
                             <span class="float-right"><%= Mask.toMoney(carr.getValor_total()) %></span><br>
+                            
+                            <input type="hidden" id="valor_frete" name="valor_frete" value="<%= carr.getItens().size() * 10.0 %>">
                             <strong>+&nbsp;Frete: </strong>
-                            <span class="float-right">R$ 10,00</span><br>
+                            <span class="float-right"><%= Mask.toMoney(carr.getItens().size() * 10.0) %></span><br>
+                            
+                            <input type="hidden" id="valor_desconto" name="valor_desconto" value="0.0">
                             <strong>-&nbsp;Abatimentos: </strong>
-                            <span class="float-right">R$ 0,00</span><br>
+                            <span class="float-right" id="lbl_valor_desconto">R$ 0,00</span><br>
                             <hr style="border: none">
+                            
+                            <input type="hidden" id="valor_total" name="valor_total" value="<%= carr.getValor_total() + (carr.getItens().size() * 10.0) %>">
                             <strong>Total: </strong>
-                            <span class="float-right"><%= Mask.toMoney(carr.getValor_total() + 10.0) %></span><br>
+                            <span class="float-right" id="lbl_valor_total"><%= Mask.toMoney(carr.getValor_total() + (carr.getItens().size() * 10.0)) %></span><br>
+                            
+                            <input type="hidden" id="valor_pago" name="valor_pago" value="0.0">
                             <strong>Total Pago: </strong>
-                            <span class="float-right">R$ 0,00</span>
+                            <span class="float-right" id="lbl_valor_pago">R$ 0,00</span>
                         </div>
 
                         <div class="col-12">
@@ -263,5 +272,57 @@
     });
     
     <%= error != null ? "$.fancybox.open({'src': '#modal-error-alert','touch': false,'modal': true});" : "" %>
+        
+    $valor_total = document.getElementById("valor_total").value;
+    document.querySelectorAll('.valetroca').forEach(item => {
+        item.addEventListener("change", function(){
+            changeDescontoAndTotal();
+        });
+    });
+    
+    $(".wrapper").on('change', 'select', function(){
+        changeDescontoAndTotal();
+    });
+    
+    document.querySelectorAll('.cartao').forEach(item => {
+        item.addEventListener("input", function(){
+            changePago();
+        });
+    });
+    
+    function changeDescontoAndTotal(){
+        $sum = 0.0;
+        document.querySelectorAll('.valetroca').forEach(item => {
+            if(item.checked) $sum += parseFloat(item.value.split("|")[1]);
+        });
+        if(document.getElementById("cupom").value !== "") $sum +=
+            parseFloat(document.getElementById("cupom").value.split("|")[1]);
+        document.getElementById("valor_desconto").value = $sum;
+        document.getElementById("valor_total").value = $valor_total - $sum;
+        modifyLabels();
+    };
+    
+    function changePago(){
+        $sum = 0.0;
+        document.querySelectorAll('.cartao').forEach(item => {
+            if(item.value !== "") $sum += parseFloat(item.value);
+        });
+        document.getElementById("valor_pago").value = $sum;
+        modifyLabels();
+    };
+    
+    function modifyLabels(){
+        document.getElementById("lbl_valor_desconto").textContent =
+            parseFloat(document.getElementById("valor_desconto").value)
+            .toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+
+        document.getElementById("lbl_valor_total").textContent =
+            parseFloat(document.getElementById("valor_total").value)
+            .toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+    
+        document.getElementById("lbl_valor_pago").textContent =
+            parseFloat(document.getElementById("valor_pago").value)
+            .toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+    };
 </script>
 <script src="js/tabela_carrinho.js"></script>

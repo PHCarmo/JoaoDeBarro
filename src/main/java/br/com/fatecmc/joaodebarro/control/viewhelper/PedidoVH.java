@@ -23,34 +23,34 @@ public class PedidoVH implements IViewHelper {
         cliente.setId(ParameterParser.toInt(request.getSession(false).getAttribute("cli_id")));
         entrega.setId(ParameterParser.toInt(request.getParameter("entrega")));
         cobranca.setId(ParameterParser.toInt(request.getParameter("cobranca")));
-        cupom.setId(ParameterParser.toInt(request.getParameter("cpm_id")));
+        cupom.setId(ParameterParser.toInt(request.getParameter("cpm_id").split("|")[0]));
         pedido.setCarrinho(carrinho);
         pedido.setCliente(cliente);
         pedido.setEnd_entrega(entrega);
         pedido.setEnd_cobranca(cobranca);
         pedido.setCupom(cupom);
-        pedido.setValor_frete(10.0);
-        pedido.setValor_desconto(0);
-        pedido.setValor_produtos(0);
-        
+        pedido.setValor_frete(ParameterParser.toDouble(request.getParameter("valor_frete")));
+        pedido.setValor_desconto(ParameterParser.toDouble(request.getParameter("valor_desconto")));
+        pedido.setValor_produtos(ParameterParser.toDouble(request.getParameter("valor_produtos")));
+
         if(request.getParameterValues("vt") != null)
         for(String value: request.getParameterValues("vt")){
             ValeTroca vt = new ValeTroca();
-            vt.setId(Integer.parseInt(value));
+            vt.setId(Integer.parseInt(value.split("|")[0]));
             pedido.getVales().add(vt);
         }
-        
+
         Enumeration<String> params = request.getParameterNames();
         while(params.hasMoreElements()) {
             String name = params.nextElement();
             if(name.contains("crt") && !request.getParameter(name).equals("")){
                 Pagamento pgm = new Pagamento();
                 Cartao cartao = new Cartao();
-                
+
                 cartao.setId(Integer.parseInt(name.replace("crt", "")));
                 pgm.setValor(ParameterParser.toDouble(request.getParameter(name)));
                 pgm.setCartao(cartao);
-                
+
                 pedido.getPagamentos().add(pgm);
             }
         }
@@ -65,6 +65,7 @@ public class PedidoVH implements IViewHelper {
             request.setAttribute("Error", resultado);
             request.getRequestDispatcher("carrinho?operacao=CONSULTAR").forward(request, response);
         }else{
+            request.getSession().removeAttribute("car_id");
             response.sendRedirect("./cliente?operacao=CONSULTAR");
         }
     }
