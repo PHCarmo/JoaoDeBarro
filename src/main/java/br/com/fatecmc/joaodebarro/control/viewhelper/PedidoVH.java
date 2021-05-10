@@ -34,11 +34,11 @@ public class PedidoVH implements IViewHelper {
         pedido.setValor_produtos(ParameterParser.toDouble(request.getParameter("valor_produtos")));
 
         if(request.getParameterValues("vt") != null)
-        for(String value: request.getParameterValues("vt")){
-            ValeTroca vt = new ValeTroca();
-            vt.setId(Integer.parseInt(value.split("|")[0]));
-            pedido.getVales().add(vt);
-        }
+            for(String value: request.getParameterValues("vt")){
+                ValeTroca vt = new ValeTroca();
+                vt.setId(Integer.parseInt(value.split("|")[0]));
+                pedido.getVales().add(vt);
+            }
 
         Enumeration<String> params = request.getParameterNames();
         while(params.hasMoreElements()) {
