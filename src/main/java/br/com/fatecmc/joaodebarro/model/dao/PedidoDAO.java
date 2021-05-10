@@ -74,7 +74,7 @@ public class PedidoDAO implements IDAO {
             try {
                 stmt = conn.prepareStatement(sql);
                 stmt.setInt(1, ((Pedido) entidade).getStatus().getId());
-                stmt.setInt(3, entidade.getId());
+                stmt.setInt(2, entidade.getId());
                 
                 if(stmt.executeUpdate() == 1) return true;
             } catch (SQLException ex) {
