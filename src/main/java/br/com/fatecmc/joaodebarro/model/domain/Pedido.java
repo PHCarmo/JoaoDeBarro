@@ -171,5 +171,13 @@ public class Pedido extends EntidadeDominio {
     public double getValor_total() {
         return valor_produtos + valor_frete - valor_desconto;
     }
+    
+    public double getValor_pago() {
+        double sum = 0.0;
+        for(Pagamento pagamento: getPagamentos()) {
+            sum += pagamento.getValor();
+        }
+        return sum;
+    }
 
 }
