@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "Controller",
         urlPatterns = {"/cliente", "/Registrar", "/TableConstructor",
-            "/produto", "/item", "/endereco", "/cartao", "/carrinho", "/pedido"})
+            "/produto", "/item", "/endereco", "/cartao", "/carrinho", "/pedido",
+            "/venda", "/compra"})
 public class Controller extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static String operacao = null;
@@ -42,6 +43,8 @@ public class Controller extends HttpServlet {
         vhs.put("/JoaoDeBarro/faces/item", new ItemVH());
         vhs.put("/JoaoDeBarro/faces/carrinho", new CarrinhoVH());
         vhs.put("/JoaoDeBarro/faces/pedido", new PedidoVH());
+        vhs.put("/JoaoDeBarro/faces/venda", new VendaVH());
+        vhs.put("/JoaoDeBarro/faces/compra", new CompraVH());
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

@@ -159,6 +159,26 @@
                 </div>
                     
                 <div class="tab-pane text-style" id="tab_vendas">
+                    <form id="change-status" class="main_form" method="POST" action="./venda">
+                        <input class="form-control" type="hidden" id="ped_id" name="ped_id" value="">
+                        <input class="form-control" type="hidden" id="ped_spd_id" name="ped_spd_id" value="">
+                        <input class="form-control" type="hidden" name="operacao" value="ALTERAR">                        
+                        
+                        <!-- Modal de Confirmação - Alteração de Status -->
+                        <div style="display: none;max-width: 450px;" id="modal-change-status" >
+                            <h3 class="col-12">Movimentação de Pedido</h3>
+                            <div class="col-12 text-justify">
+                                <span>Este pedido terá seu status alterado para <strong class="ornage_color"><span id="ped_spd_nome"></span>.</strong> <strong>Tem certeza disso?</strong></span>
+                                <hr style="border: none">
+                            </div>
+                            <div class="col-12">
+                                <a class="float-left" data-fancybox-close href="javascript:;"><strong>Melhor Não</strong></a>
+                                <a href="javascript:{}" onclick="document.getElementById('change-status').submit();" ><strong class="ornage_color float-right">Absoluta!</strong></a>
+                            </div>
+                        </div>
+                        <!-- End Modal -->
+                    </form>
+                    
                     <%@ include file="tabela_venda.jsp" %>
                     <div class="row">
                         <div class="col-12">
@@ -197,6 +217,17 @@
         $(".nav-sidebar .active").removeClass('active');
         $(this).parent().addClass('active');
     });
+    
+    function changeStatus(pedidoId, pedidoStatusId, pedidoStatusNome){
+        modifyInputs(pedidoId, pedidoStatusId, pedidoStatusNome);        
+        $.fancybox.open({'src': '#modal-change-status','touch': false,'modal': true});
+    };
+        
+    function modifyInputs(pedidoId, pedidoStatusId, pedidoStatusNome){
+        document.getElementById("ped_id").value = pedidoId;
+        document.getElementById("ped_spd_id").value = pedidoStatusId;
+        document.getElementById("ped_spd_nome").textContent = pedidoStatusNome;
+    };
 </script>
 <script src="js/tabela_cliente.js"></script>
 <script src="js/tabela_log.js"></script>
