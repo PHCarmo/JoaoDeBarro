@@ -22,8 +22,8 @@
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
                     <div class="brand_box">
                         <img src="images/produtos/1.png" alt="img" />
-                        <h3>R$ 99,90</h3>
-                        <a href="./produto?prd_id=1&operacao=CONSULTAR"><span>Porcelanato</span></a>
+                        <h3>R$ 60,00</h3>
+                        <a href="./produto?prd_id=1&operacao=CONSULTAR"><span>Piso Estampado</span></a>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
@@ -34,8 +34,8 @@
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
                     <div class="brand_box">
                         <img src="images/produtos/2.png" alt="img" />
-                        <h3>R$ 9,90</h3>
-                        <a href="./produto?prd_id=2&operacao=CONSULTAR"><span>Azulejo</span></a>
+                        <h3>R$ 20,00</h3>
+                        <a href="./produto?prd_id=2&operacao=CONSULTAR"><span>Azulejo Neutro</span></a>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
@@ -44,8 +44,8 @@
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
                     <div class="brand_box">
                         <img src="images/produtos/3.png" alt="img" />
-                        <h3>R$ 119,90</h3>
-                        <a href="./produto?prd_id=3&operacao=CONSULTAR"><span>Piso Cerâmico</span></a>
+                        <h3>R$ 40,00</h3>
+                        <a href="./produto?prd_id=3&operacao=CONSULTAR"><span>Piso Madeira</span></a>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
@@ -55,16 +55,16 @@
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
                     <div class="brand_box">
                         <img src="images/produtos/4.png" alt="img" />
-                        <h3>R$ 49,90</h3>
-                        <a href="./produto?prd_id=4&operacao=CONSULTAR"><span>Piso Vinílico</span></a>
+                        <h3>R$ 50,00</h3>
+                        <a href="./produto?prd_id=4&operacao=CONSULTAR"><span>Piso Madeira</span></a>
                         <i><img src="images/star.png"/></i>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mrgn">
                     <div class="brand_box">
                         <img src="images/produtos/5.png" alt="img" />
-                        <h3>R$ 44,90</h3>
-                        <a href="./produto?prd_id=5&operacao=CONSULTAR"><span>Piso Laminado</span></a>
+                        <h3>R$ 40,00</h3>
+                        <a href="./produto?prd_id=5&operacao=CONSULTAR"><span>Piso Madeira</span></a>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
                     </div>
@@ -72,8 +72,8 @@
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mrgn">
                     <div class="brand_box">
                         <img src="images/produtos/6.png" alt="img" />
-                        <h3>R$ 89,90</h3>
-                        <a href="./produto?prd_id=6&operacao=CONSULTAR"><span>Ladrilho</span></a>
+                        <h3>R$ 30,00</h3>
+                        <a href="./produto?prd_id=6&operacao=CONSULTAR"><span>Ladrilho Florido</span></a>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
                         <i><img src="images/star.png"/></i>
