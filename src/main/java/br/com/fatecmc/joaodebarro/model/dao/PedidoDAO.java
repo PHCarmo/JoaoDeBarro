@@ -131,9 +131,9 @@ public class PedidoDAO implements IDAO {
                 pedido.setEnd_cobranca((Endereco) new EnderecoDAO().consultar(rs.getInt("ped_end_cobr_id")));
                 pedido.setCupom((Cupom) new CupomDAO().consultar(rs.getInt("ped_cpm_id")));
                 pedido.setValor_frete(rs.getDouble("ped_valor_frete"));
-                pedido.setValor_frete(rs.getDouble("ped_valor_desconto"));
-                pedido.setValor_frete(rs.getDouble("ped_valor_produtos"));
-                pedido.setDt_cadastro(rs.getDate("ped_dt_inclusao"));
+                pedido.setValor_desconto(rs.getDouble("ped_valor_desconto"));
+                pedido.setValor_produtos(rs.getDouble("ped_valor_produtos"));
+                pedido.setDt_cadastro(new java.util.Date(rs.getTimestamp("ped_dt_inclusao").getTime()));
                 
                 pedidos.add(pedido);
             }
@@ -172,9 +172,9 @@ public class PedidoDAO implements IDAO {
                 pedido.setEnd_cobranca((Endereco) new EnderecoDAO().consultar(rs.getInt("ped_end_cobr_id")));
                 pedido.setCupom((Cupom) new CupomDAO().consultar(rs.getInt("ped_cpm_id")));
                 pedido.setValor_frete(rs.getDouble("ped_valor_frete"));
-                pedido.setValor_frete(rs.getDouble("ped_valor_desconto"));
-                pedido.setValor_frete(rs.getDouble("ped_valor_produtos"));
-                pedido.setDt_cadastro(rs.getDate("ped_dt_inclusao"));
+                pedido.setValor_desconto(rs.getDouble("ped_valor_desconto"));
+                pedido.setValor_produtos(rs.getDouble("ped_valor_produtos"));
+                pedido.setDt_cadastro(new java.util.Date(rs.getTimestamp("ped_dt_inclusao").getTime()));
             }
             
             return pedido;
@@ -186,33 +186,40 @@ public class PedidoDAO implements IDAO {
         return null;
     }
     
-    public EntidadeDominio consultarPorCliente(Cliente cliente) {
+    public List consultarPorCliente(Cliente cliente) {
         this.conn = ConnectionFactory.getConnection();
-        String sql = "SELECT * FROM PEDIDOS WHERE vlt_cli_id=? AND vlt_ped_id IS NULL";
+        String sql = "SELECT * FROM PEDIDOS WHERE ped_cli_id=?";
         
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
+        List<Pedido> pedidos = new ArrayList<>();
         try {
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, cliente.getId());
                 
             rs = stmt.executeQuery();
             
-            cliente.setVales(new ArrayList<ValeTroca>());
             while(rs.next()) {
-                ValeTroca vale = new ValeTroca();
+                Pedido pedido = new Pedido();
                 
-                vale.setId(rs.getInt("vlt_id"));
-                cliente.setId(rs.getInt("vlt_cli_id"));
-                vale.setCodigo(rs.getString("vlt_codigo"));
-                vale.setValor(rs.getDouble("vlt_valor"));
-                vale.setDt_cadastro(rs.getDate("vlt_dt_inclusao"));
+                pedido.setId(rs.getInt("ped_id"));
+                pedido.setCodigo(rs.getString("ped_codigo"));
+                pedido.setCarrinho((Carrinho) new CarrinhoDAO().consultar(rs.getInt("ped_car_id")));
+                pedido.setCliente((Cliente) new ClienteDAO().consultar(rs.getInt("ped_cli_id")));
+                pedido.setStatus(StatusPedido.idToEnum(rs.getInt("ped_spd_id")));
+                pedido.setEnd_entrega((Endereco) new EnderecoDAO().consultar(rs.getInt("ped_end_entr_id")));
+                pedido.setEnd_cobranca((Endereco) new EnderecoDAO().consultar(rs.getInt("ped_end_cobr_id")));
+                pedido.setCupom((Cupom) new CupomDAO().consultar(rs.getInt("ped_cpm_id")));
+                pedido.setValor_frete(rs.getDouble("ped_valor_frete"));
+                pedido.setValor_desconto(rs.getDouble("ped_valor_desconto"));
+                pedido.setValor_produtos(rs.getDouble("ped_valor_produtos"));
+                pedido.setDt_cadastro(new java.util.Date(rs.getTimestamp("ped_dt_inclusao").getTime()));
                 
-                cliente.getVales().add(vale);
+                pedidos.add(pedido);
             }
                 
-            return cliente;
+            return pedidos;
         } catch (SQLException ex) {
             System.out.println("Não foi possível consultar os dados no banco de dados.\nErro: " + ex.getMessage());
         } finally {
