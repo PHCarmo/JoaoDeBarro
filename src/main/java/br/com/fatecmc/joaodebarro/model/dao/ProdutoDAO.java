@@ -91,6 +91,28 @@ public class ProdutoDAO implements IDAO {
         return false;
     }
     
+    public boolean alterarQtdEstoque(EntidadeDominio entidade) {
+        this.conn = ConnectionFactory.getConnection();
+        String sql = "UPDATE PRODUTOS SET prd_qtd_estoque=? WHERE prd_id=?";
+
+        PreparedStatement stmt = null;
+        
+        if(entidade instanceof Produto){
+            try {
+                stmt = conn.prepareStatement(sql);
+                stmt.setInt(1, ((Produto) entidade).getQtd_estoque());
+                stmt.setInt(2, entidade.getId());
+                
+                if(stmt.executeUpdate() == 1) return true;
+            } catch (SQLException ex) {
+                System.out.println("Não foi possível alterar os dados no banco de dados.\nErro: " + ex.getMessage());
+            } finally {
+                ConnectionFactory.closeConnection(conn, stmt);
+            }
+        }
+        return false;
+    }
+    
     @Override
     public boolean excluir(int id) {
         this.conn = ConnectionFactory.getConnection();

@@ -13,7 +13,7 @@ public class ItemDAO implements IDAO {
     @Override
     public EntidadeDominio salvar(EntidadeDominio entidade) {
         this.conn = ConnectionFactory.getConnection();
-        String sql = "INSERT INTO PRODUTOS_CARRINHOS VALUES(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO PRODUTOS_CARRINHOS VALUES(?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stmt = null;
 
@@ -32,7 +32,8 @@ public class ItemDAO implements IDAO {
                         stmt.setInt(3, entidade.getId());
                         stmt.setInt(4, item.getQtd());
                         stmt.setNull(5, Types.BOOLEAN);
-                        stmt.setDate(6, null);
+                        stmt.setNull(6, Types.BOOLEAN);
+                        stmt.setDate(7, null);
 
                         stmt.executeUpdate();
 
@@ -56,7 +57,7 @@ public class ItemDAO implements IDAO {
     @Override
     public boolean alterar(EntidadeDominio entidade) {
         this.conn = ConnectionFactory.getConnection();
-        String sql = "UPDATE PRODUTOS_CARRINHOS SET pcr_qtd=?, pcr_status=? WHERE pcr_id=?";
+        String sql = "UPDATE PRODUTOS_CARRINHOS SET pcr_qtd=?, pcr_status=?, pcr_troca=? WHERE pcr_id=?";
 
         PreparedStatement stmt = null;
 
@@ -67,7 +68,8 @@ public class ItemDAO implements IDAO {
                         stmt = conn.prepareStatement(sql);
                         stmt.setInt(1, item.getQtd());
                         stmt.setBoolean(2, item.getStatus());
-                        stmt.setInt(3, item.getId());
+                        stmt.setBoolean(3, item.getTroca());
+                        stmt.setInt(4, item.getId());
 
                         if (stmt.executeUpdate() != 1) {
                             return false;
@@ -127,6 +129,7 @@ public class ItemDAO implements IDAO {
                 carrinho.setId(rs.getInt("pcr_car_id"));
                 item.setQtd(rs.getInt("pcr_qtd"));
                 item.setStatus(rs.getBoolean("pcr_status"));
+                item.setTroca(rs.getBoolean("pcr_troca"));
                 item.setDt_cadastro(rs.getDate("pcr_dt_inclusao"));
                 item.setProduto((Produto) new ProdutoDAO().consultar(rs.getInt("pcr_prd_id")));
                 carrinho.setItens(Arrays.asList(item));
@@ -166,6 +169,7 @@ public class ItemDAO implements IDAO {
                 carrinho.setId(rs.getInt("pcr_car_id"));
                 item.setQtd(rs.getInt("pcr_qtd"));
                 item.setStatus(rs.getBoolean("pcr_status"));
+                item.setTroca(rs.getBoolean("pcr_troca"));
                 item.setDt_cadastro(rs.getDate("pcr_dt_inclusao"));
                 item.setProduto((Produto) new ProdutoDAO().consultar(rs.getInt("pcr_prd_id")));
                 
@@ -180,5 +184,43 @@ public class ItemDAO implements IDAO {
         }
         return null;
     }
+    
+    public EntidadeDominio consultarTrocados(int id) {
+        this.conn = ConnectionFactory.getConnection();
+        String sql = "SELECT * FROM PRODUTOS_CARRINHOS WHERE pcr_car_id=? AND pcr_troca=TRUE";
 
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        Carrinho carrinho = new Carrinho();
+        try {
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            rs = stmt.executeQuery();
+
+            carrinho.setItens(new ArrayList<Item>());
+            while (rs.next()) {
+                Item item = new Item();
+                
+                item.setId(rs.getInt("pcr_id"));
+                carrinho.setId(rs.getInt("pcr_car_id"));
+                item.setQtd(rs.getInt("pcr_qtd"));
+                item.setStatus(rs.getBoolean("pcr_status"));
+                item.setTroca(rs.getBoolean("pcr_troca"));
+                item.setDt_cadastro(rs.getDate("pcr_dt_inclusao"));
+                item.setProduto((Produto) new ProdutoDAO().consultar(rs.getInt("pcr_prd_id")));
+                
+                carrinho.getItens().add(item);
+            }
+
+            return carrinho;
+        } catch (SQLException ex) {
+            System.out.println("Não foi possível consultar os dados no banco de dados.\nErro: " + ex.getMessage());
+        } finally {
+            ConnectionFactory.closeConnection(conn, stmt, rs);
+        }
+        return null;
+    }
+    
 }

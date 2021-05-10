@@ -61,7 +61,7 @@ public class PedidoDAO implements IDAO {
                 for(Item item: ((Carrinho) new CarrinhoDAO().consultar(((Pedido) entidade).getCarrinho().getId())).getItens()){
                     Produto prod = item.getProduto();
                     prod.setQtd_estoque(prod.getQtd_estoque() - item.getQtd());
-                    new ProdutoDAO().alterar(prod);
+                    new ProdutoDAO().alterarQtdEstoque(prod);
                 }
             } catch (SQLException ex) {
                 System.out.println("Não foi possível salvar os dados no banco de dados.\nErro: " + ex.getMessage());
@@ -85,14 +85,18 @@ public class PedidoDAO implements IDAO {
                 stmt.setInt(1, ((Pedido) entidade).getStatus().getId());
                 stmt.setInt(2, entidade.getId());
                 
-                if(stmt.executeUpdate() == 1) return true;
+                if(stmt.executeUpdate() != 1) return false;
+                
+                if(((Pedido) entidade).getCarrinho().getId() != 0)
+                    new ItemDAO().alterar(((Pedido) entidade).getCarrinho());
             } catch (SQLException ex) {
                 System.out.println("Não foi possível alterar os dados no banco de dados.\nErro: " + ex.getMessage());
+                 return false;
             } finally {
                 ConnectionFactory.closeConnection(conn, stmt);
             }
         }
-        return false;
+        return true;
     }
 
     @Override

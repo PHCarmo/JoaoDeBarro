@@ -68,7 +68,7 @@ public class DataGenerator {
                     break;
                 case EM_TROCA:
                     second_button = "<a class='btn btn-default' title='Liberar Troca' "
-                            + "onclick='changePedido("+p.getId()+","+StatusPedido.TROCA_AUTORIZADA.getId()+",\""+StatusPedido.TROCA_AUTORIZADA.getDescricao()+"\");'><img class='icon' src='icon/padlock.png' /></a>";
+                            + "href='./trocado?operacao=CONSULTAR&ped_id="+p.getId()+"&car_id="+p.getCarrinho().getId()+"''><img class='icon' src='icon/padlock.png' /></a>";
                     break;
                 default:
                     second_button = "<a class='btn btn-default invisible'><img class='icon' src='icon/eye.png'/></a>";
@@ -99,8 +99,7 @@ public class DataGenerator {
             String first_button;
             switch (p.getStatus()) {
                 case ENTREGUE:
-                    first_button = "<a class='btn btn-default' title='Trocar Item/Compra' "
-                            + "onclick='changePedido("+p.getId()+","+StatusPedido.EM_TROCA.getId()+",\""+StatusPedido.EM_TROCA.getDescricao()+"\");'><img class='icon' src='icon/undo.png' /></a>";
+                    first_button = "<a class='btn btn-default' title='Trocar Item/Compra' href='./trocar?operacao=CONSULTAR&ped_id="+p.getId()+"&car_id="+p.getCarrinho().getId()+"'><img class='icon' src='icon/undo.png' /></a>";
                     break;
                 default:
                     first_button = "<a class='btn btn-default invisible'><img class='icon' src='icon/eye.png'/></a>";
