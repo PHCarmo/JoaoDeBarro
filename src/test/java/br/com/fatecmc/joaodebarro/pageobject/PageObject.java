@@ -1,5 +1,6 @@
 package br.com.fatecmc.joaodebarro.pageobject;
 
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -34,6 +35,7 @@ public abstract class PageObject {
         WebElement option_input = driver.findElement(By.cssSelector(
                 String.format("[name='%s']+div.nice-select", name)));
         option_input.click();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         option_input.findElement(By.cssSelector(String.format("li[data-value='%s']", value))).click();
     }
     
