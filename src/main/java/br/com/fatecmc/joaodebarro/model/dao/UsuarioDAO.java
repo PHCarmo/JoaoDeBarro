@@ -22,7 +22,7 @@ public class UsuarioDAO implements IDAO {
                 
                 stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 stmt.setInt(1, 0);
-                stmt.setInt(2, ((Usuario) entidade).getTipo().getId());
+                stmt.setInt(2, TipoUsuario.CLIENTE.getId());
                 stmt.setString(3, ((Usuario) entidade).getEmail());
                 stmt.setString(4, ((Usuario) entidade).getSenha());
                 stmt.setDate(5, null);
@@ -45,17 +45,15 @@ public class UsuarioDAO implements IDAO {
     @Override
     public boolean alterar(EntidadeDominio entidade) {
         this.conn = ConnectionFactory.getConnection();
-        String sql = "UPDATE USUARIOS SET usu_tus_id=?, usu_email=?, usu_senha=? WHERE usu_id=?";
+        String sql = "UPDATE USUARIOS SET usu_senha=? WHERE usu_id=?";
 
         PreparedStatement stmt = null;
         
         if(entidade instanceof Usuario){
             try {
                 stmt = conn.prepareStatement(sql);
-                stmt.setInt(1, ((Usuario) entidade).getTipo().getId());
-                stmt.setString(2, ((Usuario) entidade).getEmail());
-                stmt.setString(3, ((Usuario) entidade).getSenha());
-                stmt.setInt(4, entidade.getId());
+                stmt.setString(1, ((Usuario) entidade).getSenha());
+                stmt.setInt(2, entidade.getId());
                 
                 if(stmt.executeUpdate() == 1) return true;
             } catch (SQLException ex) {
@@ -124,7 +122,7 @@ public class UsuarioDAO implements IDAO {
     @Override
     public EntidadeDominio consultar(int id) {
         this.conn = ConnectionFactory.getConnection();
-        String sql = "SELECT * FROM pessoas WHERE id_pessoa=?";
+        String sql = "SELECT * FROM USUARIOS WHERE usu_id=?";
         
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -137,7 +135,7 @@ public class UsuarioDAO implements IDAO {
             rs = stmt.executeQuery();
             
             if(rs.next()) {
-                usuario.setId(rs.getInt("id_pessoa"));
+                usuario.setId(rs.getInt("usu_id"));
                 usuario.setTipo(TipoUsuario.idToEnum(rs.getInt("usu_tus_id")));
                 usuario.setEmail(rs.getString("usu_email"));
                 usuario.setSenha(rs.getString("usu_senha"));

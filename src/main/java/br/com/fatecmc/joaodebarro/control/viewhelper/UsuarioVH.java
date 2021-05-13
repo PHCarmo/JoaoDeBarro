@@ -2,7 +2,6 @@ package br.com.fatecmc.joaodebarro.control.viewhelper;
 
 import br.com.fatecmc.joaodebarro.model.domain.*;
 import java.io.IOException;
-import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,10 +10,11 @@ public class UsuarioVH implements IViewHelper {
 
     @Override
     public EntidadeDominio getEntidade(HttpServletRequest request) {
-        String email =       request.getParameter("usu_si_email");
-        String senha =       request.getParameter("usu_si_senha");
+        Usuario usuario = new Usuario();
         
-        Usuario usuario = new Usuario(email, senha, TipoUsuario.CLIENTE, 0, new Date());
+        usuario.setEmail(request.getParameter("usu_si_email"));
+        usuario.setSenha(request.getParameter("usu_si_senha"));
+        
         return usuario;
     }
 
