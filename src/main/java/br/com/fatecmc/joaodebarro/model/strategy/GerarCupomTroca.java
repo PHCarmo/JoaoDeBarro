@@ -12,6 +12,8 @@ public class GerarCupomTroca implements IStrategy{
             ValeTroca vt = new ValeTroca();
             vt.setValor(Math.abs(p.getValor_total()));
             ((Pedido) entidade).getCliente().getVales().add(vt);
+            
+            p.setValor_desconto(p.getValor_desconto() - vt.getValor());
         }
         
         return null;
