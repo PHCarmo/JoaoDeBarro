@@ -15,6 +15,7 @@ public class JsonGenerator {
         cmds.put("Venda", new VendaDataCommand());
         cmds.put("Compra", new CompraDataCommand());
         cmds.put("Carrinho", new CarrinhoDataCommand());
+        cmds.put("Produto", new ProdutoDataCommand());
     }
 
     public String gerar(List<EntidadeDominio> entidades, String table) {

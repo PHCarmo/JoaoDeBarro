@@ -21,6 +21,7 @@ public class DataTableVH implements IViewHelper {
         entidades.put("Venda", new Pedido());
         entidades.put("Compra", new Pedido());
         entidades.put("Carrinho", new Carrinho());
+        entidades.put("Produto", new Produto());
     }
 
     @Override

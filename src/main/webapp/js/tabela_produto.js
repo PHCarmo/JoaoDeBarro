@@ -19,7 +19,7 @@ $("a[href='#tab_produtos']").on('click', function(e){
                 "width": "17%"
             }],
             "processing": true,
-            "ajax": "./json/data_prod_table.json"
+            "ajax": "TableConstructor?tabela=Produto&operacao=GERAR_TABELA"
         });
     }
 });
