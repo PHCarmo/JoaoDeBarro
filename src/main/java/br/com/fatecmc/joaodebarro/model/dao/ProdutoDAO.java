@@ -4,6 +4,8 @@ import br.com.fatecmc.joaodebarro.model.domain.*;
 import br.com.fatecmc.joaodebarro.util.ConnectionFactory;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public class ProdutoDAO implements IDAO {
@@ -38,6 +40,44 @@ public class ProdutoDAO implements IDAO {
                 stmt.setDouble(15, ((Produto) entidade).getValor_venda());
                 stmt.setString(16, ((Produto) entidade).getImg_nome());
                 stmt.setDate(17, null);
+
+                stmt.executeUpdate();
+                
+                ResultSet rs = stmt.getGeneratedKeys();
+                if(rs.next()) entidade.setId(rs.getInt(1));
+                
+                conn.commit();	
+                
+                Collection<Categoria> ctgs = ((Produto) entidade).getCategorias();
+                for(Categoria ctg: ctgs){
+                    ((Produto) entidade).setCategorias(Arrays.asList(ctg));
+                    salvarCategoria(entidade);
+                }
+            } catch (SQLException ex) {
+                System.out.println("Não foi possível salvar os dados no banco de dados.\nErro: " + ex.getMessage());
+            } finally {
+                ConnectionFactory.closeConnection(conn, stmt);
+            }
+        }
+        return entidade;
+    }
+    
+    public EntidadeDominio salvarCategoria(EntidadeDominio entidade) {
+        this.conn = ConnectionFactory.getConnection();
+        String sql = "INSERT INTO CATEGORIAS_PRODUTOS VALUES(?, ?, ?, ?)";
+
+        PreparedStatement stmt = null;
+        
+        if(entidade instanceof Produto){
+            try {
+                conn.setAutoCommit(false);
+                
+                Categoria ctg = (Categoria) ((Produto) entidade).getCategorias().toArray()[0];
+                stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                stmt.setInt(1, 0);
+                stmt.setInt(2, ((Produto) entidade).getId());
+                stmt.setInt(3, ctg.getId());
+                stmt.setDate(4, null);
 
                 stmt.executeUpdate();
                 
