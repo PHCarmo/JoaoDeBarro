@@ -1,4 +1,7 @@
 <%@ include file="header.jsp" %>
+<%
+    String error = (String) request.getAttribute("Error");
+%>
 <div class="brand_color">
     <div class="container">
         <div class="row">
@@ -16,6 +19,19 @@
 <div class="contact">
     <div class="container">
         <div class="row">
+            <!-- Modal de Alertas -->
+            <div style="display: none;max-width: 650px;" id="modal-error-alert" >
+                <h3 class="col-12">Algo deu errado!</h3>
+                <div class="col-12 text-justify">
+                    <span><%= error != null ? error : "" %></span>
+                    <hr style="border: none">
+                </div>
+                <div class="col-12">
+                    <a data-fancybox-close href="javascript:;"><strong class="ornage_color float-right">OK!</strong></a>
+                </div>
+            </div>
+            <!-- End Modal -->
+            
             <div class="col-5">
                 <form class="main_form" action="admin.jsp" method="POST">
                     <div class="row">
@@ -73,4 +89,7 @@
     </div>
 </div>
 <!-- end contact -->
+<script>
+    <%= error != null ? "$(document).ready(function(){ $.fancybox.open({'src': '#modal-error-alert','touch': false,'modal': true}); });" : "" %>
+</script>
 <%@ include file="footer.jsp" %>

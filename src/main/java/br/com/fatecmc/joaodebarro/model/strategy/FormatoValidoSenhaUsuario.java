@@ -8,10 +8,10 @@ public class FormatoValidoSenhaUsuario implements IStrategy{
     public String process(EntidadeDominio entidade) {
         boolean validacao;
         
-        Usuario p = (Usuario) entidade;
-        validacao = p.getSenha().matches("^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[#?!@$%^&*-]).{8,}$");
+        Usuario u = (Usuario) entidade;
+        validacao = u.getSenha().matches("^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[#?!@$%^&*-]).{8,}$");
         
-        if(validacao)
+        if(!validacao)
             return "- Existem critérios para a senha não cumpridos.";
         
         return null;

@@ -37,8 +37,8 @@ public class Facade implements IFacade {
         rns_pedido.add(new GerarCupomTroca());
         
         List<IStrategy> rns_usuario = new ArrayList<>();
-        rns_pedido.add(new FormatoValidoSenhaUsuario());
-        rns_pedido.add(new CriptografiaSenhaUsuario());
+        rns_usuario.add(new FormatoValidoSenhaUsuario());
+        rns_usuario.add(new CriptografiaSenhaUsuario());
         
         rns.put("SALVAR" + Pedido.class.getName(), rns_pedido);
         rns.put("SALVAR" + Usuario.class.getName(), rns_usuario);

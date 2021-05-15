@@ -21,7 +21,12 @@ public class UsuarioVH implements IViewHelper {
     @Override
     public void setView(Object resultado, HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/JoaoDeBarro/faces/form_cliente.jsp?cli_usu_id="+((Usuario)resultado).getId());
+        if(resultado instanceof String){
+            request.setAttribute("Error", resultado);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }else{
+            response.sendRedirect("/JoaoDeBarro/faces/form_cliente.jsp?cli_usu_id="+((Usuario)resultado).getId());
+        }
     }
     
 }
