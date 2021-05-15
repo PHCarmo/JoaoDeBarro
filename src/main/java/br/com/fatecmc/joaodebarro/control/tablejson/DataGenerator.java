@@ -170,7 +170,7 @@ public class DataGenerator {
                         + "</a>";
             }
             
-            String button2 = "<a class='btn btn-default' title='Visualizar' href='./produto?prd_id="+p.getId()+"&operacao=CONSULTAR'>"
+            String button2 = "<a class='btn btn-default' title='Visualizar' href='./item?prd_id="+p.getId()+"&operacao=CONSULTAR'>"
                                + "<img class='icon' src='icon/eye.png' />"
                            + "</a>";
             

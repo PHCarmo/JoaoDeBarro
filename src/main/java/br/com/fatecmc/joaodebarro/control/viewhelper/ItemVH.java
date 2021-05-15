@@ -32,6 +32,8 @@ public class ItemVH implements IViewHelper {
         carrinho.setItens(Arrays.asList(item));
         
         switch (request.getParameter("operacao")) {
+            case "CONSULTAR":
+                return produto;
             case "EXCLUIR":
                 return item;
             default:
@@ -43,8 +45,13 @@ public class ItemVH implements IViewHelper {
     public void setView(Object resultado, HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("operacao").equals("SALVAR"))
-            request.getSession().setAttribute("car_id", ((Carrinho) resultado).getId());
-        response.sendRedirect("./carrinho?operacao=CONSULTAR");
+            request.getSession().setAttribute("car_id", ((Carrinho) resultado).getId());        
+        if (request.getParameter("operacao").equals("CONSULTAR")){
+            request.setAttribute("produto", resultado);
+            request.getRequestDispatcher("detalhe_produto.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("./carrinho?operacao=CONSULTAR");
+        }
     }
 
 }
