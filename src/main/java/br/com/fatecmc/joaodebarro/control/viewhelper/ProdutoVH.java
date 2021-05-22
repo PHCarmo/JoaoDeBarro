@@ -26,7 +26,7 @@ public class ProdutoVH implements IViewHelper {
         
         if(request.getParameterValues("ctg_id") != null)
             for(String value: request.getParameterValues("ctg_id")){
-                produto.getCategorias().add(Categoria.idToEnum(Integer.parseInt(value)));
+                if(!value.equals("")) produto.getCategorias().add(Categoria.idToEnum(Integer.parseInt(value)));
             }
         
         return produto;
