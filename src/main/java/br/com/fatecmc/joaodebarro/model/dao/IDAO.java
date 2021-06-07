@@ -9,6 +9,6 @@ public interface IDAO {
     public boolean alterar(EntidadeDominio entidade);
     public boolean excluir(int id);
     public List consultar();
-    public EntidadeDominio consultar(int id);
+    public EntidadeDominio consultar(EntidadeDominio entidade);
     
 }

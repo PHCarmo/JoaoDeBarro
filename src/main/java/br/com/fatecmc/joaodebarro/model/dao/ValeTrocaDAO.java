@@ -129,7 +129,7 @@ public class ValeTrocaDAO implements IDAO {
     }
     
     @Override
-    public EntidadeDominio consultar(int id) {
+    public EntidadeDominio consultar(EntidadeDominio entidade) {
         this.conn = ConnectionFactory.getConnection();
         String sql = "SELECT * FROM VALES_TROCAS WHERE vlt_id=?";
         
@@ -141,7 +141,7 @@ public class ValeTrocaDAO implements IDAO {
         ValeTroca vale = new ValeTroca();
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setInt(1, entidade.getId());
                 
             rs = stmt.executeQuery();
             

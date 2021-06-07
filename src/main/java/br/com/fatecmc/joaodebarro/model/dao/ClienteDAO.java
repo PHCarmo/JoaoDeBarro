@@ -173,7 +173,7 @@ public class ClienteDAO implements IDAO {
     }
     
     @Override
-    public EntidadeDominio consultar(int id) {
+    public EntidadeDominio consultar(EntidadeDominio entidade) {
         this.conn = ConnectionFactory.getConnection();
         String sql = "SELECT * FROM CLIENTES WHERE cli_id=?";
         
@@ -183,7 +183,7 @@ public class ClienteDAO implements IDAO {
         Cliente cliente = new Cliente();
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setInt(1, entidade.getId());
                 
             rs = stmt.executeQuery();
             

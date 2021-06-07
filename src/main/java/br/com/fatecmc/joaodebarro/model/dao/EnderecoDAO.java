@@ -157,7 +157,7 @@ public class EnderecoDAO implements IDAO {
     }
     
     @Override
-    public EntidadeDominio consultar(int id) {
+    public EntidadeDominio consultar(EntidadeDominio entidade) {
         this.conn = ConnectionFactory.getConnection();
         String sql = "SELECT * FROM ENDERECOS WHERE end_id=?";
         
@@ -167,7 +167,7 @@ public class EnderecoDAO implements IDAO {
         Endereco endereco = new Endereco();
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setInt(1, entidade.getId());
                 
             rs = stmt.executeQuery();
             

@@ -122,7 +122,7 @@ public class CupomDAO implements IDAO {
     }
     
     @Override
-    public EntidadeDominio consultar(int id) {
+    public EntidadeDominio consultar(EntidadeDominio entidade) {
         this.conn = ConnectionFactory.getConnection();
         String sql = "SELECT * FROM CUPONS WHERE cpm_id=?";
         
@@ -132,7 +132,7 @@ public class CupomDAO implements IDAO {
         Cupom cupom = new Cupom ();
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setInt(1, entidade.getId());
                 
             rs = stmt.executeQuery();
             

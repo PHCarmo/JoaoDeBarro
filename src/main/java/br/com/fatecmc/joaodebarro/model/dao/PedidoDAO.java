@@ -58,7 +58,7 @@ public class PedidoDAO implements IDAO {
                     ((Pedido) entidade).setPagamentos(Arrays.asList(pgmt));
                     new PagamentoDAO().salvar(entidade);
                 }
-                for(Item item: ((Carrinho) new CarrinhoDAO().consultar(((Pedido) entidade).getCarrinho().getId())).getItens()){
+                for(Item item: ((Carrinho) new CarrinhoDAO().consultar(((Pedido) entidade).getCarrinho())).getItens()){
                     Produto prod = item.getProduto();
                     prod.setQtd_estoque(prod.getQtd_estoque() - item.getQtd());
                     new ProdutoDAO().alterarQtdEstoque(prod);
@@ -137,12 +137,12 @@ public class PedidoDAO implements IDAO {
                 
                 pedido.setId(rs.getInt("ped_id"));
                 pedido.setCodigo(rs.getString("ped_codigo"));
-                pedido.setCarrinho((Carrinho) new CarrinhoDAO().consultar(rs.getInt("ped_car_id")));
-                pedido.setCliente((Cliente) new ClienteDAO().consultar(rs.getInt("ped_cli_id")));
+                pedido.setCarrinho((Carrinho) new CarrinhoDAO().consultar(new Carrinho().setId(rs.getInt("ped_car_id"))));
+                pedido.setCliente((Cliente) new ClienteDAO().consultar(new Cliente().setId(rs.getInt("ped_cli_id"))));
                 pedido.setStatus(StatusPedido.idToEnum(rs.getInt("ped_spd_id")));
-                pedido.setEnd_entrega((Endereco) new EnderecoDAO().consultar(rs.getInt("ped_end_entr_id")));
-                pedido.setEnd_cobranca((Endereco) new EnderecoDAO().consultar(rs.getInt("ped_end_cobr_id")));
-                pedido.setCupom((Cupom) new CupomDAO().consultar(rs.getInt("ped_cpm_id")));
+                pedido.setEnd_entrega((Endereco) new EnderecoDAO().consultar(new Endereco().setId(rs.getInt("ped_end_entr_id"))));
+                pedido.setEnd_cobranca((Endereco) new EnderecoDAO().consultar(new Endereco().setId(rs.getInt("ped_end_cobr_id"))));
+                pedido.setCupom((Cupom) new CupomDAO().consultar(new Cupom().setId(rs.getInt("ped_cpm_id"))));
                 pedido.setValor_frete(rs.getDouble("ped_valor_frete"));
                 pedido.setValor_desconto(rs.getDouble("ped_valor_desconto"));
                 pedido.setValor_produtos(rs.getDouble("ped_valor_produtos"));
@@ -161,7 +161,7 @@ public class PedidoDAO implements IDAO {
     }
     
     @Override
-    public EntidadeDominio consultar(int id) {
+    public EntidadeDominio consultar(EntidadeDominio entidade) {
         this.conn = ConnectionFactory.getConnection();
         String sql = "SELECT * FROM PEDIDOS WHERE ped_id=?";
         
@@ -171,19 +171,19 @@ public class PedidoDAO implements IDAO {
         Pedido pedido = new Pedido();
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setInt(1, entidade.getId());
                 
             rs = stmt.executeQuery();
             
             if(rs.next()) {
                 pedido.setId(rs.getInt("ped_id"));
                 pedido.setCodigo(rs.getString("ped_codigo"));
-                pedido.setCarrinho((Carrinho) new CarrinhoDAO().consultar(rs.getInt("ped_car_id")));
-                pedido.setCliente((Cliente) new ClienteDAO().consultar(rs.getInt("ped_cli_id")));
+                pedido.setCarrinho((Carrinho) new CarrinhoDAO().consultar(new Carrinho().setId(rs.getInt("ped_car_id"))));
+                pedido.setCliente((Cliente) new ClienteDAO().consultar(new Cliente().setId(rs.getInt("ped_cli_id"))));
                 pedido.setStatus(StatusPedido.idToEnum(rs.getInt("ped_spd_id")));
-                pedido.setEnd_entrega((Endereco) new EnderecoDAO().consultar(rs.getInt("ped_end_entr_id")));
-                pedido.setEnd_cobranca((Endereco) new EnderecoDAO().consultar(rs.getInt("ped_end_cobr_id")));
-                pedido.setCupom((Cupom) new CupomDAO().consultar(rs.getInt("ped_cpm_id")));
+                pedido.setEnd_entrega((Endereco) new EnderecoDAO().consultar(new Endereco().setId(rs.getInt("ped_end_entr_id"))));
+                pedido.setEnd_cobranca((Endereco) new EnderecoDAO().consultar(new Endereco().setId(rs.getInt("ped_end_cobr_id"))));
+                pedido.setCupom((Cupom) new CupomDAO().consultar(new Cupom().setId(rs.getInt("ped_cpm_id"))));
                 pedido.setValor_frete(rs.getDouble("ped_valor_frete"));
                 pedido.setValor_desconto(rs.getDouble("ped_valor_desconto"));
                 pedido.setValor_produtos(rs.getDouble("ped_valor_produtos"));
@@ -218,12 +218,12 @@ public class PedidoDAO implements IDAO {
                 
                 pedido.setId(rs.getInt("ped_id"));
                 pedido.setCodigo(rs.getString("ped_codigo"));
-                pedido.setCarrinho((Carrinho) new CarrinhoDAO().consultar(rs.getInt("ped_car_id")));
-                pedido.setCliente((Cliente) new ClienteDAO().consultar(rs.getInt("ped_cli_id")));
+                pedido.setCarrinho((Carrinho) new CarrinhoDAO().consultar(new Carrinho().setId(rs.getInt("ped_car_id"))));
+                pedido.setCliente((Cliente) new ClienteDAO().consultar(new Cliente().setId(rs.getInt("ped_cli_id"))));
                 pedido.setStatus(StatusPedido.idToEnum(rs.getInt("ped_spd_id")));
-                pedido.setEnd_entrega((Endereco) new EnderecoDAO().consultar(rs.getInt("ped_end_entr_id")));
-                pedido.setEnd_cobranca((Endereco) new EnderecoDAO().consultar(rs.getInt("ped_end_cobr_id")));
-                pedido.setCupom((Cupom) new CupomDAO().consultar(rs.getInt("ped_cpm_id")));
+                pedido.setEnd_entrega((Endereco) new EnderecoDAO().consultar(new Endereco().setId(rs.getInt("ped_end_entr_id"))));
+                pedido.setEnd_cobranca((Endereco) new EnderecoDAO().consultar(new Endereco().setId(rs.getInt("ped_end_cobr_id"))));
+                pedido.setCupom((Cupom) new CupomDAO().consultar(new Cupom().setId(rs.getInt("ped_cpm_id"))));
                 pedido.setValor_frete(rs.getDouble("ped_valor_frete"));
                 pedido.setValor_desconto(rs.getDouble("ped_valor_desconto"));
                 pedido.setValor_produtos(rs.getDouble("ped_valor_produtos"));

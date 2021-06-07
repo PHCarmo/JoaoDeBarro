@@ -134,7 +134,7 @@ public class CartaoDAO implements IDAO {
     }
     
     @Override
-    public EntidadeDominio consultar(int id) {
+    public EntidadeDominio consultar(EntidadeDominio entidade) {
         this.conn = ConnectionFactory.getConnection();
         String sql = "SELECT * FROM CARTOES WHERE crt_id=?";
         
@@ -145,7 +145,7 @@ public class CartaoDAO implements IDAO {
         Cartao cartao = new Cartao();
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setInt(1, entidade.getId());
                 
             rs = stmt.executeQuery();
             

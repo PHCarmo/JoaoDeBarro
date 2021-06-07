@@ -131,7 +131,7 @@ public class ItemDAO implements IDAO {
                 item.setStatus(rs.getBoolean("pcr_status"));
                 item.setTroca(rs.getBoolean("pcr_troca"));
                 item.setDt_cadastro(rs.getDate("pcr_dt_inclusao"));
-                item.setProduto((Produto) new ProdutoDAO().consultar(rs.getInt("pcr_prd_id")));
+                item.setProduto((Produto) new ProdutoDAO().consultar(new Produto().setId(rs.getInt("pcr_prd_id"))));
                 carrinho.setItens(Arrays.asList(item));
                 
                 carrinhos.add(carrinho);
@@ -147,7 +147,7 @@ public class ItemDAO implements IDAO {
     }
 
     @Override
-    public EntidadeDominio consultar(int id) {
+    public EntidadeDominio consultar(EntidadeDominio entidade) {
         this.conn = ConnectionFactory.getConnection();
         String sql = "SELECT * FROM PRODUTOS_CARRINHOS WHERE pcr_car_id=?";
 
@@ -157,7 +157,7 @@ public class ItemDAO implements IDAO {
         Carrinho carrinho = new Carrinho();
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setInt(1, entidade.getId());
 
             rs = stmt.executeQuery();
 
@@ -171,7 +171,7 @@ public class ItemDAO implements IDAO {
                 item.setStatus(rs.getBoolean("pcr_status"));
                 item.setTroca(rs.getBoolean("pcr_troca"));
                 item.setDt_cadastro(rs.getDate("pcr_dt_inclusao"));
-                item.setProduto((Produto) new ProdutoDAO().consultar(rs.getInt("pcr_prd_id")));
+                item.setProduto((Produto) new ProdutoDAO().consultar(new Produto().setId(rs.getInt("pcr_prd_id"))));
                 
                 carrinho.getItens().add(item);
             }
@@ -209,7 +209,7 @@ public class ItemDAO implements IDAO {
                 item.setStatus(rs.getBoolean("pcr_status"));
                 item.setTroca(rs.getBoolean("pcr_troca"));
                 item.setDt_cadastro(rs.getDate("pcr_dt_inclusao"));
-                item.setProduto((Produto) new ProdutoDAO().consultar(rs.getInt("pcr_prd_id")));
+                item.setProduto((Produto) new ProdutoDAO().consultar(new Produto().setId(rs.getInt("pcr_prd_id"))));
                 
                 carrinho.getItens().add(item);
             }

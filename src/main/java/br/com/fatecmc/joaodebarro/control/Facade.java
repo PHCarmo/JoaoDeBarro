@@ -103,9 +103,8 @@ public class Facade implements IFacade {
         String error_message = processStrategys("CONSULTAR", entidade);
         if (error_message == null) {
             IDAO dao = daos.get(entidade.getClass().getName());
-            int id = entidade.getId();
-            if(id != 0)
-                return dao.consultar(id);
+            if(entidade.getId() != 0)
+                return dao.consultar(entidade);
             else
                 return dao.consultar();
         } else {

@@ -221,7 +221,7 @@ public class ProdutoDAO implements IDAO {
     }
     
     @Override
-    public EntidadeDominio consultar(int id) {
+    public EntidadeDominio consultar(EntidadeDominio entidade) {
         this.conn = ConnectionFactory.getConnection();
         String sql = "SELECT * FROM PRODUTOS JOIN GRUPOS_PRECIFICACOES ON prd_gpp_id=gpp_id WHERE prd_id=?";
         
@@ -231,7 +231,7 @@ public class ProdutoDAO implements IDAO {
         Produto produto = new Produto();
         try {
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
+            stmt.setInt(1, entidade.getId());
                 
             rs = stmt.executeQuery();
             

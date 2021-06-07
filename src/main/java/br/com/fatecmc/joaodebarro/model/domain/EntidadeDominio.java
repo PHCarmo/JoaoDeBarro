@@ -20,8 +20,9 @@ public class EntidadeDominio {
         return id;
     }
 
-    public void setId(int id) {
+    public EntidadeDominio setId(int id) {
         this.id = id;
+        return this;
     }
 
     public Date getDt_cadastro() {
