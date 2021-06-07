@@ -1,4 +1,4 @@
-package br.com.fatecmc.joaodebarro.control.tablejson;
+package br.com.fatecmc.joaodebarro.control.data.table;
 
 import br.com.fatecmc.joaodebarro.model.domain.*;
 import br.com.fatecmc.joaodebarro.util.Mask;

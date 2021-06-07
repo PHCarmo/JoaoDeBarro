@@ -1,6 +1,6 @@
 package br.com.fatecmc.joaodebarro.control.viewhelper;
 
-import br.com.fatecmc.joaodebarro.control.tablejson.JsonGenerator;
+import br.com.fatecmc.joaodebarro.control.data.JsonGenerator;
 import br.com.fatecmc.joaodebarro.model.dao.PedidoDAO;
 import br.com.fatecmc.joaodebarro.model.domain.*;
 import java.io.IOException;
@@ -46,7 +46,7 @@ public class DataTableVH implements IViewHelper {
         }
         if(!(resultado instanceof List)) resultado = Arrays.asList(resultado);
         
-        String json = new JsonGenerator().gerar((List<EntidadeDominio>) resultado,
+        String json = new JsonGenerator().gerarJsonTabela((List<EntidadeDominio>) resultado,
                 request.getParameter("tabela"));
         
         response.setStatus(200);

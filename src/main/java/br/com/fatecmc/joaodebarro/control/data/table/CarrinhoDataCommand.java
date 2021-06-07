@@ -1,13 +1,13 @@
-package br.com.fatecmc.joaodebarro.control.tablejson;
+package br.com.fatecmc.joaodebarro.control.data.table;
 
 import br.com.fatecmc.joaodebarro.model.domain.EntidadeDominio;
 import java.util.List;
 
-public class VendaDataCommand extends AbstractDataCommand {
+public class CarrinhoDataCommand extends AbstractDataCommand {
     
     @Override
     public Object execute(List<EntidadeDominio> entidades) {		
-        return generator.getVendaData(entidades);
+        return generator.getCarrinhoData(entidades);
     }
     
 }
