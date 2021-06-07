@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "Controller",
-        urlPatterns = {"/cliente", "/Registrar", "/TableConstructor",
+        urlPatterns = {"/cliente", "/Registrar", "/TableConstructor", "/GraphConstructor",
             "/produto", "/item", "/endereco", "/cartao", "/carrinho", "/pedido",
             "/venda", "/compra", "/trocar", "/trocado", "/usuario"})
 public class Controller extends HttpServlet {
@@ -27,11 +27,11 @@ public class Controller extends HttpServlet {
         cmds = new HashMap<>();
         cmds.put("SALVAR", new SalvarCommand());
         cmds.put("ALTERAR", new AlterarCommand());
-        cmds.put("ALTERAR_STATUS", new AlterarCommand());
         cmds.put("EXCLUIR", new ExcluirCommand());
         cmds.put("CONSULTAR", new ConsultarCommand());
         cmds.put("VISUALIZAR", new ConsultarCommand());
         cmds.put("GERAR_TABELA", new ConsultarCommand());
+        cmds.put("GERAR_GRAFICO", new ConsultarCommand());
         
         vhs = new HashMap<>();
         vhs.put("/JoaoDeBarro/faces/cliente", new ClienteVH());
@@ -39,6 +39,7 @@ public class Controller extends HttpServlet {
         vhs.put("/JoaoDeBarro/faces/cartao", new ClienteVH());
         vhs.put("/JoaoDeBarro/faces/Registrar", new UsuarioVH());
         vhs.put("/JoaoDeBarro/faces/TableConstructor", new DataTableVH());
+        vhs.put("/JoaoDeBarro/faces/GraphConstructor", new DataGraphVH());
         vhs.put("/JoaoDeBarro/faces/produto", new ProdutoVH());
         vhs.put("/JoaoDeBarro/faces/item", new ItemVH());
         vhs.put("/JoaoDeBarro/faces/carrinho", new CarrinhoVH());

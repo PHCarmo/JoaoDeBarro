@@ -20,30 +20,32 @@
 <div class="row">
     <div class="col-6">
         <h3>Início</h3>
-        <input class="form-control" placeholder="Data de Início" type="date" name="dt_inicio" value="2021-01-01" required>
+        <input class="form-control data_filter" placeholder="Data Inicial" type="date" id="dt_inicio" value="2021-06-01" required>
     </div>
     <div class="col-6">
         <h3>Fim</h3>
-        <input class="form-control" placeholder="Data de Início" type="date" name="dt_inicio" value="2021-03-31" required>
+        <input class="form-control data_filter" placeholder="Data Final" type="date" id="dt_fim" value="2021-06-30" required>
     </div>
 </div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+    var data_inicio = document.getElementById("dt_inicio").value;
+    var data_final = document.getElementById("dt_fim").value;
+    
     //Donut Chart Construction
     google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(drawChart);
     
     function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Status',  'Quantidade'],
-            ['Em Processamento',   1],
-            ['Reprovada',          2],
-            ['Aprovada',          12],
-            ['Em Trânsito',       21],
-            ['Entregue',          35],
-            ['Em Troca',           3],
-            ['Troca Autorizada',  17]
-        ]);
+        var jsonData = $.ajax({
+            url: "GraphConstructor?grafico=VendaStatus&operacao=GERAR_GRAFICO&dt_inicio="+data_inicio+"&dt_fim="+data_final,
+            dataType: "json",
+            async: false
+        }).responseText;
+        
+        console.log(jsonData);
+        
+        var data = google.visualization.arrayToDataTable($.parseJSON(jsonData));
 
         var options = {
             title: 'Vendas por Status',
@@ -54,7 +56,7 @@
                 fontSize: 18,
             },
             chartArea: {width: '70%'},
-            colors: ['lightskyblue', 'red', 'cornflowerblue', 'orange', 'green', 'yellow', 'greenyellow'],
+            colors: ['cornflowerblue', 'lightskyblue', 'orange', 'yellow', 'green', 'red', 'greenyellow'],
             width: 480,
             height: 350,
             pieHole: 0.4,
@@ -70,12 +72,13 @@
     google.charts.setOnLoadCallback(drawBarColors);
 
     function drawBarColors() {
-        var data = google.visualization.arrayToDataTable([
-            ['Mês', 'Clientes', 'Produtos', 'Vendas'],
-            ['Jan/2021', 15, 80, 14],
-            ['Fev/2021', 12, 33, 29],
-            ['Mar/2021', 200, 345, 109]
-        ]);
+        var jsonData = $.ajax({
+            url: "GraphConstructor?grafico=CadastroNovo&operacao=GERAR_GRAFICO&dt_inicio="+data_inicio+"&dt_fim="+data_final,
+            dataType: "json",
+            async: false
+        }).responseText;
+        
+        var data = google.visualization.arrayToDataTable($.parseJSON(jsonData));
 
         var options = {
             title: 'Novos Cadastros',
@@ -104,15 +107,13 @@
     google.charts.setOnLoadCallback(drawVisualization);
 
     function drawVisualization() {
-        var data = google.visualization.arrayToDataTable([
-            ['Mês/Ano', 'Vendido', 'Descontado', 'Faturado'],
-            ['Out/20',  130000,      10000,         120000],
-            ['Nov/20',  70000,      11000,        59000],
-            ['Dez/20',  255000,      27000,        228000],
-            ['Jan/21',  108000,      9000,        99000],
-            ['Fev/21',  204000,      47000,        157000],
-            ['Mar/21',  89000,      7000,         82000]
-        ]);
+        var jsonData = $.ajax({
+            url: "GraphConstructor?grafico=VendaValor&operacao=GERAR_GRAFICO&dt_inicio="+data_inicio+"&dt_fim="+data_final,
+            dataType: "json",
+            async: false
+        }).responseText;
+        
+        var data = google.visualization.arrayToDataTable($.parseJSON(jsonData));
 
         var options = {
             title : 'Resultado de Vendas',
@@ -135,4 +136,15 @@
         var chart = new google.visualization.ComboChart(document.getElementById('combochart'));
         chart.draw(data, options);
     }
+    
+    document.querySelectorAll('.data_filter').forEach(item => {
+        item.addEventListener("input", function(){
+            data_inicio = document.getElementById("dt_inicio").value;
+            data_final = document.getElementById("dt_fim").value;
+            
+            drawChart();
+            drawBarColors();
+            drawVisualization();
+        });
+    });
 </script>

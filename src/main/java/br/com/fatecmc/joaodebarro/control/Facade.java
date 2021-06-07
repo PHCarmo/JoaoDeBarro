@@ -1,5 +1,6 @@
 package br.com.fatecmc.joaodebarro.control;
 
+import br.com.fatecmc.joaodebarro.control.data.ConsultaGrafico;
 import br.com.fatecmc.joaodebarro.model.dao.*;
 import br.com.fatecmc.joaodebarro.model.strategy.*;
 import br.com.fatecmc.joaodebarro.model.domain.*;
@@ -23,6 +24,7 @@ public class Facade implements IFacade {
         daos.put(Item.class.getName(), new ItemDAO());
         daos.put(Pedido.class.getName(), new PedidoDAO());
         daos.put(Cupom.class.getName(), new CupomDAO());
+        daos.put(ConsultaGrafico.class.getName(), new GraficoDAO());
     }
 
     private void initStrategy() {

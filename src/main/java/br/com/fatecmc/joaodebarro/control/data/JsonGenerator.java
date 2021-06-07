@@ -33,4 +33,22 @@ public class JsonGenerator {
         }
     }
 
+    public JSONArray gerarJsonGraph(ConsultaGrafico cg) {
+        JSONArray dataJson = new JSONArray();
+        List<Object[]> data = cg.getData();
+        
+        for(Object[] row : data) {
+            JSONArray row_array = new JSONArray();
+            for(Object item : row) {
+                row_array.put(item);
+            }
+            dataJson.put(row_array);
+        }
+        if(data.size() == 1) {
+            dataJson.put(new int[data.get(0).length]);
+        }
+        
+        return dataJson;
+    }
+
 }
