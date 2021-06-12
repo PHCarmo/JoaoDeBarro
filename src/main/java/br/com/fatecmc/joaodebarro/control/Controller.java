@@ -1,11 +1,13 @@
 package br.com.fatecmc.joaodebarro.control;
 
 import br.com.fatecmc.joaodebarro.control.command.*;
+import br.com.fatecmc.joaodebarro.control.service.ValidarPedidos;
 import br.com.fatecmc.joaodebarro.control.viewhelper.*;
 import br.com.fatecmc.joaodebarro.model.domain.EntidadeDominio;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,11 +23,13 @@ public class Controller extends HttpServlet {
     private static String operacao = null;
     private static Map<String, ICommand> cmds;
     private static Map<String, IViewHelper> vhs;
+    private static Timer rotinas;
     
     public Controller() {
         super();
         initCommands();        
         initViewHelpers();
+        initServices();
     }
     
     private void initCommands(){
@@ -56,6 +60,12 @@ public class Controller extends HttpServlet {
         vhs.put("/JoaoDeBarro/faces/trocar", new TrocaVH());
         vhs.put("/JoaoDeBarro/faces/trocado", new TrocaVH());
         vhs.put("/JoaoDeBarro/faces/usuario", new UsuarioVH());
+    }
+    
+    private void initServices(){
+        rotinas = new Timer();
+        //Valida pedidos a cada 3 minutos
+        rotinas.schedule(new ValidarPedidos(), 0, 3 * 60 * 1000);
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
