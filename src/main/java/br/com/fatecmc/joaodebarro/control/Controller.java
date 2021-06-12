@@ -24,6 +24,11 @@ public class Controller extends HttpServlet {
     
     public Controller() {
         super();
+        initCommands();        
+        initViewHelpers();
+    }
+    
+    private void initCommands(){
         cmds = new HashMap<>();
         cmds.put("SALVAR", new SalvarCommand());
         cmds.put("ALTERAR", new AlterarCommand());
@@ -32,7 +37,9 @@ public class Controller extends HttpServlet {
         cmds.put("VISUALIZAR", new ConsultarCommand());
         cmds.put("GERAR_TABELA", new ConsultarCommand());
         cmds.put("GERAR_GRAFICO", new ConsultarCommand());
-        
+    }
+    
+    private void initViewHelpers(){
         vhs = new HashMap<>();
         vhs.put("/JoaoDeBarro/faces/cliente", new ClienteVH());
         vhs.put("/JoaoDeBarro/faces/endereco", new ClienteVH());
