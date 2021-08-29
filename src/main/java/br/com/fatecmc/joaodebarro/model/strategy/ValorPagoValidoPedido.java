@@ -6,12 +6,11 @@ public class ValorPagoValidoPedido implements IStrategy{
 
     @Override
     public String process(EntidadeDominio entidade) {
-        boolean validacao = false;
         
         Pedido p = (Pedido) entidade;
-        if(p.getValor_total() > 0) validacao = p.getValor_total() != p.getValor_pago();
-                
-        if(validacao)
+        if(p.getValor_pago() > 0 && p.getValor_total() <= 0)
+            return "- Não se paga compra gratuita!";            
+        else if(p.getValor_total() > 0 && p.getValor_total() != p.getValor_pago())
             return "- Valor total pago diverge do valor total comprado.";
         
         return null;

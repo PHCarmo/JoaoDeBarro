@@ -9,7 +9,7 @@ public class ValeTrocaDesnecessarioPedido implements IStrategy{
         boolean validacao = false;
         
         Pedido p = (Pedido) entidade;
-        if(p.getValor_total() > 0.0){
+        if(p.getValor_total() < 0.0){
             for(ValeTroca vt: p.getVales()){
                 if(vt.getValor() < Math.abs(p.getValor_total())){
                     validacao = true;
