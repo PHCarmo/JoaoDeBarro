@@ -23,7 +23,7 @@ public class PedidoVH implements IViewHelper {
         cliente.setId(ParameterParser.toInt(request.getSession(false).getAttribute("cli_id")));
         entrega.setId(ParameterParser.toInt(request.getParameter("entrega")));
         cobranca.setId(ParameterParser.toInt(request.getParameter("cobranca")));
-        cupom.setId(ParameterParser.toInt(request.getParameter("cpm_id").split("|")[0]));
+        cupom.setId(ParameterParser.toInt(request.getParameter("cpm_id").split("-")[0]));
         pedido.setCarrinho(carrinho);
         pedido.setCliente(cliente);
         pedido.setEnd_entrega(entrega);
@@ -36,7 +36,7 @@ public class PedidoVH implements IViewHelper {
         if(request.getParameterValues("vt") != null)
             for(String value: request.getParameterValues("vt")){
                 ValeTroca vt = new ValeTroca();
-                vt.setId(Integer.parseInt(value.split("|")[0]));
+                vt.setId(Integer.parseInt(value.split("-")[0]));
                 pedido.getVales().add(vt);
             }
 

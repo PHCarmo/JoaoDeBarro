@@ -59,9 +59,9 @@
                                             content.append("<td class='dt-center'>"+item.getQtd()+"</td>");
                                             content.append("<td class='dt-center'>"+Mask.toMoney(item.getProduto().getValor_venda() * item.getQtd())+"</td>");
                                             if(item.getTroca())
-                                                content.append("<td class='dt-center'><input disabled checked type='checkbox' name='item' value='"+item.getId()+"|"+item.getQtd()+"'></td>");
+                                                content.append("<td class='dt-center'><input disabled checked type='checkbox' name='item' value='"+item.getId()+"-"+item.getQtd()+"'></td>");
                                             else
-                                                content.append("<td class='dt-center'><input type='checkbox' name='item' value='"+item.getId()+"|"+item.getQtd()+"'></td>");
+                                                content.append("<td class='dt-center'><input type='checkbox' name='item' value='"+item.getId()+"-"+item.getQtd()+"'></td>");
                                             content.append("</tr>");
                                         }
                                         

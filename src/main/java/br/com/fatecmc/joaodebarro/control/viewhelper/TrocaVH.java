@@ -27,8 +27,8 @@ public class TrocaVH implements IViewHelper {
             
             for(String value: request.getParameterValues("item")){
                 Item item = new Item();
-                item.setId(Integer.parseInt(value.split("|")[0]));
-                item.setQtd(Integer.parseInt(value.split("|")[2]));
+                item.setId(Integer.parseInt(value.split("-")[0]));
+                item.setQtd(Integer.parseInt(value.split("-")[1]));
                 item.setStatus(true);
                 item.setTroca(true);
                 carrinho.getItens().add(item);

@@ -129,7 +129,7 @@
 
                                     if(cupons != null){
                                         for(Cupom cpm: cupons){
-                                            content.append("<option value='"+cpm.getId()+"|"+cpm.getValor()+"'>"+cpm.getNome()+"</option>");
+                                            content.append("<option value='"+cpm.getId()+"-"+cpm.getValor()+"'>"+cpm.getNome()+"</option>");
                                         }
                                     }
 
@@ -146,7 +146,7 @@
                                     content.append("<tr role='row'><td><strong>Nenhum vale-troca encontrado.</strong><br></td></tr>");
                                 }else{
                                     for(ValeTroca vt: clie.getVales()){
-                                        content.append("<p><input class='valetroca' type='checkbox' name='vt' value='"+vt.getId()+"|"+vt.getValor()+"'> ");
+                                        content.append("<p><input class='valetroca' type='checkbox' name='vt' value='"+vt.getId()+"-"+vt.getValor()+"'> ");
                                         content.append(vt.getCodigo()+" - "+Mask.toMoney(vt.getValor()));
                                         content.append("</p>");
                                     }
@@ -293,10 +293,10 @@
     function changeDescontoAndTotal(){
         $sum = 0.0;
         document.querySelectorAll('.valetroca').forEach(item => {
-            if(item.checked) $sum += parseFloat(item.value.split("|")[1]);
+            if(item.checked) $sum += parseFloat(item.value.split("-")[1]);
         });
         if(document.getElementById("cupom").value !== "") $sum +=
-            parseFloat(document.getElementById("cupom").value.split("|")[1]);
+            parseFloat(document.getElementById("cupom").value.split("-")[1]);
         document.getElementById("valor_desconto").value = $sum;
         document.getElementById("valor_total").value = $valor_total - $sum;
         modifyLabels();
