@@ -5,6 +5,7 @@ $("a[href='#tab_compra']").on('click', function(e){
             "language": {
                 "url" : "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
             },
+            "order": [[ 1, "desc" ]],
             "columnDefs": [{
                 "targets": [0,1,2,3,4],
                 "className": "dt-center"

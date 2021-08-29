@@ -2167,6 +2167,7 @@ ul.location_icon span {
         width: 20px;
         height: 20px;
         border-radius: 50%;
+        color: rgba(0,0,0,0);
 }
 
 .square {
