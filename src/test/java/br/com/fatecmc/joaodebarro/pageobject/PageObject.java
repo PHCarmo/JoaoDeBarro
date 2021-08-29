@@ -45,4 +45,18 @@ public abstract class PageObject {
         date_input.sendKeys(date.replace("/", ""));
     }
     
+    public void filtrarTabela(String texto) {
+        for(WebElement elemento: driver.findElements(By.cssSelector("input[type='search']"))){
+            if(elemento.isDisplayed()){
+                elemento.sendKeys(texto);
+                break;
+            }
+        }
+        for(WebElement loading: driver.findElements(By.xpath("//div[text()='Processando...']"))){
+            new WebDriverWait(driver, 30).until(
+                ExpectedConditions.invisibilityOf(loading)
+            );
+        }
+    }
+    
 }

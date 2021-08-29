@@ -1,7 +1,7 @@
 package br.com.fatecmc.joaodebarro.stepdefinition;
 
+import br.com.fatecmc.joaodebarro.util.WebDriverSingleton;
 import br.com.fatecmc.joaodebarro.pageobject.*;
-import br.com.fatecmc.joaodebarro.util.WebDriverFactory;
 import io.cucumber.java.pt.*;
 import junit.framework.Assert;
 import org.openqa.selenium.By;
@@ -12,7 +12,7 @@ public class ClienteStep {
     protected WebDriver driver;
 
     public ClienteStep() {
-        driver = WebDriverFactory.startBrowser("Chrome");
+        this.driver = WebDriverSingleton.getInstance().getDriver();
     }
 
     @Dado("a página inicial é acessada")
@@ -27,7 +27,7 @@ public class ClienteStep {
 
     @Dado("a página de perfil é acessada")
     public void a_página_de_perfil_é_acessada() {
-        new LoginPage(driver).acessar("http://localhost:8080/JoaoDeBarro/faces/cliente.jsp");
+        new LoginPage(driver).acessar("http://localhost:8080/JoaoDeBarro/faces/cliente?operacao=CONSULTAR");
     }
 
     @Quando("{string} é visualizado")
@@ -59,6 +59,11 @@ public class ClienteStep {
     @Quando("os dados de cartão {string} são preenchidos")
     public void os_dados_de_cartão_são_preenchidos(String numero) throws InterruptedException {
         new FormularioCartaoPage(driver).preencherDadosProprios(numero);
+    }
+    
+    @Quando("os dados de cartão inválido {string} são preenchidos")
+    public void os_dados_de_cartão_inválido_são_preenchidos(String numero) throws InterruptedException {
+        new FormularioCartaoPage(driver).preencherDadosPropriosInvalidos(numero);
     }
 
     @Quando("a página de cadastro de cliente é exibida")

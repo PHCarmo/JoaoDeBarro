@@ -11,7 +11,7 @@ public class FormularioClientePage extends PageObject {
 
     public void preencherDadosPessoais(String cpf) {
         aguardarCarregar();
-        driver.findElement(By.name("cli_nome")).sendKeys("Cliente Automação");
+        driver.findElement(By.name("cli_nome")).sendKeys("Roberto Marcos da Silva");
         selecionarOpcao("cli_gen_id", "2");
         driver.findElement(By.name("cli_cpf")).sendKeys(cpf);
         preencherCampoData(By.name("cli_dt_nascimento"), "10/02/1987");
@@ -24,7 +24,7 @@ public class FormularioClientePage extends PageObject {
     }
 
     public void preencherEndereco(String cep) throws InterruptedException {
-        driver.findElement(By.name("end_nome")).sendKeys("Endereço Padrão");
+        driver.findElement(By.name("end_nome")).sendKeys("Minha Casa");
         driver.findElement(By.name("end_cep")).sendKeys(cep);
         driver.findElement(By.name("end_bairro")).sendKeys("Distrito Industrial");
         rolarPagina(13);
@@ -36,7 +36,7 @@ public class FormularioClientePage extends PageObject {
         driver.findElement(By.name("end_estado")).sendKeys("SP");
         driver.findElement(By.name("end_pais")).sendKeys("Brasil");
         selecionarOpcao("end_ten_id", "2");
-        driver.findElement(By.name("end_observacao")).sendKeys("Sem Observações");
+        driver.findElement(By.name("end_observacao")).sendKeys("Bloco C");
         selecionarOpcao("end_proposito", "1");
         driver.findElement(By.name("operacao")).click();
     }

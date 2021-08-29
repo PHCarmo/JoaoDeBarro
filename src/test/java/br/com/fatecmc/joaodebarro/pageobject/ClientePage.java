@@ -18,4 +18,5 @@ public class ClientePage extends PageObject {
         driver.findElement(By.id(String.format("novo_%s", item))).click();
         aguardarCarregar();
     }
+    
 }

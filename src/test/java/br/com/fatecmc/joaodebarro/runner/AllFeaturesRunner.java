@@ -5,8 +5,10 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features="classpath:features/Cliente.feature",
+@CucumberOptions(features={"classpath:features/Cliente.feature",
+        "classpath:features/Pedido.feature"},
+        tags="@regressivo",
         glue="br.com.fatecmc.joaodebarro.stepdefinition")
-public class ClienteRunner {
+public class AllFeaturesRunner {
     
 }
