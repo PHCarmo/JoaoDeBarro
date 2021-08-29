@@ -35,7 +35,7 @@ public class DataGenerator {
             Pedido p = (Pedido) e;
             JSONArray obj = new JSONArray();
             
-            obj.put("<div class='circle " + p.getStatus().getCor() + "'></div>");
+            obj.put("<div class='circle " + p.getStatus().getCor() + "'>" + p.getStatus().getDescricao() + "</div>");
             obj.put(p.getCodigo());
             obj.put(p.getCliente().getCodigo());
             obj.put(Mask.toDateHour(p.getDt_cadastro()));
@@ -91,7 +91,7 @@ public class DataGenerator {
             Pedido p = (Pedido) e;
             JSONArray obj = new JSONArray();
             
-            obj.put("<div class='circle " + p.getStatus().getCor() + "'></div>");
+            obj.put("<div class='circle " + p.getStatus().getCor() + "'>" + p.getStatus().getDescricao() + "</div>");
             obj.put(p.getCodigo());
             obj.put(Mask.toDateHour(p.getDt_cadastro()));
             obj.put(Mask.toMoney(p.getValor_total()));
